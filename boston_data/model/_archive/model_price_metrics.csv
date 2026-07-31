@@ -1,0 +1,8 @@
+model,split,MAE,RMSE,R2,MAPE
+FULL (44 feat),calib,1.4358,2.5362,0.9263,9.6603
+FULL (44 feat),test,1.4519,2.5545,0.9256,9.62
+LEAN (7 feat),calib,1.4,2.5117,0.9278,9.5146
+LEAN (7 feat),test,1.4341,2.5584,0.9254,9.5311
+LEAN + log-target,calib,1.3541,2.4819,0.9295,9.1043
+LEAN + log-target,test,1.3795,2.5268,0.9272,9.0647
+Persistence(lag1),test,1.9412,3.6659,0.8467,12.6507

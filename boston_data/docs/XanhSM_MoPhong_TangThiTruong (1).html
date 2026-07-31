@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mô phỏng Tầng Thị trường — XanhSM</title>
+<style>
+  :root{
+    --ink:#13241d; --muted:#5b6b63; --faint:#8a988f;
+    --paper:#eaefea; --card:#ffffff; --line:#d5ded7; --line2:#e7ede8;
+    --green:#00994d; --green-deep:#0b6b45; --green-soft:#e5f4ec;
+    --short:#d1573f; --short-soft:#fbe9e4;
+    --surplus:#3f7fc4; --surplus-soft:#e7f0fa;
+    --amber:#d8942a; --amber-soft:#fbefd8;
+    --mono: ui-monospace, "SF Mono", "Menlo", "Consolas", monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--sans); line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:28px 20px 80px}
+
+  /* Header */
+  header.top{margin-bottom:26px}
+  .eyebrow{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--green-deep); font-weight:600;
+  }
+  h1{font-size:29px; line-height:1.15; margin:6px 0 8px; letter-spacing:-.01em}
+  h1 .accent{color:var(--green)}
+  .lede{color:var(--muted); font-size:15px; max-width:64ch}
+
+  /* Cards / panels */
+  .panel{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px 22px; margin-bottom:20px}
+  .panel h2{font-size:13px; text-transform:uppercase; letter-spacing:.08em; margin:0 0 4px; color:var(--ink)}
+  .panel h2 .num{font-family:var(--mono); color:var(--green); margin-right:8px}
+  .panel .sub{color:var(--muted); font-size:13px; margin:0 0 16px}
+
+  /* Scenario / timeline chips */
+  .steps{display:grid; grid-template-columns:repeat(8,1fr); gap:8px}
+  .step{
+    border:1px solid var(--line); border-radius:10px; padding:9px 6px 10px;
+    text-align:center; cursor:pointer; background:#fbfdfb; transition:.12s;
+    position:relative;
+  }
+  .step:hover{border-color:var(--green); background:var(--green-soft)}
+  .step.active{border-color:var(--green); background:var(--green-soft); box-shadow:0 0 0 2px var(--green-soft)}
+  .step .tlabel{font-family:var(--mono); font-size:11px; color:var(--faint)}
+  .step .time{font-size:10px; color:var(--faint); margin-top:1px}
+  .step .mm{font-family:var(--mono); font-weight:700; font-size:16px; margin-top:6px}
+  .step .bar{height:3px; border-radius:2px; margin-top:6px; background:var(--line)}
+
+  /* editable d/s row */
+  .dsgrid{display:grid; grid-template-columns:repeat(8,1fr); gap:8px; margin-top:12px}
+  .dscell{border:1px solid var(--line2); border-radius:8px; padding:6px; background:#fcfdfc}
+  .dscell label{display:block; font-family:var(--mono); font-size:9.5px; color:var(--faint); text-transform:uppercase; letter-spacing:.06em}
+  .dscell .r{display:flex; align-items:center; gap:3px; margin-top:2px}
+  .dscell .r span{font-family:var(--mono); font-size:11px; width:9px; color:var(--muted)}
+  .dscell input{
+    width:100%; border:1px solid var(--line); border-radius:5px; padding:2px 4px;
+    font-family:var(--mono); font-size:12px; text-align:right; background:#fff; color:var(--ink);
+  }
+  .dscell input:focus{outline:none; border-color:var(--green)}
+
+  /* Controls */
+  .ctrls{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:18px 26px}
+  .ctrl label{display:flex; justify-content:space-between; align-items:baseline; font-size:13px; margin-bottom:5px}
+  .ctrl label .nm{font-weight:600}
+  .ctrl label .nm em{font-family:var(--mono); font-style:normal; color:var(--green-deep); font-weight:700}
+  .ctrl label .val{font-family:var(--mono); font-size:13px; color:var(--ink); background:var(--green-soft); padding:1px 7px; border-radius:5px}
+  .ctrl .desc{font-size:11.5px; color:var(--faint); margin-top:3px}
+  input[type=range]{width:100%; accent-color:var(--green); margin:2px 0}
+  .numrow{display:flex; gap:14px; flex-wrap:wrap; margin-top:4px}
+  .numrow .ni{display:flex; flex-direction:column; gap:3px}
+  .numrow .ni label{font-size:12px; font-weight:600}
+  .numrow .ni label em{font-family:var(--mono); font-style:normal; color:var(--green-deep)}
+  .numrow .ni input{width:84px; border:1px solid var(--line); border-radius:6px; padding:4px 7px; font-family:var(--mono); font-size:13px; text-align:right}
+  .numrow .ni input:focus{outline:none; border-color:var(--green)}
+
+  .reset{
+    font-family:var(--sans); font-size:12.5px; font-weight:600; color:var(--green-deep);
+    background:var(--green-soft); border:1px solid var(--green); border-radius:8px;
+    padding:7px 14px; cursor:pointer; margin-top:16px;
+  }
+  .reset:hover{background:#d7ecdf}
+
+  /* Pipeline */
+  .pipehead{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:4px}
+  .pipehead .big{font-size:15px; font-weight:700}
+  .pipehead .ctx{font-family:var(--mono); font-size:12.5px; color:var(--muted)}
+  .stage{
+    border:1px solid var(--line); border-left:3px solid var(--green); border-radius:10px;
+    padding:13px 15px; margin-top:11px; background:#fcfdfc;
+  }
+  .stage.clip{border-left-color:var(--amber); background:var(--amber-soft)}
+  .stage .eq{font-family:var(--mono); font-size:12px; color:var(--faint); letter-spacing:.01em}
+  .stage .plug{font-family:var(--mono); font-size:14px; margin:6px 0 3px; color:var(--ink); word-break:break-word}
+  .stage .plug b{color:var(--green-deep)}
+  .stage .plug .clr{color:var(--amber); font-weight:700}
+  .stage .role{font-size:12.5px; color:var(--muted)}
+  .stage .tag{
+    display:inline-block; font-family:var(--mono); font-size:10px; text-transform:uppercase;
+    letter-spacing:.05em; padding:1px 7px; border-radius:20px; margin-bottom:7px; font-weight:600;
+  }
+  .tag.state{background:var(--surplus-soft); color:var(--surplus)}
+  .tag.move{background:var(--green-soft); color:var(--green-deep)}
+  .tag.smooth{background:#eef0f4; color:#5a6478}
+  .tag.safe{background:var(--amber-soft); color:var(--amber)}
+  .tag.out{background:var(--short-soft); color:var(--short)}
+  .final{
+    margin-top:11px; border:1px solid var(--green); border-radius:10px; padding:14px 16px;
+    background:var(--green-soft); display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+  }
+  .final .lbl{font-size:13px; font-weight:600; color:var(--green-deep)}
+  .final .lbl small{display:block; font-weight:400; color:var(--muted); font-size:11.5px}
+  .final .res{font-family:var(--mono); font-size:26px; font-weight:700; color:var(--green-deep)}
+
+  /* Table */
+  .tblwrap{overflow-x:auto}
+  table{border-collapse:collapse; width:100%; font-family:var(--mono); font-size:12.5px}
+  th,td{padding:7px 9px; text-align:right; border-bottom:1px solid var(--line2); white-space:nowrap}
+  th{font-size:10.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--faint); font-weight:600; border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  tbody tr{cursor:pointer}
+  tbody tr:hover{background:var(--green-soft)}
+  tbody tr.active{background:var(--green-soft)}
+  td.mm{font-weight:700}
+  .up{color:var(--short)} .down{color:var(--surplus)}
+  .clipped{color:var(--amber); font-weight:700}
+
+  /* Chart */
+  .chart{width:100%; height:240px; display:block}
+  .legend{display:flex; gap:18px; flex-wrap:wrap; margin-top:10px; font-size:12px; color:var(--muted)}
+  .legend .k{display:flex; align-items:center; gap:6px}
+  .legend .sw{width:14px; height:3px; border-radius:2px}
+  .legend .dot{width:9px; height:9px; border-radius:50%}
+
+  .note{font-size:12.5px; color:var(--muted); margin-top:14px; padding-top:14px; border-top:1px solid var(--line2)}
+  .note b{color:var(--ink)}
+
+  @media(max-width:720px){
+    .steps,.dsgrid{grid-template-columns:repeat(4,1fr)}
+    h1{font-size:24px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">XanhSM · Nghiên cứu định giá · Phần 2</div>
+    <h1>Tầng thị trường: từ cung–cầu tới <span class="accent">hệ số nhân</span></h1>
+    <p class="lede">Kịch bản: một buổi sáng ở Cầu Giấy, giờ cao điểm dâng lên rồi hạ xuống. Kéo các núm tham số hoặc sửa cung–cầu, rồi bấm vào từng mốc thời gian để xem <em>m<sup>market</sup></em> được tính ra từng bước qua công thức (2)→(8).</p>
+  </header>
+
+  <!-- SCENARIO -->
+  <section class="panel">
+    <h2><span class="num">◆</span>Kịch bản theo thời gian</h2>
+    <p class="sub">Mỗi ô là một bucket (Cầu Giấy tại một khung giờ). Bấm để chọn mốc muốn xem chi tiết. Sửa số cầu (d) / cung (s) để thử tình huống của bạn.</p>
+    <div class="steps" id="steps"></div>
+    <div class="dsgrid" id="dsgrid"></div>
+  </section>
+
+  <!-- PARAMS -->
+  <section class="panel">
+    <h2><span class="num">◆</span>Núm tham số</h2>
+    <p class="sub">Đây là các "siêu tham số" đội của bạn tự chỉnh — không phải dữ liệu đo được.</p>
+    <div class="ctrls">
+      <div class="ctrl">
+        <label><span class="nm"><em>ρ</em> · tốc độ làm mượt</span><span class="val" id="rhoVal">0.40</span></label>
+        <input type="range" id="rho" min="0.05" max="1" step="0.05" value="0.4">
+        <div class="desc">Lớn → bám dữ liệu mới (nhạy). Nhỏ → mượt & ì hơn. [CT 5]</div>
+      </div>
+      <div class="ctrl">
+        <label><span class="nm"><em>c</em> · trần chặn biên độ</span><span class="val" id="cVal">8</span></label>
+        <input type="range" id="c" min="2" max="20" step="1" value="8">
+        <div class="desc">Giới hạn độ lớn chuyển động g. [CT 6]</div>
+      </div>
+      <div class="ctrl">
+        <label><span class="nm"><em>W</em> · cửa sổ trung vị</span><span class="val" id="wVal">3</span></label>
+        <input type="range" id="w" min="1" max="5" step="1" value="3">
+        <div class="desc">Số kỳ gần nhất lấy trung vị. [CT 4]</div>
+      </div>
+      <div class="ctrl">
+        <label><span class="nm"><em>η₁</em> · độ mạnh tương tác</span><span class="val" id="e1Val">0.0010</span></label>
+        <input type="range" id="e1" min="0" max="0.004" step="0.0001" value="0.001">
+        <div class="desc">Số hạng g·ℓ (thiếu xe & đang xấu đi). [CT 7]</div>
+      </div>
+      <div class="ctrl">
+        <label><span class="nm"><em>η₂</em> · phản ứng trực tiếp</span><span class="val" id="e2Val">0.0020</span></label>
+        <input type="range" id="e2" min="0" max="0.006" step="0.0001" value="0.002">
+        <div class="desc">Số hạng ℓ (mất cân bằng, bất kể chuyển động). [CT 7]</div>
+      </div>
+    </div>
+    <div class="numrow">
+      <div class="ni"><label>giá nền <em>m<sup>base</sup></em></label><input type="number" id="mbase" value="1.00" step="0.05"></div>
+      <div class="ni"><label>sàn <em>m<sub>min</sub></em></label><input type="number" id="mmin" value="0.70" step="0.05"></div>
+      <div class="ni"><label>trần <em>m<sub>max</sub></em></label><input type="number" id="mmax" value="2.50" step="0.05"></div>
+    </div>
+    <button class="reset" id="reset">↺ Khôi phục mặc định</button>
+  </section>
+
+  <!-- PIPELINE -->
+  <section class="panel">
+    <h2><span class="num">◆</span>Dây chuyền tính toán</h2>
+    <div class="pipehead">
+      <span class="big" id="pipeTitle">Mốc t = 4</span>
+      <span class="ctx" id="pipeCtx"></span>
+    </div>
+    <p class="sub" style="margin-top:2px">Từng công thức: đưa số vào → ra kết quả → tác dụng. Đỏ = giá trị bị clip.</p>
+    <div id="pipeline"></div>
+  </section>
+
+  <!-- CHART -->
+  <section class="panel">
+    <h2><span class="num">◆</span>Hệ số nhân theo thời gian</h2>
+    <p class="sub">Đường xanh là m<sup>market</sup>. Trên vạch 1.0 = tăng giá (thiếu xe); dưới = giảm (thừa xe).</p>
+    <svg class="chart" id="chart" viewBox="0 0 720 240" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="legend">
+      <div class="k"><span class="sw" style="background:var(--green)"></span> m<sup>market</sup></div>
+      <div class="k"><span class="dot" style="background:var(--short)"></span> tăng giá (&gt;1)</div>
+      <div class="k"><span class="dot" style="background:var(--surplus)"></span> giảm giá (&lt;1)</div>
+      <div class="k"><span class="sw" style="background:var(--amber)"></span> có clip xảy ra</div>
+    </div>
+  </section>
+
+  <!-- TABLE -->
+  <section class="panel">
+    <h2><span class="num">◆</span>Bảng đầy đủ</h2>
+    <p class="sub">Toàn bộ biến qua từng mốc. Bấm một hàng để xem dây chuyền của mốc đó.</p>
+    <div class="tblwrap">
+      <table id="tbl">
+        <thead><tr>
+          <th>t</th><th>d</th><th>s</th><th>ℓ =d−s</th><th>q</th><th>q<sup>med</sup></th><th>q̃ (EMA)</th><th>g (clip)</th><th>Δ</th><th>m<sup>market</sup></th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <p class="note"><b>Mẹo đọc:</b> để ý mốc giờ cao điểm — q̃ vọt lên chạm trần <em>c</em> nên g bị <span style="color:var(--amber);font-weight:700">clip</span> (tô cam). Đó là lúc "phanh an toàn" hoạt động, ngăn giá nhảy quá mạnh dù thị trường biến động dữ dội.</p>
+  </section>
+
+</div>
+
+<script>
+"use strict";
+
+// ---------- Kịch bản mặc định (Cầu Giấy, sáng cao điểm) ----------
+const DEFAULT = {
+  times: ["7:00","7:20","7:40","8:00","8:20","8:40","9:00","9:20"],
+  d: [70, 86, 104, 118, 120, 106, 96, 88],
+  s: [76, 80, 82, 84, 90, 96, 94, 90],
+  rho:0.4, c:8, w:3, e1:0.001, e2:0.002, mbase:1.0, mmin:0.7, mmax:2.5
+};
+
+let d = [...DEFAULT.d], s = [...DEFAULT.s];
+let selected = 3; // index (t=4)
+
+const $ = id => document.getElementById(id);
+const P = () => ({
+  rho:+$('rho').value, c:+$('c').value, w:+$('w').value,
+  e1:+$('e1').value, e2:+$('e2').value,
+  mbase:+$('mbase').value, mmin:+$('mmin').value, mmax:+$('mmax').value
+});
+const clip = (x,a,b)=>Math.min(Math.max(x,a),b);
+const median = arr => {
+  const a=[...arr].sort((x,y)=>x-y), n=a.length;
+  if(n===0) return 0;
+  return n%2 ? a[(n-1)/2] : (a[n/2-1]+a[n/2])/2;
+};
+const f2=x=>x.toFixed(2), f3=x=>x.toFixed(3), f4=x=>x.toFixed(4);
+
+// ---------- Máy tính pipeline ----------
+function compute(){
+  const p=P(), N=d.length, rows=[];
+  let emaPrev=0;
+  const qArr=[]; // q[i] hoặc null
+  for(let i=0;i<N;i++){
+    const l = d[i]-s[i];
+    let q=null;
+    if(i>0) q = (d[i]-d[i-1]) - (s[i]-s[i-1]);
+    qArr.push(q);
+
+    // trung vị trên cửa sổ W các q đã xác định
+    const winStart=Math.max(0, i-p.w+1);
+    const win=[];
+    for(let k=winStart;k<=i;k++) if(qArr[k]!==null) win.push(qArr[k]);
+    const qmed = win.length? median(win) : 0;
+
+    const emaBefore = emaPrev;
+    const ema = p.rho*qmed + (1-p.rho)*emaPrev;
+    emaPrev = ema;
+
+    const g = clip(ema, -p.c, p.c);
+    const clipped = Math.abs(ema) > p.c + 1e-9;
+
+    const term1 = p.e1*g*l;
+    const term2 = p.e2*l;
+    const delta = term1+term2;
+
+    const raw = p.mbase*(1+delta);
+    const mm = clip(raw, p.mmin, p.mmax);
+    const mmClipped = (raw<p.mmin-1e-9)||(raw>p.mmax+1e-9);
+
+    rows.push({i,t:i+1,d:d[i],s:s[i],l,q,qmed,ema,emaBefore,g,clipped,term1,term2,delta,raw,mm,mmClipped});
+  }
+  return rows;
+}
+
+// ---------- Render: steps + editable d/s ----------
+function renderSteps(rows){
+  const p=P();
+  const stepsEl=$('steps'), dsEl=$('dsgrid');
+  stepsEl.innerHTML=''; dsEl.innerHTML='';
+  rows.forEach(r=>{
+    const el=document.createElement('div');
+    el.className='step'+(r.i===selected?' active':'');
+    const barCol = r.mm>1.001?'var(--short)':(r.mm<0.999?'var(--surplus)':'var(--faint)');
+    const barW = clip((r.mm-1)*140,-46,46);
+    el.innerHTML=`<div class="tlabel">t=${r.t}</div>
+      <div class="time">${DEFAULT.times[r.i]}</div>
+      <div class="mm" style="color:${r.mm>1.001?'var(--short)':(r.mm<0.999?'var(--surplus)':'var(--ink)')}">${f2(r.mm)}</div>
+      <div class="bar" style="margin-left:${barW<0?50+barW:50}%;width:${Math.abs(barW)||2}%;background:${barCol}"></div>`;
+    el.onclick=()=>{selected=r.i; refresh();};
+    stepsEl.appendChild(el);
+
+    const c=document.createElement('div');
+    c.className='dscell';
+    c.innerHTML=`<label>t=${r.t}</label>
+      <div class="r"><span>d</span><input type="number" data-k="d" data-i="${r.i}" value="${r.d}"></div>
+      <div class="r"><span>s</span><input type="number" data-k="s" data-i="${r.i}" value="${r.s}"></div>`;
+    dsEl.appendChild(c);
+  });
+  dsEl.querySelectorAll('input').forEach(inp=>{
+    inp.oninput=()=>{
+      const i=+inp.dataset.i, v=+inp.value;
+      if(!isNaN(v)){ if(inp.dataset.k==='d') d[i]=v; else s[i]=v; refresh(); }
+    };
+  });
+}
+
+// ---------- Render: pipeline chi tiết ----------
+function renderPipeline(rows){
+  const r=rows[selected], p=P();
+  $('pipeTitle').textContent=`Mốc t = ${r.t}  ·  ${DEFAULT.times[r.i]}`;
+  $('pipeCtx').textContent=`cầu d=${r.d} · cung s=${r.s}`;
+
+  const stateWord = r.l>0? `thiếu ${r.l} (cầu > cung)` : (r.l<0? `thừa ${-r.l} (cung > cầu)` : 'cân bằng');
+  const qWord = r.q===null? 'chưa có (mốc đầu, không có kỳ trước)' :
+                (r.q>0? `+${r.q} → đang dồn về phía khan hiếm` : (r.q<0? `${r.q} → đang dịu lại` : '0 → đứng yên'));
+
+  let html='';
+  // (2)
+  html+=stage('state','[2] Mức mất cân bằng',
+    'ℓ_t = d_t − s_t',
+    `ℓ = <b>${r.d}</b> − <b>${r.s}</b> = <b>${r.l}</b>`,
+    `Trạng thái hiện tại: ${stateWord}.`);
+  // (3)
+  html+=stage('move','[3] Hướng di chuyển',
+    'q_t = (d_t − d_{t−1}) − (s_t − s_{t−1})',
+    r.q===null? '— (mốc đầu tiên)' :
+      `q = (${r.d}−${d[r.i-1]}) − (${r.s}−${s[r.i-1]}) = <b>${r.q}</b>`,
+    `Chuyển động: ${qWord}`);
+  // (4) trung vị
+  const winTxt = windowText(rows, r.i, p.w);
+  html+=stage('smooth','[4] Trung vị (median)',
+    'q^med_t = median( W kỳ q gần nhất )',
+    `median(${winTxt}) = <b>${trim(r.qmed)}</b>`,
+    `Lấy trung vị của ${p.w} kỳ q gần nhất → loại bỏ đột biên (spike) đơn lẻ bên trong cửa sổ.`);
+  // (5) trung bình mũ
+  html+=stage('smooth','[5] Trung bình mũ (EMA)',
+    'q̃_t = ρ·q^med_t + (1−ρ)·q̃_{t−1}',
+    `q̃ = ${f2(p.rho)}·<b>${trim(r.qmed)}</b> + ${f2(1-p.rho)}·<b>${trim(r.emaBefore)}</b> = <b>${trim(r.ema)}</b>`,
+    `Trộn trung vị mới với q̃ của kỳ trước (=${trim(r.emaBefore)}) → chống nhảy giật giữa các lần cập nhật.`);
+  // (6)
+  const clipCls = r.clipped? ' clip':'';
+  html+=stage('safe','[6] Chặn biên độ (clip)',
+    'g_t = clip(q̃_t, −c, +c)',
+    r.clipped
+      ? `clip(<span class="clr">${trim(r.ema)}</span>, −${p.c}, +${p.c}) = <span class="clr">${trim(r.g)}</span> ⚠ bị chặn`
+      : `clip(${trim(r.ema)}, −${p.c}, +${p.c}) = <b>${trim(r.g)}</b> (trong ngưỡng)`,
+    r.clipped? `Vượt trần c=${p.c} nên bị kéo về ${trim(r.g)}. Đây là "phanh an toàn".`
+             : `Nằm trong ngưỡng nên giữ nguyên.`, clipCls);
+  // (7)
+  html+=stage('move','[7] Ghép mức + hướng → điều chỉnh',
+    'Δ_t = η₁·g·ℓ + η₂·ℓ',
+    `Δ = ${f4(p.e1)}·${trim(r.g)}·${r.l} + ${f4(p.e2)}·${r.l} = <b>${trim(r.term1,4)}</b> + <b>${trim(r.term2,4)}</b> = <b>${trim(r.delta,4)}</b>`,
+    `Tương tác (${trim(r.term1,3)}) + trực tiếp (${trim(r.term2,3)}). Ra tỷ lệ điều chỉnh ${(r.delta*100).toFixed(1)}%.`);
+  // (8)
+  const cl8 = r.mmClipped? ' clip':'';
+  html+=stage('out','[8] Áp giá nền & kẹp ngưỡng',
+    'm^market_t = clip( m^base·(1+Δ), m_min, m_max )',
+    r.mmClipped
+      ? `clip(${f2(p.mbase)}·(1+${trim(r.delta,4)}) = <span class="clr">${trim(r.raw)}</span>, ${f2(p.mmin)}, ${f2(p.mmax)}) = <span class="clr">${f2(r.mm)}</span>`
+      : `${f2(p.mbase)}·(1 + ${trim(r.delta,4)}) = <b>${f3(r.raw)}</b>`,
+    `Biến điều chỉnh thành hệ số nhân rồi kẹp trong [${f2(p.mmin)}, ${f2(p.mmax)}].`, cl8);
+
+  $('pipeline').innerHTML = html + `
+    <div class="final">
+      <div class="lbl">m<sup>market</sup> cho bucket này<small>Dùng chung cho mọi khách ở Cầu Giấy lúc ${DEFAULT.times[r.i]}</small></div>
+      <div class="res">${f2(r.mm)}×</div>
+    </div>`;
+}
+
+function stage(tagType,title,eq,plug,role,extra=''){
+  const tagCls={state:'state',move:'move',smooth:'smooth',safe:'safe',out:'out'}[tagType]||'move';
+  const tagTxt={state:'trạng thái',move:'chuyển động',smooth:'làm mượt',safe:'an toàn',out:'đầu ra'}[tagType]||'';
+  return `<div class="stage${extra}">
+    <span class="tag ${tagCls}">${tagTxt}</span>
+    <div class="eq">${title} · ${eq}</div>
+    <div class="plug">${plug}</div>
+    <div class="role">${role}</div>
+  </div>`;
+}
+function windowText(rows,i,W){
+  const start=Math.max(0,i-W+1), out=[];
+  for(let k=start;k<=i;k++){ if(rows[k].q!==null) out.push(rows[k].q); }
+  return out.length? out.join(', ') : '—';
+}
+function trim(x,dec=2){
+  if(x===null||x===undefined) return '—';
+  const r=+x.toFixed(dec);
+  return (Number.isInteger(r)? r.toString() : r.toString());
+}
+
+// ---------- Render: table ----------
+function renderTable(rows){
+  const tb=$('tbody'); tb.innerHTML='';
+  rows.forEach(r=>{
+    const tr=document.createElement('tr');
+    if(r.i===selected) tr.className='active';
+    const mmCls = r.mmClipped?'clipped':(r.mm>1.001?'up':(r.mm<0.999?'down':''));
+    const gCls = r.clipped?'clipped':'';
+    tr.innerHTML=`<td>${r.t}</td><td>${r.d}</td><td>${r.s}</td>
+      <td class="${r.l>0?'up':(r.l<0?'down':'')}">${r.l}</td>
+      <td>${r.q===null?'—':r.q}</td>
+      <td>${trim(r.qmed)}</td>
+      <td>${trim(r.ema)}</td>
+      <td class="${gCls}">${trim(r.g)}</td>
+      <td>${trim(r.delta,3)}</td>
+      <td class="mm ${mmCls}">${f2(r.mm)}</td>`;
+    tr.onclick=()=>{selected=r.i; refresh();};
+    tb.appendChild(tr);
+  });
+}
+
+// ---------- Render: chart ----------
+function renderChart(rows){
+  const W=720,H=240,pad={l:44,r:16,t:20,b:34};
+  const iw=W-pad.l-pad.r, ih=H-pad.t-pad.b;
+  const N=rows.length;
+  const mms=rows.map(r=>r.mm);
+  let lo=Math.min(0.9,...mms), hi=Math.max(1.1,...mms);
+  lo=Math.floor(lo*10)/10-0.05; hi=Math.ceil(hi*10)/10+0.05;
+  const x=i=> pad.l + (N===1?iw/2:iw*i/(N-1));
+  const y=v=> pad.t + ih*(1-(v-lo)/(hi-lo));
+
+  let g='';
+  // gridlines
+  const ticks=[];
+  for(let v=Math.ceil(lo*10)/10; v<=hi+1e-9; v+=0.1){ ticks.push(+v.toFixed(2)); }
+  ticks.forEach(v=>{
+    const yy=y(v), is1=Math.abs(v-1)<1e-9;
+    g+=`<line x1="${pad.l}" y1="${yy}" x2="${W-pad.r}" y2="${yy}" stroke="${is1?'#b9c6bd':'#eef2ee'}" stroke-width="${is1?1.4:1}" ${is1?'stroke-dasharray="4 4"':''}/>`;
+    g+=`<text x="${pad.l-8}" y="${yy+4}" text-anchor="end" font-family="var(--mono)" font-size="10" fill="${is1?'#5b6b63':'#a9b5ad'}">${v.toFixed(1)}${is1?'':''}</text>`;
+  });
+  // x labels
+  rows.forEach(r=>{
+    g+=`<text x="${x(r.i)}" y="${H-12}" text-anchor="middle" font-family="var(--mono)" font-size="10" fill="#8a988f">${DEFAULT.times[r.i]}</text>`;
+  });
+  // line
+  let path='';
+  rows.forEach((r,i)=>{ path+=(i?'L':'M')+x(i)+' '+y(r.mm)+' '; });
+  g+=`<path d="${path}" fill="none" stroke="var(--green)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>`;
+  // points
+  rows.forEach(r=>{
+    const col = r.mm>1.001?'#d1573f':(r.mm<0.999?'#3f7fc4':'#5b6b63');
+    const sel = r.i===selected;
+    if(r.clipped) g+=`<circle cx="${x(r.i)}" cy="${y(r.mm)}" r="${sel?9:7}" fill="none" stroke="#d8942a" stroke-width="2"/>`;
+    g+=`<circle cx="${x(r.i)}" cy="${y(r.mm)}" r="${sel?5.5:4}" fill="${col}" stroke="#fff" stroke-width="1.5"/>`;
+    g+=`<text x="${x(r.i)}" y="${y(r.mm)-12}" text-anchor="middle" font-family="var(--mono)" font-size="${sel?11:10}" font-weight="${sel?700:400}" fill="${col}">${f2(r.mm)}</text>`;
+  });
+  $('chart').innerHTML=g;
+}
+
+// ---------- Param label sync ----------
+function syncLabels(){
+  const p=P();
+  $('rhoVal').textContent=f2(p.rho);
+  $('cVal').textContent=p.c;
+  $('wVal').textContent=p.w;
+  $('e1Val').textContent=f4(p.e1);
+  $('e2Val').textContent=f4(p.e2);
+}
+
+// ---------- Master refresh ----------
+function refresh(){
+  syncLabels();
+  const rows=compute();
+  renderSteps(rows);
+  renderPipeline(rows);
+  renderTable(rows);
+  renderChart(rows);
+}
+
+// ---------- Wire up ----------
+['rho','c','w','e1','e2','mbase','mmin','mmax'].forEach(id=>{
+  $(id).addEventListener('input', refresh);
+});
+$('reset').onclick=()=>{
+  d=[...DEFAULT.d]; s=[...DEFAULT.s]; selected=3;
+  $('rho').value=DEFAULT.rho; $('c').value=DEFAULT.c; $('w').value=DEFAULT.w;
+  $('e1').value=DEFAULT.e1; $('e2').value=DEFAULT.e2;
+  $('mbase').value=DEFAULT.mbase; $('mmin').value=DEFAULT.mmin; $('mmax').value=DEFAULT.mmax;
+  refresh();
+};
+
+refresh();
+</script>
+</body>
+</html>

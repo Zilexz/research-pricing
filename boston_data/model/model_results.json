@@ -1,0 +1,66 @@
+{
+  "price": [
+    {
+      "Hang": "Uber",
+      "n_test": 43767,
+      "MAE": 1.0887,
+      "RMSE": 1.8104,
+      "R2": 0.9552,
+      "MAPE": 7.3745,
+      "Persistence": 1.683,
+      "Hist-avg": 1.325,
+      "vs Persistence": "+35.3%",
+      "vs Hist-avg": "+17.8%"
+    },
+    {
+      "Hang": "Lyft",
+      "n_test": 40914,
+      "MAE": 1.5022,
+      "RMSE": 2.9319,
+      "R2": 0.9142,
+      "MAPE": 9.7092,
+      "Persistence": 2.125,
+      "Hist-avg": 1.775,
+      "vs Persistence": "+29.3%",
+      "vs Hist-avg": "+15.4%"
+    }
+  ],
+  "surge": {
+    "ROC_AUC": 0.6523569251676791,
+    "PR_AUC": 0.1898428037880013,
+    "Brier": 0.11334130644556344,
+    "AUC_persistence": 0.518126903103105,
+    "MAE_Emult": 0.06437170266259656,
+    "MAE_luon_1": 0.03956211840884226,
+    "ty_le_surge_%": 13.534078031406832
+  },
+  "price_features": [
+    "name",
+    "source",
+    "destination",
+    "observation_age_bucket",
+    "distance_median",
+    "lag1_price",
+    "lag2_price",
+    "lag3_price",
+    "roll_mean6_price",
+    "roll_std3_price",
+    "observation_age_minutes",
+    "hour_local",
+    "weekday_local",
+    "is_weekend"
+  ],
+  "surge_features": [
+    "source",
+    "destination",
+    "short_summary",
+    "hour_local",
+    "weekday_local",
+    "is_weekend",
+    "lag1_surge",
+    "lag2_surge",
+    "roll_mean6_surge",
+    "roll_surge_rate6",
+    "observation_age_minutes"
+  ]
+}

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mô phỏng đặt xe — Dự báo giá đối thủ (Boston)</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  :root{--bg:#0f1720;--card:#182430;--line:#2a3a4a;--ink:#e8eef4;--mut:#93a4b5;--accent:#2e74b5;--green:#009e73;--orange:#d55e00}
+  *{box-sizing:border-box} body{margin:0;font-family:Segoe UI,system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+  header{padding:12px 18px;background:#111c26;border-bottom:1px solid var(--line)}
+  header h1{margin:0;font-size:17px} header p{margin:3px 0 0;color:var(--mut);font-size:12.5px}
+  .wrap{display:flex;height:calc(100vh - 58px)}
+  #map{flex:1}
+  .panel{width:340px;padding:16px;overflow-y:auto;background:var(--card);border-left:1px solid var(--line)}
+  label{display:block;font-size:12px;color:var(--mut);margin:10px 0 3px}
+  select,input{width:100%;padding:8px;border-radius:7px;border:1px solid var(--line);background:#0f1a24;color:var(--ink);font-size:13px}
+  .row{display:flex;gap:8px} .row>div{flex:1}
+  button{width:100%;margin-top:14px;padding:11px;border:0;border-radius:8px;background:var(--accent);color:#fff;font-size:14px;font-weight:600;cursor:pointer}
+  button:hover{background:#3a86cc}
+  button.ghost{background:#25333f;margin-top:8px}
+  .step{background:#0f1a24;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:12.5px;margin-bottom:4px}
+  .step b{color:var(--green)}
+  .result{margin-top:14px;padding:14px;border-radius:10px;background:#0f1a24;border:1px solid var(--line);display:none}
+  .price{font-size:34px;font-weight:700;color:var(--green)}
+  .price small{font-size:14px;color:var(--mut);font-weight:400}
+  .kv{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px dashed var(--line)}
+  .kv b{color:var(--ink)}
+  .note{margin-top:12px;font-size:11.5px;color:var(--mut);line-height:1.5}
+  .pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;margin-top:6px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🚕 Mô phỏng đặt xe — Dự báo giá đối thủ (Boston)</h1>
+  <p>Click <b>điểm bất kỳ</b> trên bản đồ: lần 1 = điểm đón, lần 2 = điểm đến · Đường đi thật + giá dự đoán</p>
+</header>
+<div class="wrap">
+  <div id="map"></div>
+  <div class="panel">
+    <div class="step" id="stepA">📍 <b>Bước 1:</b> click chọn <b>điểm đón</b> trên bản đồ</div>
+    <div class="step" id="stepB" style="opacity:.5">🏁 <b>Bước 2:</b> click chọn <b>điểm đến</b></div>
+    <button class="ghost" onclick="resetPick()">↺ Chọn lại điểm</button>
+
+    <div class="row">
+      <div><label>Hãng đối thủ</label>
+        <select id="hang"><option>Lyft</option><option>Uber</option></select></div>
+      <div><label>Dịch vụ</label><select id="name"></select></div>
+    </div>
+    <div class="row">
+      <div><label>Giờ (0–23)</label><input id="hour" type="number" min="0" max="23" value="18"></div>
+      <div><label>Thứ</label>
+        <select id="weekday">
+          <option value="0">Thứ 2</option><option value="1">Thứ 3</option><option value="2">Thứ 4</option>
+          <option value="3">Thứ 5</option><option value="4">Thứ 6</option>
+          <option value="5">Thứ 7</option><option value="6">Chủ nhật</option>
+        </select></div>
+    </div>
+    <div class="row">
+      <div><label>Độ trễ quan sát (phút)</label><input id="age" type="number" min="1" max="240" value="15"></div>
+      <div><label>Thời tiết</label><select id="weather"></select></div>
+    </div>
+
+    <button onclick="predict()">Dự đoán giá</button>
+
+    <div class="result" id="result">
+      <div class="price" id="gia">–</div>
+      <div class="kv"><span>Tuyến (khu gần nhất)</span><b id="route">–</b></div>
+      <div class="kv"><span>Quãng đường đi thật</span><b id="dist">–</b></div>
+      <div class="kv"><span>Hệ số nhân (surge)</span><b id="surge">–</b></div>
+      <div class="kv"><span>Xác suất có surge</span><b id="psurge">–</b></div>
+      <div class="pill" id="badge" style="background:#123">–</div>
+
+      <div id="doichieu" style="margin-top:14px;padding-top:12px;border-top:2px solid var(--line)">
+        <div style="font-size:12px;color:var(--mut);margin-bottom:6px">🔎 ĐỐI CHIẾU VỚI DỮ LIỆU THẬT (<span id="nguon">–</span>)</div>
+        <div class="kv"><span>Giá thực tế trong data (median)</span><b id="giathuc">–</b></div>
+        <div class="kv"><span>Khoảng thường gặp (p25–p75)</span><b id="khoang">–</b></div>
+        <div class="kv"><span>Số quan sát của tuyến</span><b id="nquan">–</b></div>
+        <div class="kv"><span>Quãng đường điển hình (data)</span><b id="distdata">–</b></div>
+        <div class="kv"><span>Tỷ lệ surge thật của tuyến</span><b id="surgethuc">–</b></div>
+        <div class="pill" id="chotdoichieu" style="background:#123;margin-top:8px">–</div>
+      </div>
+    </div>
+
+    <div class="note">
+      ℹ️ Điểm bạn click được map về <b>khu gần nhất</b> trong 12 khu Boston (độ phân giải của model).
+      Đường đi vẽ theo <b>tuyến thật</b> (OSRM), và <b>quãng đường thật</b> đó được đưa vào model để tính giá.<br><br>
+      ⚠️ Không có ô tắc đường vì model thiếu cột thời lượng (nhược điểm dữ liệu). Thời tiết chỉ ảnh hưởng surge Lyft.
+    </div>
+  </div>
+</div>
+
+<script>
+let META, map, areaDots={}, mkA=null, mkB=null, routeLine=null;
+let ptA=null, ptB=null, nearA=null, nearB=null, distMiles=null, pickStep=0;
+const BOSTON=[42.3505,-71.0700];
+
+fetch("/api/meta").then(r=>r.json()).then(m=>{ META=m; initMap(); fillControls(); });
+
+function initMap(){
+  map=L.map("map").setView(BOSTON,13);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"© OpenStreetMap"}).addTo(map);
+  for(const [name,c] of Object.entries(META.areas)){
+    areaDots[name]=L.circleMarker(c,{radius:5,color:"#888",fillColor:"#bbb",fillOpacity:.7})
+      .addTo(map).bindTooltip(name);
+  }
+  map.on("click", e=>onMapClick(e.latlng));
+}
+
+function haversine(a,b){ // km
+  const R=6371,d2r=Math.PI/180;
+  const dLat=(b[0]-a[0])*d2r, dLon=(b[1]-a[1])*d2r;
+  const s=Math.sin(dLat/2)**2+Math.cos(a[0]*d2r)*Math.cos(b[0]*d2r)*Math.sin(dLon/2)**2;
+  return 2*R*Math.asin(Math.sqrt(s));
+}
+function nearestArea(latlng){
+  let best=null,bd=1e9;
+  for(const [name,c] of Object.entries(META.areas)){
+    const d=haversine([latlng.lat,latlng.lng],c);
+    if(d<bd){bd=d;best=name;}
+  }
+  return best;
+}
+function onMapClick(latlng){
+  if(pickStep===0){
+    ptA=latlng; nearA=nearestArea(latlng);
+    if(mkA) map.removeLayer(mkA);
+    mkA=L.marker(latlng).addTo(map).bindTooltip("Đón · "+nearA).openTooltip();
+    document.getElementById("stepA").innerHTML=`📍 <b>Điểm đón:</b> ${nearA}`;
+    document.getElementById("stepB").style.opacity=1;
+    pickStep=1;
+  } else {
+    ptB=latlng; nearB=nearestArea(latlng);
+    if(mkB) map.removeLayer(mkB);
+    mkB=L.marker(latlng).addTo(map).bindTooltip("Đến · "+nearB).openTooltip();
+    document.getElementById("stepB").innerHTML=`🏁 <b>Điểm đến:</b> ${nearB}`;
+    pickStep=0;
+    drawRoute();
+  }
+}
+function resetPick(){
+  [mkA,mkB,routeLine].forEach(x=>x&&map.removeLayer(x));
+  mkA=mkB=routeLine=ptA=ptB=null; pickStep=0;
+  document.getElementById("stepA").innerHTML='📍 <b>Bước 1:</b> click chọn <b>điểm đón</b> trên bản đồ';
+  document.getElementById("stepB").innerHTML='🏁 <b>Bước 2:</b> click chọn <b>điểm đến</b>';
+  document.getElementById("stepB").style.opacity=.5;
+  document.getElementById("result").style.display="none";
+}
+function drawRoute(){
+  const url=`https://router.project-osrm.org/route/v1/driving/${ptA.lng},${ptA.lat};${ptB.lng},${ptB.lat}?overview=full&geometries=geojson`;
+  fetch(url).then(r=>r.json()).then(d=>{
+    if(routeLine) map.removeLayer(routeLine);
+    if(d.routes&&d.routes.length){
+      const geo=d.routes[0].geometry.coordinates.map(c=>[c[1],c[0]]); // [lon,lat]->[lat,lon]
+      routeLine=L.polyline(geo,{color:"#2e74b5",weight:5,opacity:.85}).addTo(map);
+      map.fitBounds(routeLine.getBounds().pad(0.2));
+      distMiles=d.routes[0].distance/1609.34;   // met -> dam (dung cho model)
+    } else fallbackLine();
+    predict();
+  }).catch(fallbackLine);
+}
+function fallbackLine(){
+  if(routeLine) map.removeLayer(routeLine);
+  routeLine=L.polyline([[ptA.lat,ptA.lng],[ptB.lat,ptB.lng]],{color:"#d55e00",weight:4,dashArray:"6"}).addTo(map);
+  distMiles=haversine([ptA.lat,ptA.lng],[ptB.lat,ptB.lng])/1.609; // km->dam
+  predict();
+}
+function opt(sel,arr,val){const e=document.getElementById(sel);e.innerHTML=arr.map(a=>`<option>${a}</option>`).join("");if(val)e.value=val;}
+function fillControls(){
+  opt("weather",["(mặc định theo tuyến)"].concat(META.weather_options));
+  syncServices();
+  document.getElementById("hang").onchange=()=>{syncServices();};
+}
+function syncServices(){ opt("name",META.services[document.getElementById("hang").value]); }
+
+function predict(){
+  if(!nearA||!nearB){ alert("Hãy click chọn điểm đón và điểm đến trên bản đồ trước."); return; }
+  const w=document.getElementById("weather").value;
+  const body={hang:document.getElementById("hang").value,
+    source:nearA, destination:nearB, name:document.getElementById("name").value,
+    hour:document.getElementById("hour").value, weekday:document.getElementById("weekday").value,
+    age:document.getElementById("age").value, weather:w.startsWith("(")?null:w,
+    distance:distMiles};
+  fetch("/api/predict",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+   .then(r=>r.json()).then(res=>{
+     const R=document.getElementById("result"); R.style.display="block";
+     if(res.error){ document.getElementById("gia").innerHTML="⚠️ "+res.error; return; }
+     document.getElementById("gia").innerHTML=`${res.gia_du_doan} <small>USD</small>`;
+     document.getElementById("route").textContent=`${res.khu_don} → ${res.khu_den}`;
+     document.getElementById("dist").textContent=res.quang_duong_dam+" dặm";
+     document.getElementById("surge").textContent="× "+res.he_so_nhan;
+     document.getElementById("psurge").textContent=(res.P_surge*100).toFixed(1)+"%";
+     const b=document.getElementById("badge");
+     if(res.he_so_nhan>1.1){b.style.background="#5a2a00";b.textContent="⚡ Thị trường đang surge";}
+     else{b.style.background="#123";b.textContent="Giá bình thường";}
+
+     // ---- doi chieu voi du lieu that ----
+     const d=res.doi_chieu;
+     document.getElementById("nguon").textContent=d.nguon;
+     document.getElementById("giathuc").textContent=d.gia_thuc_median+" USD";
+     document.getElementById("khoang").textContent=d.gia_thuc_p25+" – "+d.gia_thuc_p75+" USD";
+     document.getElementById("nquan").textContent=d.so_quan_sat.toLocaleString()+" quan sát";
+     document.getElementById("distdata").textContent=d.quang_duong_data+" dặm";
+     document.getElementById("surgethuc").textContent=
+        d.ty_le_surge_thuc!=null?(d.ty_le_surge_thuc+"% · median × "+d.surge_thuc_median):"–";
+     const cd=document.getElementById("chotdoichieu");
+     const trong = res.gia_du_doan>=d.gia_thuc_p25 && res.gia_du_doan<=d.gia_thuc_p75;
+     if(trong){cd.style.background="#0d3a2a";cd.textContent="✅ Giá dự đoán NẰM TRONG khoảng thật (p25–p75)";}
+     else{cd.style.background="#3a2a0d";cd.textContent=`⚠️ Lệch ${d.sai_lech_gia>0?'+':''}${d.sai_lech_gia} USD so với median thật`;}
+   });
+}
+</script>
+</body>
+</html>

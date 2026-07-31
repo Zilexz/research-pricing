@@ -1,0 +1,81 @@
+{
+  "areas": {
+    "Back Bay": [
+      42.3503,
+      -71.081
+    ],
+    "Beacon Hill": [
+      42.3588,
+      -71.0707
+    ],
+    "Boston University": [
+      42.3505,
+      -71.1054
+    ],
+    "Fenway": [
+      42.3429,
+      -71.0973
+    ],
+    "Financial District": [
+      42.3559,
+      -71.055
+    ],
+    "Haymarket Square": [
+      42.3634,
+      -71.0578
+    ],
+    "North End": [
+      42.3647,
+      -71.0542
+    ],
+    "North Station": [
+      42.3663,
+      -71.0622
+    ],
+    "Northeastern University": [
+      42.3398,
+      -71.0892
+    ],
+    "South Station": [
+      42.3519,
+      -71.0552
+    ],
+    "Theatre District": [
+      42.3519,
+      -71.0643
+    ],
+    "West End": [
+      42.3644,
+      -71.0661
+    ]
+  },
+  "services": {
+    "Uber": [
+      "Black",
+      "Black SUV",
+      "UberPool",
+      "UberX",
+      "UberXL",
+      "WAV"
+    ],
+    "Lyft": [
+      "Lux",
+      "Lux Black",
+      "Lux Black XL",
+      "Lyft",
+      "Lyft XL",
+      "Shared"
+    ]
+  },
+  "weather_options": [
+    "Clear",
+    "Drizzle",
+    "Foggy",
+    "Light Rain",
+    "Mostly Cloudy",
+    "Overcast",
+    "Partly Cloudy",
+    "Possible Drizzle",
+    "Rain"
+  ]
+}

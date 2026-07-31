@@ -1,0 +1,28 @@
+{
+  "target": "target_price_median",
+  "model": "LEAN + log-target",
+  "log_target": true,
+  "features": [
+    "name",
+    "source",
+    "destination",
+    "distance_median",
+    "history_price_mean_last6",
+    "history_price_std_last3",
+    "lag1_price_median"
+  ],
+  "categorical": [
+    "name",
+    "source",
+    "destination"
+  ],
+  "metrics_test": {
+    "model": "LEAN + log-target",
+    "split": "test",
+    "MAE": 1.3795,
+    "RMSE": 2.5268,
+    "R2": 0.9272,
+    "MAPE": 9.0647
+  },
+  "note": "HistGradientBoostingRegressor; train<=2018-12-10, test 16-18/12"
+}
