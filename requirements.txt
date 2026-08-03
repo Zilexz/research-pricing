@@ -1,0 +1,17 @@
+# Python 3.10 - 3.12
+pandas
+numpy
+scipy
+scikit-learn
+lightgbm
+xgboost
+shap
+optuna
+pygam
+matplotlib
+seaborn
+pyarrow
+joblib
+python-docx
+jupyter
+ipykernel

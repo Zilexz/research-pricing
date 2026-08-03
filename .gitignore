@@ -4,6 +4,10 @@
 *.joblib
 *.csv.gz
 
+# File tam cua Word
+~$*.docx
+~$*.doc
+
 # Python
 __pycache__/
 *.pyc

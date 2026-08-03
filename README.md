@@ -32,8 +32,12 @@ Xem chi tiết thứ tự chạy + phụ thuộc ở `TP_HCM_data/model/README.m
 
 ## Cài đặt môi trường Python
 
+Xem checklist đầy đủ cho máy mới ở **[SETUP.md](SETUP.md)**. Tóm tắt:
+
 ```
-pip install pandas numpy scikit-learn lightgbm xgboost pygam optuna matplotlib python-docx pyarrow
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
 ```
 
 ## Cấu trúc chính
