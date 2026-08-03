@@ -1,0 +1,990 @@
+﻿================================================================================
+   GHI CHU CAU HINH MAY + TOAN BO THU VIEN PYTHON
+   Xuat ngay   : 03/08/2026
+   May nguon   : Dell G15 5520 (Windows 11 Home)
+   Muc dich    : Chuyen sang may moi
+   Ghi chu     : File DUY NHAT - da gop het, khong can file kem theo nao khac
+================================================================================
+
+MUC LUC
+  PHAN 1 - Cau hinh may nguon
+  PHAN 2 - Cac ban Python dang cai
+  PHAN 3 - Thu vien chinh theo nhom muc dich
+  PHAN 4 - Canh bao quan trong khi cai len may moi
+  PHAN 5 - Huong dan cai dat tren may moi
+  PHAN 6 - Cach tao venv rieng cho du an (khuyen nghi)
+  PHAN 7 - DANH SACH DAY DU thu vien Python 3.12 (200 goi)
+  PHAN 8 - DANH SACH DAY DU thu vien Python 3.11 (429 goi)
+
+
+================================================================================
+PHAN 1 - CAU HINH MAY NGUON
+================================================================================
+
+May          : Dell Inc. Dell G15 5520 (laptop gaming)
+Mainboard    : Dell Inc. 053JTT
+He dieu hanh : Microsoft Windows 11 Home 64-bit, build 26200
+
+CPU          : Intel Core i5-12500H (the he 12)
+               - 12 nhan (4 P-core + 8 E-core) / 16 luong
+               - Xung co ban 2.5 GHz, TDP 45W
+
+RAM          : 16 GB (15.69 GB kha dung)
+               - Slot DIMM A: 8 GB DDR5-4800
+               - Slot DIMM B: 8 GB DDR5-4800
+               - Dual channel, ca 2 slot da day
+               - Bo mach ho tro toi da 64 GB (co the nang cap)
+
+GPU roi      : NVIDIA GeForce RTX 3050 Laptop GPU
+               - VRAM 4 GB
+               - Driver 581.95 (co CUDA)
+GPU tich hop : Intel Iris Xe Graphics
+
+O cung       : NVMe KIOXIA EXCERIA PLUS G3 SSD - 1 TB (931.51 GB)
+               - O C: da dung 225.6 GB / con trong 45.6 GB
+               - O D: da dung 512.3 GB / con trong 146.9 GB
+
+Cong cu khac : Git 2.45.0 for Windows
+               Node.js v22.14.0
+               uv 0.9.8 (o Scripts cua Python 3.11)
+               KHONG co Conda / Miniconda / Anaconda
+
+
+================================================================================
+PHAN 2 - CAC BAN PYTHON DANG CAI
+================================================================================
+
+--------------------------------------------------------------------------------
+[1] PYTHON 3.12.10  <<< BAN MAC DINH (lenh `python` va `pip` tro toi day)
+--------------------------------------------------------------------------------
+Duong dan  : C:\Users\Admin\AppData\Local\Programs\Python\Python312
+site-pkgs  : ...\Python312\Lib\site-packages
+User site  : C:\Users\Admin\AppData\Roaming\Python\Python312\site-packages
+So package : 200
+Dung luong : 1.63 GB
+pip        : 25.0.1
+Danh sach  : xem PHAN 7
+
+--------------------------------------------------------------------------------
+[2] PYTHON 3.11  <<< BAN DAY DU DO NGHE (goi bang lenh `py -3.11`)
+--------------------------------------------------------------------------------
+Duong dan  : C:\Users\Admin\AppData\Local\Programs\Python\Python311
+site-pkgs  : ...\Python311\Lib\site-packages
+So package : 429
+Dung luong : 4.67 GB
+pip        : 25.1.1
+Danh sach  : xem PHAN 8
+
+--------------------------------------------------------------------------------
+[3] C:\Python313  <<< RAC, KHONG CAN CHUYEN
+--------------------------------------------------------------------------------
+Chi con lai thu muc "Doc", khong co python.exe.
+Day la tan du cua lan go Python 3.13 khong sach. Co the xoa.
+
+--------------------------------------------------------------------------------
+[4] C:\Users\Admin\AppData\Local\Microsoft\WindowsApps\python3.exe
+--------------------------------------------------------------------------------
+Chi la stub cua Microsoft Store, khong phai Python that. Bo qua.
+
+--------------------------------------------------------------------------------
+GHI CHU: Khong co virtual environment (venv/.venv/conda env) nao trong du an
+Pricing_Reseach_Vin AI. Tat ca thu vien deu cai truc tiep vao Python he thong.
+--------------------------------------------------------------------------------
+
+
+================================================================================
+PHAN 3 - THU VIEN CHINH THEO NHOM MUC DICH
+================================================================================
+
+------------------------------------------------------------
+3.1  DATA SCIENCE / MACHINE LEARNING (co o CA HAI ban Python)
+------------------------------------------------------------
+   Thu vien          Python 3.12      Python 3.11
+   ---------------------------------------------------
+   numpy             1.26.4           2.2.6
+   pandas            3.0.3  (!)       2.3.3
+   scipy             1.16.3           1.15.2
+   scikit-learn      1.9.0            1.6.1
+   matplotlib        3.11.0           3.10.3
+   xgboost           3.3.0            3.0.0
+   lightgbm          4.7.0            4.7.0
+   optuna            4.9.0            4.9.0
+   pygam             0.12.0           0.12.0
+   pyarrow           24.0.0           20.0.0
+   joblib            1.5.3            1.4.2
+   openpyxl          3.1.5            3.1.5
+   python-docx       1.2.0            1.2.0
+
+
+------------------------------------------------------------
+3.2  CHI CO O PYTHON 3.11
+------------------------------------------------------------
+
+* Thong ke & truc quan hoa:
+    seaborn 0.13.2, plotly 6.5.0, statsmodels 0.14.6, altair 5.5.0,
+    streamlit 1.45.1, wordcloud 1.9.4, dtreeviz 2.2.2, shap 0.50.0,
+    graphviz 0.20.3, prettytable 3.16.0
+
+* Deep learning:
+    tensorflow 2.20.0, keras 3.11.2, tensorboard 2.20.0,
+    torch 2.9.0, torchvision 0.24.0, torchaudio 2.9.0,
+    torchmetrics 1.8.2, torchinfo 1.8.0, ultralytics 8.3.222 (YOLO)
+
+* Xu ly du lieu:
+    polars 1.34.0, faiss-cpu 1.13.0, chromadb 0.6.3, lancedb 0.25.3,
+    imbalanced-learn 0.13.0, numba 0.62.1, h5py 3.14.0, datasets 4.0.0
+
+* Thi giac may tinh / anh:
+    opencv-python 4.12.0, scikit-image 0.25.2, imgaug 0.4.0, pillow 11.2.1
+
+* Jupyter (BAN DAY DU):
+    jupyterlab 4.5.8, notebook 7.5.7, jupyter 1.1.1, ipywidgets 8.1.8,
+    nbconvert, nbformat, ipykernel 6.29.5
+
+* AI / Agent / LLM:
+    langchain 1.0.7, langchain-community 0.4.1, langgraph 1.0.3,
+    langchain-google-genai, langchain-openai 1.2.2, openai 2.40.0,
+    crewai 1.4.1, crewai-tools 1.4.1, google-adk 2.2.0,
+    google-generativeai 0.8.6, google-genai 1.75.0, groq 1.2.0,
+    litellm 1.79.3, nemoguardrails 0.22.0, instructor 1.13.0,
+    sentence-transformers 5.5.1, transformers 5.10.2, nltk 3.9.1
+
+* Web scraping / crawl:
+    playwright 1.60.0, patchright 1.60.1, playwright-stealth,
+    Crawl4AI 0.8.9, beautifulsoup4 4.14.2, duckduckgo_search 8.1.1,
+    pytube 15.0.0, youtube-transcript-api, markitdown, markdownify
+
+* Doc PDF / tai lieu:
+    pdfplumber 0.11.8, pdfminer.six, pypdf 6.3.0, PyMuPDF 1.27.2.3,
+    docx2txt
+
+* Google Cloud / Firebase:
+    firebase_admin 7.1.0, google-cloud-firestore, google-cloud-storage,
+    google-api-python-client, google-auth
+
+* Khac:
+    openmeteo_requests 1.7.4 (API thoi tiet), modal 1.4.3,
+    shapely 2.1.1, rtree, trimesh, alphashape (khong gian/dia ly),
+    fuzzywuzzy, requests-cache, pre-commit, virtualenv, uv 0.9.8
+
+
+------------------------------------------------------------
+3.3  CHI CO O PYTHON 3.12
+------------------------------------------------------------
+
+* AI / LLM:
+    torch 2.12.1+cpu  (!! BAN CPU-ONLY, KHONG DUNG DUOC GPU)
+    transformers 5.12.1, sentence-transformers 5.6.0, tokenizers 0.22.2
+    openai 1.109.1, langchain 0.2.17, langchain-community 0.2.19,
+    langgraph 1.2.6, langsmith 0.9.2, mcp 1.27.2,
+    qdrant-client 1.18.0, ragas 0.1.22, FlashRank 0.2.10,
+    rank-bm25 0.2.2, onnxruntime 1.27.0, tiktoken 0.13.0
+
+* NLP TIENG VIET:
+    underthesea 9.5.0, underthesea_core 3.3.2      <<< QUAN TRONG
+
+* Web / Backend:
+    fastapi 0.137.1, uvicorn 0.49.0, starlette, SQLAlchemy 2.0.51,
+    alembic 1.18.5, redis 8.0.0, minio 7.2.20, PyMySQL 1.2.0
+
+* Tai lieu:
+    mkdocs 1.6.1, mkdocs-material 9.7.7, mkdocs-material-extensions
+
+* Jupyter (ban toi thieu, KHONG co jupyterlab):
+    ipykernel 7.3.0, ipython 9.14.1, jupyter_client, jupyter_core
+
+* Doc file:
+    PyMuPDF 1.27.2.3, pypdf 6.13.2, lxml 6.1.1
+
+* Package cai dang editable (DA LOC KHOI PHAN 7, phai tu cai lai tay):
+    day08-langgraph-agent-lab 0.1.0
+    -> tro toi: C:\Users\Admin\OneDrive\May tinh\
+                phase2-track3-day8-langgraph-agent\
+                phase2-track3-day8-langgraph-agent
+    -> Cai lai bang: pip install -e "duong\dan\den\thu\muc\do"
+
+
+================================================================================
+PHAN 4 - CANH BAO QUAN TRONG KHI CAI LEN MAY MOI
+================================================================================
+
+(!) 1. PANDAS 3.0.3 tren Python 3.12
+       Day la ban major moi, co breaking change (copy-on-write mac dinh,
+       bo nhieu API cu). Neu notebook cua du an viet theo pandas 2.x thi
+       co the bi loi. Ban Python 3.11 dung pandas 2.3.3 an toan hon.
+       -> Khuyen nghi: chay notebook du an bang Python 3.11.
+
+(!) 2. TORCH 2.12.1+cpu tren Python 3.12 la BAN CPU-ONLY
+       Khong su dung duoc GPU. Neu may moi co card NVIDIA va muon train
+       bang GPU thi phai cai lai ban CUDA:
+           pip uninstall torch
+           pip install torch --index-url https://download.pytorch.org/whl/cu121
+
+(!) 3. THIEU O PYTHON 3.12 (ban mac dinh) nhung du an hay can:
+       seaborn, plotly, statsmodels, jupyterlab
+       -> Neu chay notebook bang 3.12 thi nen cai them:
+           pip install seaborn plotly statsmodels jupyterlab
+
+(!) 4. DUNG LUONG - tong 2 site-packages la 6.3 GB
+       Cac thu vien nang nhat:
+         Python 3.11:  tensorflow 1304 MB
+                       torch       431 MB
+                       xgboost     203 MB
+                       lance       154 MB
+                       polars      135 MB
+                       lancedb     124 MB
+                       scipy       121 MB
+                       playwright  107 MB + patchright 107 MB (gan nhu trung)
+                       opencv      105 MB
+                       llvmlite    103 MB
+         Python 3.12:  torch       492 MB
+                       scipy       115 MB
+                       xgboost      97 MB
+                       transformers 90 MB
+                       pyarrow      84 MB
+       -> Neu may moi it dia, can nhac BO QUA tensorflow va mot trong hai
+          playwright/patchright.
+
+(!) 5. PLAYWRIGHT / PATCHRIGHT can tai them trinh duyet sau khi pip install:
+           playwright install chromium
+
+(!) 6. Mot so package can bien dich hoac co ban rieng cho Windows:
+       pywin32, pywinpty, chroma-hnswlib, llvmlite, numba, faiss-cpu.
+       Neu loi khi cai, thu cai rieng tung cai.
+
+(!) 7. Dong "torch==2.12.1+cpu" o PHAN 7 co the loi khi cai tren may moi
+       vi hau to "+cpu" can index rieng. Neu loi, sua thanh "torch" (bo
+       version) hoac dung lenh o muc (!) 2.
+
+
+================================================================================
+PHAN 5 - HUONG DAN CAI DAT TREN MAY MOI
+================================================================================
+
+BUOC 1: Tai va cai Python
+  - Python 3.11.x : https://www.python.org/downloads/release/python-3119/
+  - Python 3.12.x : https://www.python.org/downloads/release/python-31210/
+  - Khi cai NHO TICK: "Add Python to PATH"
+  - Nen cai ca 2 ban de giong may cu.
+
+BUOC 2: Tao file requirements tu file nay
+  Vi da gop tat ca vao 1 file, can tach danh sach ra truoc khi cai.
+
+  Danh sach o PHAN 7 va PHAN 8 duoc danh dau bang cac dong moc:
+        #BEGIN312 ... #END312       (cho Python 3.12)
+        #BEGIN311 ... #END311       (cho Python 3.11)
+
+  CACH A - Thu cong (de nhat):
+    1. Mo file nay bang Notepad
+    2. Boi den toan bo danh sach o PHAN 7, nam GIUA hai dong #BEGIN312
+       va #END312 (tu "aiohappyeyeballs==" den "zstandard==") -> Copy
+    3. Dan vao Notepad moi -> Luu thanh: req312.txt
+    4. Lam tuong tu voi PHAN 8 (giua #BEGIN311 va #END311)
+       -> Luu thanh: req311.txt
+
+  CACH B - Tu dong bang PowerShell (nhanh hon, khuyen dung):
+    Mo PowerShell tai thu muc chua file nay, dan nguyen khoi lenh sau:
+
+        $f = Get-Content ".\CAU_HINH_VA_THU_VIEN.txt"
+        foreach ($v in @("312","311")) {
+            $b = ($f | Select-String "^#BEGIN$v$").LineNumber
+            $e = ($f | Select-String "^#END$v$").LineNumber
+            $f[$b..($e-2)] | Out-File "req$v.txt" -Encoding utf8
+            "Da tao req$v.txt ($($e-$b-1) goi)"
+        }
+
+BUOC 3: Cai thu vien cho Python 3.12
+
+        py -3.12 -m pip install --upgrade pip
+        py -3.12 -m pip install -r req312.txt
+
+BUOC 4: Cai thu vien cho Python 3.11
+  CANH BAO: buoc nay tai khoang 5 GB, mat 20-40 phut tuy mang.
+
+        py -3.11 -m pip install --upgrade pip
+        py -3.11 -m pip install -r req311.txt
+
+  Neu KHONG can deep learning, tiet kiem ~1.3 GB bang cach mo req311.txt
+  va xoa cac dong:
+      tensorflow, tensorboard, tensorboard-data-server, keras,
+      ml_dtypes, namex, libclang, opt_einsum, gast, astunparse
+
+BUOC 5: Cai trinh duyet cho playwright (neu can scraping)
+
+        py -3.11 -m playwright install chromium
+
+BUOC 6: Cai cong cu khac
+  - Git       : https://git-scm.com/download/win
+  - Node.js   : https://nodejs.org  (ban v22 LTS)
+  - VS Code   : https://code.visualstudio.com
+
+BUOC 7: Kiem tra lai
+        py -3.12 -c "import pandas, numpy, sklearn, xgboost; print('OK 3.12')"
+        py -3.11 -c "import pandas, seaborn, torch, lightgbm; print('OK 3.11')"
+
+
+================================================================================
+PHAN 6 - CACH TAO VENV RIENG CHO DU AN (KHUYEN NGHI)
+================================================================================
+
+De tranh xung dot version giua cac du an, nen tao moi truong ao rieng.
+Cach nay NHANH HON NHIEU so voi cai het 6.3 GB o tren, va du dung cho
+du an Pricing Research:
+
+      cd "duong\dan\den\Pricing_Reseach_Vin AI"
+      py -3.11 -m venv .venv
+      .\.venv\Scripts\Activate.ps1
+      pip install --upgrade pip
+      pip install numpy pandas==2.3.3 scipy scikit-learn matplotlib seaborn plotly statsmodels xgboost lightgbm optuna pygam jupyterlab openpyxl python-docx pyarrow
+
+Sau do trong VS Code chon interpreter la .venv de chay notebook.
+
+
+================================================================================
+PHAN 7 - DANH SACH DAY DU THU VIEN PYTHON 3.12  (200 goi)
+================================================================================
+
+#BEGIN312
+aiohappyeyeballs==2.6.2
+aiohttp==3.14.1
+aiosignal==1.4.0
+alembic==1.18.5
+annotated-doc==0.0.4
+annotated-types==0.7.0
+anyio==4.14.0
+appdirs==1.4.4
+argon2-cffi==25.1.0
+argon2-cffi-bindings==25.1.0
+asttokens==3.0.1
+attrs==26.1.0
+babel==2.18.0
+backrefs==7.0
+certifi==2026.5.20
+cffi==2.0.0
+charset-normalizer==3.4.7
+click==8.4.1
+colorama==0.4.6
+colorlog==6.12.0
+comm==0.2.3
+contourpy==1.3.3
+cryptography==49.0.0
+cycler==0.12.1
+dataclasses-json==0.6.7
+datasets==5.0.0
+debugpy==1.8.21
+decorator==5.3.1
+dill==0.4.1
+distro==1.9.0
+et_xmlfile==2.0.0
+executing==2.2.1
+fastapi==0.137.1
+filelock==3.29.4
+FlashRank==0.2.10
+flatbuffers==25.12.19
+fonttools==4.63.0
+frozenlist==1.8.0
+fsspec==2026.4.0
+ghp-import==2.1.0
+greenlet==3.5.2
+grpcio==1.81.1
+h11==0.16.0
+h2==4.3.0
+hf-xet==1.5.1
+hpack==4.1.0
+httpcore==1.0.9
+httpx==0.28.1
+httpx-sse==0.4.3
+huggingface_hub==1.20.1
+hyperframe==6.1.0
+idna==3.18
+iniconfig==2.3.0
+ipykernel==7.3.0
+ipython==9.14.1
+ipython_pygments_lexers==1.1.1
+jedi==0.20.0
+Jinja2==3.1.6
+jiter==0.15.0
+joblib==1.5.3
+jsonpatch==1.33
+jsonpointer==3.1.1
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+jupyter_client==8.9.1
+jupyter_core==5.9.1
+kiwisolver==1.5.0
+langchain==0.2.17
+langchain-community==0.2.19
+langchain-core==1.4.8
+langchain-openai==0.1.25
+langchain-protocol==0.0.18
+langchain-text-splitters==0.2.4
+langgraph==1.2.6
+langgraph-checkpoint==4.1.1
+langgraph-prebuilt==1.1.0
+langgraph-sdk==0.4.2
+langsmith==0.9.2
+lightgbm==4.7.0
+lxml==6.1.1
+Mako==1.3.12
+Markdown==3.10.2
+markdown-it-py==4.2.0
+MarkupSafe==3.0.3
+marshmallow==3.26.2
+matplotlib==3.11.0
+matplotlib-inline==0.2.2
+mcp==1.27.2
+mdurl==0.1.2
+mergedeep==1.3.4
+minio==7.2.20
+mkdocs==1.6.1
+mkdocs-get-deps==0.2.2
+mkdocs-material==9.7.7
+mkdocs-material-extensions==1.3.1
+mpmath==1.3.0
+multidict==6.7.1
+multiprocess==0.70.19
+mypy_extensions==1.1.0
+narwhals==2.22.1
+nest-asyncio==1.6.0
+nest-asyncio2==1.7.2
+networkx==3.6.1
+numpy==1.26.4
+onnxruntime==1.27.0
+openai==1.109.1
+openpyxl==3.1.5
+optuna==4.9.0
+orjson==3.11.9
+ormsgpack==1.12.2
+packaging==24.2
+paginate==0.5.7
+pandas==3.0.3
+parso==0.8.7
+pathspec==1.1.1
+pillow==12.2.0
+platformdirs==4.10.0
+pluggy==1.6.0
+portalocker==3.2.0
+progressbar2==4.5.0
+prompt_toolkit==3.0.52
+propcache==0.5.2
+protobuf==7.35.1
+psutil==7.2.2
+pure_eval==0.2.3
+pyarrow==24.0.0
+pycparser==3.0
+pycryptodome==3.23.0
+pydantic==2.13.4
+pydantic-settings==2.14.1
+pydantic_core==2.46.4
+pygam==0.12.0
+Pygments==2.20.0
+PyJWT==2.13.0
+pymdown-extensions==11.0.1
+PyMuPDF==1.27.2.3
+PyMySQL==1.2.0
+pyparsing==3.3.2
+pypdf==6.13.2
+pysbd==0.3.4
+pytest==9.1.0
+python-dateutil==2.9.0.post0
+python-docx==1.2.0
+python-dotenv==1.2.2
+python-multipart==0.0.32
+python-utils==4.0.0
+pywin32==312
+PyYAML==6.0.3
+pyyaml_env_tag==1.1
+pyzmq==27.1.0
+qdrant-client==1.18.0
+ragas==0.1.22
+rank-bm25==0.2.2
+redis==8.0.0
+referencing==0.37.0
+regex==2026.5.9
+requests==2.34.2
+requests-toolbelt==1.0.0
+rich==15.0.0
+rpds-py==2026.5.1
+safetensors==0.8.0
+scikit-learn==1.9.0
+scipy==1.16.3
+sentence-transformers==5.6.0
+setuptools==70.2.0
+shellingham==1.5.4
+six==1.17.0
+sniffio==1.3.1
+SQLAlchemy==2.0.51
+sse-starlette==3.4.4
+stack-data==0.6.3
+starlette==1.3.1
+sympy==1.14.0
+tabulate==0.10.0
+tenacity==8.5.0
+threadpoolctl==3.6.0
+tiktoken==0.13.0
+tokenizers==0.22.2
+torch==2.12.1+cpu
+tornado==6.5.7
+tqdm==4.68.2
+traitlets==5.15.1
+transformers==5.12.1
+typer==0.25.1
+typing-inspect==0.9.0
+typing-inspection==0.4.2
+typing_extensions==4.15.0
+tzdata==2026.2
+underthesea==9.5.0
+underthesea_core==3.3.2
+urllib3==2.7.0
+uuid_utils==0.16.2
+uvicorn==0.49.0
+watchdog==6.0.0
+wcwidth==0.8.1
+websockets==15.0.1
+xgboost==3.3.0
+xxhash==3.7.0
+yarl==1.24.2
+zstandard==0.25.0
+
+
+#END312
+
+================================================================================
+PHAN 8 - DANH SACH DAY DU THU VIEN PYTHON 3.11  (429 goi)
+================================================================================
+
+#BEGIN311
+absl-py==2.3.1
+aiofiles==25.1.0
+aiohappyeyeballs==2.6.1
+aiohttp==3.12.15
+aiohttp-retry==2.9.1
+aiosignal==1.4.0
+aiosqlite==0.22.1
+alembic==1.18.5
+alphashape==1.3.1
+altair==5.5.0
+annotated-doc==0.0.4
+annotated-types==0.7.0
+anyio==4.11.0
+appdirs==1.4.4
+argon2-cffi==25.1.0
+argon2-cffi-bindings==25.1.0
+arrow==1.4.0
+asgiref==3.11.1
+asttokens==3.0.0
+astunparse==1.6.3
+async-lru==2.3.0
+attrs==25.4.0
+Authlib==1.7.2
+babel==2.18.0
+backoff==2.2.1
+bcrypt==5.0.0
+beautifulsoup4==4.14.2
+bleach==6.4.0
+blinker==1.9.0
+brotli==1.2.0
+build==1.3.0
+CacheControl==0.14.4
+cachetools==5.5.2
+cattrs==25.3.0
+cbor2==6.1.1
+certifi==2025.4.26
+cffi==2.0.0
+cfgv==3.4.0
+chardet==7.4.3
+charset-normalizer==3.4.2
+chroma-hnswlib==0.7.6
+chromadb==0.6.3
+click==8.4.1
+click-log==0.4.0
+cloudpickle==3.1.2
+colorama==0.4.6
+coloredlogs==15.0.1
+colorlog==6.12.0
+colour==0.1.5
+comm==0.2.2
+contourpy==1.3.2
+Crawl4AI==0.8.9
+crewai==1.4.1
+crewai-tools==1.4.1
+cryptography==46.0.3
+cssselect==1.4.0
+cycler==0.12.1
+dataclasses-json==0.6.7
+datasets==4.0.0
+debugpy==1.8.12
+decorator==5.1.1
+defusedxml==0.7.1
+deprecation==2.1.0
+dill==0.3.8
+diskcache==5.6.3
+distlib==0.4.0
+distro==1.9.0
+docker==7.1.0
+docstring_parser==0.17.0
+docx2txt==0.9
+dtreeviz==2.2.2
+duckduckgo_search==8.1.1
+durationpy==0.10
+et_xmlfile==2.0.0
+executing==2.2.0
+faiss-cpu==1.13.0
+fake-useragent==2.2.0
+fastapi==0.115.0
+fastembed==0.8.0
+fastjsonschema==2.21.2
+fastuuid==0.14.0
+filelock==3.19.1
+filetype==1.2.0
+firebase_admin==7.1.0
+flatbuffers==25.9.23
+fonttools==4.57.0
+fqdn==1.5.1
+frozenlist==1.7.0
+fsspec==2025.3.0
+fuzzywuzzy==0.18.0
+gast==0.6.0
+gitdb==4.0.12
+GitPython==3.1.44
+google-adk==2.2.0
+google-ai-generativelanguage==0.6.15
+google-api-core==2.28.1
+google-api-python-client==2.196.0
+google-auth==2.50.0
+google-auth-httplib2==0.3.1
+google-cloud-core==2.5.0
+google-cloud-firestore==2.21.0
+google-cloud-storage==3.7.0
+google-crc32c==1.8.0
+google-genai==1.75.0
+google-generativeai==0.8.6
+google-pasta==0.2.0
+google-resumable-media==2.8.0
+googleapis-common-protos==1.72.0
+graphviz==0.20.3
+greenlet==3.2.4
+groq==1.2.0
+grpcio==1.76.0
+grpcio-status==1.71.2
+grpclib==0.4.9
+h11==0.16.0
+h2==4.3.0
+h5py==3.14.0
+hf-xet==1.5.0
+hpack==4.1.0
+httpcore==1.0.9
+httplib2==0.31.2
+httptools==0.7.1
+httpx==0.28.1
+httpx-sse==0.4.3
+huggingface_hub==1.18.0
+humanfriendly==10.0
+humanize==4.15.0
+hyperframe==6.1.0
+identify==2.6.15
+idna==3.10
+imageio==2.37.0
+imbalanced-learn==0.13.0
+imblearn==0.0
+imgaug==0.4.0
+importlib_metadata==8.7.0
+importlib_resources==6.5.2
+iniconfig==2.1.0
+instructor==1.13.0
+ipykernel==6.29.5
+ipython==8.32.0
+ipywidgets==8.1.8
+isoduration==20.11.0
+jedi==0.19.2
+jh2==5.0.10
+Jinja2==3.1.6
+jiter==0.11.1
+joblib==1.4.2
+joserfc==1.7.1
+json5==0.12.1
+json_repair==0.25.2
+jsonpatch==1.33
+jsonpointer==3.0.0
+jsonref==1.1.0
+jsonschema==4.24.0
+jsonschema-specifications==2025.4.1
+jupyter==1.1.1
+jupyter-console==6.6.3
+jupyter-events==0.12.1
+jupyter-lsp==2.3.1
+jupyter_client==8.6.3
+jupyter_core==5.7.2
+jupyter_server==2.19.0
+jupyter_server_terminals==0.5.4
+jupyterlab==4.5.8
+jupyterlab_pygments==0.3.0
+jupyterlab_server==2.28.0
+jupyterlab_widgets==3.0.16
+keras==3.11.2
+kiwisolver==1.4.8
+kubernetes==34.1.0
+lance-namespace==0.0.20
+lance-namespace-urllib3-client==0.0.20
+lancedb==0.25.3
+langchain==1.0.7
+langchain-classic==1.0.0
+langchain-community==0.4.1
+langchain-core==1.4.0
+langchain-google-genai==4.2.4
+langchain-openai==1.2.2
+langchain-protocol==0.0.16
+langchain-text-splitters==1.0.0
+langgraph==1.0.3
+langgraph-checkpoint==3.0.1
+langgraph-prebuilt==1.0.4
+langgraph-sdk==0.2.9
+langsmith==0.4.43
+lark==1.3.1
+lazy_loader==0.4
+libclang==18.1.1
+lightgbm==4.7.0
+lightning-utilities==0.15.2
+litellm==1.79.3
+litserve==0.2.16
+llvmlite==0.45.1
+loguru==0.7.3
+lxml==5.4.0
+magika==0.6.3
+Mako==1.3.12
+Markdown==3.8.2
+markdown-it-py==4.0.0
+markdownify==1.2.2
+markitdown==0.1.6
+MarkupSafe==3.0.2
+marshmallow==3.26.1
+matplotlib==3.10.3
+matplotlib-inline==0.1.7
+mcp==1.21.0
+mdurl==0.1.2
+mistune==3.2.1
+ml_dtypes==0.5.3
+mmh3==5.2.0
+modal==1.4.3
+mpmath==1.3.0
+msgpack==1.1.2
+multidict==6.6.4
+multiprocess==0.70.16
+mypy_extensions==1.1.0
+namex==0.1.0
+narwhals==1.41.0
+nbclient==0.11.0
+nbconvert==7.17.1
+nbformat==5.10.4
+nemoguardrails==0.22.0
+nest-asyncio==1.6.0
+networkx==3.5
+niquests==3.15.2
+nltk==3.9.1
+nodeenv==1.9.1
+notebook==7.5.7
+notebook_shim==0.2.4
+numba==0.62.1
+numpy==2.2.6
+oauthlib==3.3.1
+onnxruntime==1.20.1
+openai==2.40.0
+opencv-python==4.12.0.88
+openmeteo_requests==1.7.4
+openmeteo_sdk==1.23.0
+openpyxl==3.1.5
+opentelemetry-api==1.38.0
+opentelemetry-exporter-otlp-proto-common==1.38.0
+opentelemetry-exporter-otlp-proto-grpc==1.38.0
+opentelemetry-exporter-otlp-proto-http==1.38.0
+opentelemetry-instrumentation==0.59b0
+opentelemetry-instrumentation-asgi==0.59b0
+opentelemetry-instrumentation-fastapi==0.59b0
+opentelemetry-proto==1.38.0
+opentelemetry-sdk==1.38.0
+opentelemetry-semantic-conventions==0.59b0
+opentelemetry-util-http==0.59b0
+opt_einsum==3.4.0
+optree==0.17.0
+optuna==4.9.0
+orjson==3.11.4
+ormsgpack==1.12.0
+overrides==7.7.0
+packaging==24.2
+pandas==2.3.3
+pandocfilters==1.5.1
+parso==0.8.4
+patchright==1.60.1
+patsy==1.0.2
+pdfminer.six==20251107
+pdfplumber==0.11.8
+pillow==11.2.1
+platformdirs==4.3.6
+playwright==1.60.0
+playwright-stealth==2.0.3
+plotly==6.5.0
+pluggy==1.6.0
+polars==1.34.0
+polars-runtime-32==1.34.0
+portalocker==2.7.0
+posthog==5.4.0
+pre_commit==4.4.0
+prettytable==3.16.0
+primp==1.3.1
+progressbar2==4.5.0
+prometheus_client==0.25.0
+prompt_toolkit==3.0.50
+propcache==0.3.2
+proto-plus==1.26.1
+protobuf==5.29.6
+psutil==6.0.0
+pure_eval==0.2.3
+py_rust_stemmers==0.1.8
+pyarrow==20.0.0
+pyasn1==0.6.1
+pyasn1_modules==0.4.2
+pybase64==1.4.2
+pycparser==2.23
+pydantic==2.9.0
+pydantic-settings==2.12.0
+pydantic_core==2.23.2
+pydeck==0.9.1
+pyee==13.0.1
+pygam==0.12.0
+Pygments==2.19.1
+PyJWT==2.9.0
+pylance==0.39.0
+PyMuPDF==1.27.2.3
+PyMySQL==1.2.0
+pyOpenSSL==26.2.0
+pyparsing==3.2.3
+pypdf==6.3.0
+pypdfium2==5.0.0
+PyPika==0.48.9
+pyproject_hooks==1.2.0
+pyreadline3==3.5.4
+pytest==8.3.5
+python-dateutil==2.9.0.post0
+python-docx==1.2.0
+python-dotenv==1.0.1
+python-json-logger==4.1.0
+python-multipart==0.0.20
+python-utils==4.0.0
+pytube==15.0.0
+pytz==2025.2
+pywin32==311
+pywinpty==3.0.5
+PyYAML==6.0.2
+pyzmq==26.2.1
+qh3==1.5.6
+rank-bm25==0.2.2
+redis==5.1.0
+referencing==0.36.2
+regex==2026.5.9
+requests==2.32.5
+requests-cache==1.2.1
+requests-oauthlib==2.0.0
+requests-toolbelt==1.0.0
+retry-requests==2.0.0
+rfc3339-validator==0.1.4
+rfc3986-validator==0.1.1
+rich==14.1.0
+rpds-py==0.25.1
+rsa==4.9.1
+rtree==1.4.1
+safetensors==0.7.0
+scikit-image==0.25.2
+scikit-learn==1.6.1
+scipy==1.15.2
+seaborn==0.13.2
+Send2Trash==2.1.0
+sentence-transformers==5.5.1
+shap==0.50.0
+shapely==2.1.1
+shellingham==1.5.4
+simpleeval==1.0.7
+simsimd==6.5.3
+six==1.17.0
+sklearn-compat==0.1.3
+slicer==0.0.8
+smmap==5.0.2
+sniffio==1.3.1
+snowballstemmer==2.2.0
+soupsieve==2.8
+SQLAlchemy==2.0.44
+sse-starlette==3.0.3
+stack-data==0.6.3
+starlette==0.38.6
+statsmodels==0.14.6
+streamlit==1.45.1
+stringzilla==3.12.6
+sympy==1.14.0
+synchronicity==0.12.2
+tenacity==9.1.2
+tensorboard==2.20.0
+tensorboard-data-server==0.7.2
+tensorflow==2.20.0
+termcolor==3.1.0
+terminado==0.18.1
+threadpoolctl==3.6.0
+tifffile==2025.8.28
+tiktoken==0.12.0
+tinycss2==1.5.1
+tokenizers==0.22.1
+toml==0.10.2
+tomli==2.3.0
+tomli_w==1.2.0
+torch==2.9.0
+torchaudio==2.9.0
+torchinfo==1.8.0
+torchmetrics==1.8.2
+torchvision==0.24.0
+tornado==6.4.2
+tqdm==4.67.3
+traitlets==5.14.3
+transformers==5.10.2
+trimesh==4.12.2
+ty==0.0.1a26
+typer==0.20.0
+types-certifi==2021.10.8.3
+types-toml==0.10.8.20260518
+typing-inspect==0.9.0
+typing-inspection==0.4.2
+typing_extensions==4.15.0
+tzdata==2025.2
+ultralytics==8.3.222
+ultralytics-thop==2.0.18
+unclecode-litellm==1.81.13
+uri-template==1.3.0
+uritemplate==4.2.0
+url-normalize==2.2.1
+urllib3==2.3.0
+urllib3-future==2.15.900
+uuid_utils==0.16.0
+uv==0.9.8
+uvicorn==0.30.0
+virtualenv==20.35.4
+wassima==2.0.3
+watchdog==6.0.0
+watchfiles==1.1.1
+wcwidth==0.2.13
+webcolors==25.10.0
+webencodings==0.5.1
+websocket-client==1.9.0
+websockets==15.0.1
+Werkzeug==3.1.3
+widgetsnbextension==4.0.15
+win32_setctime==1.2.0
+wordcloud==1.9.4
+wrapt==1.17.3
+xgboost==3.0.0
+xxhash==3.5.0
+yarl==1.20.1
+youtube-transcript-api==1.2.3
+zipp==3.23.0
+zstandard==0.25.0
+#END311
+
+================================================================================
+                              HET FILE
+================================================================================
