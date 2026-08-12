@@ -1,0 +1,3893 @@
+{
+  "study": "synthetic_quote_context_sandbox",
+  "artifact_version": "2.1",
+  "artifact_profile": "intern",
+  "created_at_utc": "2026-07-27T02:44:58.632191+00:00",
+  "is_synthetic": true,
+  "contains_event_level_production_data": false,
+  "release_boundary": "Newly sampled synthetic rows only; no event-level production rows or production identifiers are exported. Aggregate calibration parameters remain in memory. Operator-supplied H3/display metadata and privacy-thresholded aggregate pickup centroids remain visible and must be remapped if restricted.",
+  "generation": {
+    "artifact_version": "2.1",
+    "artifact_profile": "intern",
+    "seed": 42,
+    "synthetic_start_utc": "2026-01-01T00:00:00+00:00",
+    "synthetic_end_utc_inclusive": "2026-03-30T23:55:00+00:00",
+    "frequency": "5min",
+    "duration_days": 89.0,
+    "inclusive_start_date": "2026-01-01",
+    "inclusive_end_date": "2026-03-30",
+    "n_zones": 3,
+    "hex_ids": [
+      "8765b574affffff",
+      "8765b574bffffff",
+      "8765b5759ffffff"
+    ],
+    "hex_display_names": {
+      "8765b574affffff": "Crescent Mall",
+      "8765b574bffffff": "SC Vivo City",
+      "8765b5759ffffff": "EcoGreen Sài Gòn"
+    },
+    "hex_ids_supplied_by_operator": true,
+    "hex_partitioned_storage": true,
+    "n_customers": 20000,
+    "services": [
+      {
+        "service_id": "SYN_STANDARD",
+        "service_name": "Synthetic Standard Car"
+      },
+      {
+        "service_id": "SYN_PREMIUM",
+        "service_name": "Synthetic Premium Car"
+      }
+    ],
+    "currency_code": "VND",
+    "competitor_name": "Synthetic Competitor",
+    "personalized_wrapper_enabled": false,
+    "calibration_source": "aggregate_bigquery_internal",
+    "calibration_is_per_hex_service_hour": true,
+    "privacy_threshold_min_group_rows": 50,
+    "aggregate_group_count_used_in_memory": 504,
+    "weather_aggregate_group_count_used_in_memory": 357,
+    "aggregate_calibration_parameters_exported": false,
+    "intern_forecasting_table": "synthetic_intern_forecasting_v1",
+    "primary_benchmark_scenario_policy": "normal_only",
+    "stress_test_generated_separately": true,
+    "stress_forecasting_table": "synthetic_stress_forecasting_v1",
+    "requested_lags_minutes": [
+      5,
+      10,
+      15,
+      30
+    ],
+    "history_window_minutes": 60,
+    "weather_observation_minutes": 60,
+    "weather_observation_failure_rate": 0.05,
+    "split_mode": "monthly_calendar_days",
+    "monthly_train_days": 20,
+    "split_day_counts": {
+      "2026-01": {
+        "train": 20,
+        "validation": 4,
+        "calibration": 3,
+        "test": 4
+      },
+      "2026-02": {
+        "train": 20,
+        "validation": 3,
+        "calibration": 2,
+        "test": 3
+      },
+      "2026-03": {
+        "train": 20,
+        "validation": 3,
+        "calibration": 3,
+        "test": 4
+      }
+    },
+    "split_boundaries": {
+      "2026-01": {
+        "train": {
+          "days": 20,
+          "start_date_utc": "2026-01-01",
+          "end_date_utc_inclusive": "2026-01-20",
+          "start_utc": "2026-01-01T00:00:00+00:00",
+          "end_utc_inclusive": "2026-01-20T23:55:00+00:00"
+        },
+        "validation": {
+          "days": 4,
+          "start_date_utc": "2026-01-21",
+          "end_date_utc_inclusive": "2026-01-24",
+          "start_utc": "2026-01-21T00:00:00+00:00",
+          "end_utc_inclusive": "2026-01-24T23:55:00+00:00"
+        },
+        "calibration": {
+          "days": 3,
+          "start_date_utc": "2026-01-25",
+          "end_date_utc_inclusive": "2026-01-27",
+          "start_utc": "2026-01-25T00:00:00+00:00",
+          "end_utc_inclusive": "2026-01-27T23:55:00+00:00"
+        },
+        "test": {
+          "days": 4,
+          "start_date_utc": "2026-01-28",
+          "end_date_utc_inclusive": "2026-01-31",
+          "start_utc": "2026-01-28T00:00:00+00:00",
+          "end_utc_inclusive": "2026-01-31T23:55:00+00:00"
+        }
+      },
+      "2026-02": {
+        "train": {
+          "days": 20,
+          "start_date_utc": "2026-02-01",
+          "end_date_utc_inclusive": "2026-02-20",
+          "start_utc": "2026-02-01T00:00:00+00:00",
+          "end_utc_inclusive": "2026-02-20T23:55:00+00:00"
+        },
+        "validation": {
+          "days": 3,
+          "start_date_utc": "2026-02-21",
+          "end_date_utc_inclusive": "2026-02-23",
+          "start_utc": "2026-02-21T00:00:00+00:00",
+          "end_utc_inclusive": "2026-02-23T23:55:00+00:00"
+        },
+        "calibration": {
+          "days": 2,
+          "start_date_utc": "2026-02-24",
+          "end_date_utc_inclusive": "2026-02-25",
+          "start_utc": "2026-02-24T00:00:00+00:00",
+          "end_utc_inclusive": "2026-02-25T23:55:00+00:00"
+        },
+        "test": {
+          "days": 3,
+          "start_date_utc": "2026-02-26",
+          "end_date_utc_inclusive": "2026-02-28",
+          "start_utc": "2026-02-26T00:00:00+00:00",
+          "end_utc_inclusive": "2026-02-28T23:55:00+00:00"
+        }
+      },
+      "2026-03": {
+        "train": {
+          "days": 20,
+          "start_date_utc": "2026-03-01",
+          "end_date_utc_inclusive": "2026-03-20",
+          "start_utc": "2026-03-01T00:00:00+00:00",
+          "end_utc_inclusive": "2026-03-20T23:55:00+00:00"
+        },
+        "validation": {
+          "days": 3,
+          "start_date_utc": "2026-03-21",
+          "end_date_utc_inclusive": "2026-03-23",
+          "start_utc": "2026-03-21T00:00:00+00:00",
+          "end_utc_inclusive": "2026-03-23T23:55:00+00:00"
+        },
+        "calibration": {
+          "days": 3,
+          "start_date_utc": "2026-03-24",
+          "end_date_utc_inclusive": "2026-03-26",
+          "start_utc": "2026-03-24T00:00:00+00:00",
+          "end_utc_inclusive": "2026-03-26T23:55:00+00:00"
+        },
+        "test": {
+          "days": 4,
+          "start_date_utc": "2026-03-27",
+          "end_date_utc_inclusive": "2026-03-30",
+          "start_utc": "2026-03-27T00:00:00+00:00",
+          "end_utc_inclusive": "2026-03-30T23:55:00+00:00"
+        }
+      }
+    },
+    "booking_or_completion_outcomes_generated": false,
+    "event_level_production_rows_used_in_release": false
+  },
+  "quality_status": "passed",
+  "storage_layout": {
+    "hex_partitions": "hexes/<hex-folder>/",
+    "shared_tables": "shared/"
+  },
+  "hex_partitions": [
+    {
+      "pickup_hex_id_7": "8765b574affffff",
+      "folder": "hexes/8765b574affffff"
+    },
+    {
+      "pickup_hex_id_7": "8765b574bffffff",
+      "folder": "hexes/8765b574bffffff"
+    },
+    {
+      "pickup_hex_id_7": "8765b5759ffffff",
+      "folder": "hexes/8765b5759ffffff"
+    }
+  ],
+  "dataframes": [
+    {
+      "name": "synthetic_zones_v1",
+      "rows": 3,
+      "columns": [
+        "zone_index",
+        "zone_id",
+        "zone_display_name",
+        "synthetic_hex_id_7",
+        "synthetic_latitude",
+        "synthetic_longitude",
+        "coordinate_source",
+        "is_synthetic"
+      ],
+      "parts": [
+        {
+          "path": "hexes/8765b574affffff/synthetic_zones_v1_part000.csv.gz",
+          "rows": 1,
+          "bytes": 235,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_zones_v1_part000.csv.gz",
+          "rows": 1,
+          "bytes": 237,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_zones_v1_part000.csv.gz",
+          "rows": 1,
+          "bytes": 250,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        }
+      ],
+      "partitioned_by": "pickup_hex_id_7",
+      "partitions": [
+        {
+          "pickup_hex_id_7": "8765b574affffff",
+          "folder": "hexes/8765b574affffff",
+          "rows": 1,
+          "parts": [
+            {
+              "path": "hexes/8765b574affffff/synthetic_zones_v1_part000.csv.gz",
+              "rows": 1,
+              "bytes": 235,
+              "pickup_hex_id_7": "8765b574affffff"
+            }
+          ]
+        },
+        {
+          "pickup_hex_id_7": "8765b574bffffff",
+          "folder": "hexes/8765b574bffffff",
+          "rows": 1,
+          "parts": [
+            {
+              "path": "hexes/8765b574bffffff/synthetic_zones_v1_part000.csv.gz",
+              "rows": 1,
+              "bytes": 237,
+              "pickup_hex_id_7": "8765b574bffffff"
+            }
+          ]
+        },
+        {
+          "pickup_hex_id_7": "8765b5759ffffff",
+          "folder": "hexes/8765b5759ffffff",
+          "rows": 1,
+          "parts": [
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_zones_v1_part000.csv.gz",
+              "rows": 1,
+              "bytes": 250,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "synthetic_competitor_quote_feed_v1",
+      "rows": 1724971,
+      "columns": [
+        "quote_observation_id",
+        "observed_at",
+        "current_timestamp_utc",
+        "evaluation_month",
+        "competitor_platform",
+        "service_id",
+        "service_name",
+        "pickup_zone_id",
+        "dropoff_zone_id",
+        "pickup_location_name",
+        "dropoff_location_name",
+        "pickup_hex_id_7",
+        "pickup_latitude",
+        "pickup_longitude",
+        "dropoff_latitude",
+        "dropoff_longitude",
+        "quote_distance",
+        "quote_duration",
+        "observed_price",
+        "observed_multiplier",
+        "weather_observed_ts",
+        "weather_main",
+        "weather_description",
+        "weather_temp",
+        "weather_feels_like",
+        "weather_pressure",
+        "weather_humidity",
+        "weather_wind_speed",
+        "weather_wind_deg",
+        "weather_wind_deg_sin",
+        "weather_wind_deg_cos",
+        "weather_clouds_all",
+        "weather_age_minutes",
+        "weather_missing",
+        "weather_is_clear",
+        "weather_is_clouds",
+        "weather_is_rain",
+        "weather_is_mist",
+        "weather_is_thunderstorm",
+        "weather_is_drizzle",
+        "scenario_id",
+        "split",
+        "is_synthetic"
+      ],
+      "parts": [
+        {
+          "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part000.csv.gz",
+          "rows": 46716,
+          "bytes": 915735,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part001.csv.gz",
+          "rows": 46716,
+          "bytes": 915874,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part002.csv.gz",
+          "rows": 46716,
+          "bytes": 915208,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part003.csv.gz",
+          "rows": 46716,
+          "bytes": 914995,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part004.csv.gz",
+          "rows": 46716,
+          "bytes": 914930,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part005.csv.gz",
+          "rows": 46716,
+          "bytes": 915809,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part006.csv.gz",
+          "rows": 46716,
+          "bytes": 916540,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part007.csv.gz",
+          "rows": 46716,
+          "bytes": 915811,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part008.csv.gz",
+          "rows": 46716,
+          "bytes": 917210,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part009.csv.gz",
+          "rows": 46716,
+          "bytes": 916298,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part010.csv.gz",
+          "rows": 46716,
+          "bytes": 917148,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part011.csv.gz",
+          "rows": 46716,
+          "bytes": 915761,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part012.csv.gz",
+          "rows": 21635,
+          "bytes": 425377,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part000.csv.gz",
+          "rows": 46815,
+          "bytes": 926265,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part001.csv.gz",
+          "rows": 46815,
+          "bytes": 926879,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part002.csv.gz",
+          "rows": 46815,
+          "bytes": 926685,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part003.csv.gz",
+          "rows": 46815,
+          "bytes": 926784,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part004.csv.gz",
+          "rows": 46815,
+          "bytes": 928083,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part005.csv.gz",
+          "rows": 46815,
+          "bytes": 927361,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part006.csv.gz",
+          "rows": 46815,
+          "bytes": 927315,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part007.csv.gz",
+          "rows": 46815,
+          "bytes": 926787,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part008.csv.gz",
+          "rows": 46815,
+          "bytes": 928191,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part009.csv.gz",
+          "rows": 46815,
+          "bytes": 927663,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part010.csv.gz",
+          "rows": 46815,
+          "bytes": 925737,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part011.csv.gz",
+          "rows": 46815,
+          "bytes": 927160,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part012.csv.gz",
+          "rows": 25401,
+          "bytes": 503318,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part000.csv.gz",
+          "rows": 46083,
+          "bytes": 916032,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part001.csv.gz",
+          "rows": 46083,
+          "bytes": 917041,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part002.csv.gz",
+          "rows": 46083,
+          "bytes": 917592,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part003.csv.gz",
+          "rows": 46083,
+          "bytes": 915819,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part004.csv.gz",
+          "rows": 46083,
+          "bytes": 917877,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part005.csv.gz",
+          "rows": 46083,
+          "bytes": 916013,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part006.csv.gz",
+          "rows": 46083,
+          "bytes": 916507,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part007.csv.gz",
+          "rows": 46083,
+          "bytes": 916306,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part008.csv.gz",
+          "rows": 46083,
+          "bytes": 916593,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part009.csv.gz",
+          "rows": 46083,
+          "bytes": 916067,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part010.csv.gz",
+          "rows": 46083,
+          "bytes": 916868,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part011.csv.gz",
+          "rows": 46083,
+          "bytes": 915571,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part012.csv.gz",
+          "rows": 2567,
+          "bytes": 52622,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        }
+      ],
+      "partitioned_by": "pickup_hex_id_7",
+      "partitions": [
+        {
+          "pickup_hex_id_7": "8765b574affffff",
+          "folder": "hexes/8765b574affffff",
+          "rows": 582227,
+          "parts": [
+            {
+              "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part000.csv.gz",
+              "rows": 46716,
+              "bytes": 915735,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part001.csv.gz",
+              "rows": 46716,
+              "bytes": 915874,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part002.csv.gz",
+              "rows": 46716,
+              "bytes": 915208,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part003.csv.gz",
+              "rows": 46716,
+              "bytes": 914995,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part004.csv.gz",
+              "rows": 46716,
+              "bytes": 914930,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part005.csv.gz",
+              "rows": 46716,
+              "bytes": 915809,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part006.csv.gz",
+              "rows": 46716,
+              "bytes": 916540,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part007.csv.gz",
+              "rows": 46716,
+              "bytes": 915811,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part008.csv.gz",
+              "rows": 46716,
+              "bytes": 917210,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part009.csv.gz",
+              "rows": 46716,
+              "bytes": 916298,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part010.csv.gz",
+              "rows": 46716,
+              "bytes": 917148,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part011.csv.gz",
+              "rows": 46716,
+              "bytes": 915761,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_competitor_quote_feed_v1_part012.csv.gz",
+              "rows": 21635,
+              "bytes": 425377,
+              "pickup_hex_id_7": "8765b574affffff"
+            }
+          ]
+        },
+        {
+          "pickup_hex_id_7": "8765b574bffffff",
+          "folder": "hexes/8765b574bffffff",
+          "rows": 587181,
+          "parts": [
+            {
+              "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part000.csv.gz",
+              "rows": 46815,
+              "bytes": 926265,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part001.csv.gz",
+              "rows": 46815,
+              "bytes": 926879,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part002.csv.gz",
+              "rows": 46815,
+              "bytes": 926685,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part003.csv.gz",
+              "rows": 46815,
+              "bytes": 926784,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part004.csv.gz",
+              "rows": 46815,
+              "bytes": 928083,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part005.csv.gz",
+              "rows": 46815,
+              "bytes": 927361,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part006.csv.gz",
+              "rows": 46815,
+              "bytes": 927315,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part007.csv.gz",
+              "rows": 46815,
+              "bytes": 926787,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part008.csv.gz",
+              "rows": 46815,
+              "bytes": 928191,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part009.csv.gz",
+              "rows": 46815,
+              "bytes": 927663,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part010.csv.gz",
+              "rows": 46815,
+              "bytes": 925737,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part011.csv.gz",
+              "rows": 46815,
+              "bytes": 927160,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_competitor_quote_feed_v1_part012.csv.gz",
+              "rows": 25401,
+              "bytes": 503318,
+              "pickup_hex_id_7": "8765b574bffffff"
+            }
+          ]
+        },
+        {
+          "pickup_hex_id_7": "8765b5759ffffff",
+          "folder": "hexes/8765b5759ffffff",
+          "rows": 555563,
+          "parts": [
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part000.csv.gz",
+              "rows": 46083,
+              "bytes": 916032,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part001.csv.gz",
+              "rows": 46083,
+              "bytes": 917041,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part002.csv.gz",
+              "rows": 46083,
+              "bytes": 917592,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part003.csv.gz",
+              "rows": 46083,
+              "bytes": 915819,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part004.csv.gz",
+              "rows": 46083,
+              "bytes": 917877,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part005.csv.gz",
+              "rows": 46083,
+              "bytes": 916013,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part006.csv.gz",
+              "rows": 46083,
+              "bytes": 916507,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part007.csv.gz",
+              "rows": 46083,
+              "bytes": 916306,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part008.csv.gz",
+              "rows": 46083,
+              "bytes": 916593,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part009.csv.gz",
+              "rows": 46083,
+              "bytes": 916067,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part010.csv.gz",
+              "rows": 46083,
+              "bytes": 916868,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part011.csv.gz",
+              "rows": 46083,
+              "bytes": 915571,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_competitor_quote_feed_v1_part012.csv.gz",
+              "rows": 2567,
+              "bytes": 52622,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "synthetic_intern_forecasting_v1",
+      "rows": 6897051,
+      "columns": [
+        "forecast_example_id",
+        "target_request_id",
+        "target_timestamp",
+        "current_timestamp_utc",
+        "evaluation_month",
+        "competitor_platform",
+        "service_id",
+        "service_name",
+        "pickup_zone_id",
+        "dropoff_zone_id",
+        "pickup_location_name",
+        "dropoff_location_name",
+        "pickup_hex_id_7",
+        "pickup_latitude",
+        "pickup_longitude",
+        "dropoff_latitude",
+        "dropoff_longitude",
+        "quote_distance",
+        "quote_duration",
+        "pricing_quote_count_5m_lag",
+        "pricing_avg_shown_multiplier_5m_lag",
+        "pricing_demand_index_5m_lag",
+        "pricing_supply_index_5m_lag",
+        "pricing_market_imbalance_5m_lag",
+        "weather_observed_ts",
+        "weather_main",
+        "weather_description",
+        "weather_temp",
+        "weather_feels_like",
+        "weather_pressure",
+        "weather_humidity",
+        "weather_wind_speed",
+        "weather_wind_deg",
+        "weather_wind_deg_sin",
+        "weather_wind_deg_cos",
+        "weather_clouds_all",
+        "weather_age_minutes",
+        "weather_missing",
+        "weather_is_clear",
+        "weather_is_clouds",
+        "weather_is_rain",
+        "weather_is_mist",
+        "weather_is_thunderstorm",
+        "weather_is_drizzle",
+        "scenario_id",
+        "split",
+        "is_synthetic",
+        "competitor_feed_id",
+        "requested_lag_minutes",
+        "observation_cutoff_timestamp",
+        "latest_observed_quote_timestamp",
+        "actual_observation_age_minutes",
+        "latest_observed_price",
+        "latest_observed_multiplier",
+        "latest_observed_quote_distance",
+        "latest_observed_quote_duration",
+        "persistence_prediction",
+        "history_60m_observation_count",
+        "history_60m_price_mean",
+        "history_60m_price_std",
+        "history_60m_price_min",
+        "history_60m_price_max",
+        "history_60m_multiplier_mean",
+        "history_60m_price_slope_per_minute",
+        "target_hour",
+        "target_day_of_week",
+        "target_is_weekend",
+        "target_shown_price",
+        "target_shown_multiplier",
+        "target_price_per_km"
+      ],
+      "parts": [
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part000.csv.gz",
+          "rows": 35266,
+          "bytes": 2172861,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part001.csv.gz",
+          "rows": 35266,
+          "bytes": 2204442,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part002.csv.gz",
+          "rows": 35266,
+          "bytes": 2181786,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part003.csv.gz",
+          "rows": 35266,
+          "bytes": 2192049,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part004.csv.gz",
+          "rows": 35266,
+          "bytes": 2195710,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part005.csv.gz",
+          "rows": 35266,
+          "bytes": 2186645,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part006.csv.gz",
+          "rows": 35266,
+          "bytes": 2203826,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part007.csv.gz",
+          "rows": 35266,
+          "bytes": 2223375,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part008.csv.gz",
+          "rows": 35266,
+          "bytes": 2170089,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part009.csv.gz",
+          "rows": 35266,
+          "bytes": 2179628,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part010.csv.gz",
+          "rows": 35266,
+          "bytes": 2175159,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part011.csv.gz",
+          "rows": 35266,
+          "bytes": 2196421,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part012.csv.gz",
+          "rows": 35266,
+          "bytes": 2196010,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part013.csv.gz",
+          "rows": 35266,
+          "bytes": 2176687,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part014.csv.gz",
+          "rows": 35266,
+          "bytes": 2193306,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part015.csv.gz",
+          "rows": 35266,
+          "bytes": 2201732,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part016.csv.gz",
+          "rows": 35266,
+          "bytes": 2198193,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part017.csv.gz",
+          "rows": 35266,
+          "bytes": 2212464,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part018.csv.gz",
+          "rows": 35266,
+          "bytes": 2183909,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part019.csv.gz",
+          "rows": 35266,
+          "bytes": 2190629,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part020.csv.gz",
+          "rows": 35266,
+          "bytes": 2190969,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part021.csv.gz",
+          "rows": 35266,
+          "bytes": 2187774,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part022.csv.gz",
+          "rows": 35266,
+          "bytes": 2177596,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part023.csv.gz",
+          "rows": 35266,
+          "bytes": 2184600,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part024.csv.gz",
+          "rows": 35266,
+          "bytes": 2197104,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part025.csv.gz",
+          "rows": 35266,
+          "bytes": 2165004,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part026.csv.gz",
+          "rows": 35266,
+          "bytes": 2195579,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part027.csv.gz",
+          "rows": 35266,
+          "bytes": 2204574,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part028.csv.gz",
+          "rows": 35266,
+          "bytes": 2197200,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part029.csv.gz",
+          "rows": 35266,
+          "bytes": 2194261,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part030.csv.gz",
+          "rows": 35266,
+          "bytes": 2187479,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part031.csv.gz",
+          "rows": 35266,
+          "bytes": 2171505,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part032.csv.gz",
+          "rows": 35266,
+          "bytes": 2202690,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part033.csv.gz",
+          "rows": 35266,
+          "bytes": 2190352,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part034.csv.gz",
+          "rows": 35266,
+          "bytes": 2175145,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part035.csv.gz",
+          "rows": 35266,
+          "bytes": 2200065,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part036.csv.gz",
+          "rows": 35266,
+          "bytes": 2188418,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part037.csv.gz",
+          "rows": 35266,
+          "bytes": 2212250,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part038.csv.gz",
+          "rows": 35266,
+          "bytes": 2214546,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part039.csv.gz",
+          "rows": 35266,
+          "bytes": 2179366,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part040.csv.gz",
+          "rows": 35266,
+          "bytes": 2210954,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part041.csv.gz",
+          "rows": 35266,
+          "bytes": 2199270,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part042.csv.gz",
+          "rows": 35266,
+          "bytes": 2184404,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part043.csv.gz",
+          "rows": 35266,
+          "bytes": 2180799,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part044.csv.gz",
+          "rows": 35266,
+          "bytes": 2194703,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part045.csv.gz",
+          "rows": 35266,
+          "bytes": 2174884,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part046.csv.gz",
+          "rows": 35266,
+          "bytes": 2196415,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part047.csv.gz",
+          "rows": 35266,
+          "bytes": 2202659,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part048.csv.gz",
+          "rows": 35266,
+          "bytes": 2202169,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part049.csv.gz",
+          "rows": 35266,
+          "bytes": 2195950,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part050.csv.gz",
+          "rows": 35266,
+          "bytes": 2194807,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part051.csv.gz",
+          "rows": 35266,
+          "bytes": 2207403,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part052.csv.gz",
+          "rows": 35266,
+          "bytes": 2193888,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part053.csv.gz",
+          "rows": 35266,
+          "bytes": 2214317,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part054.csv.gz",
+          "rows": 35266,
+          "bytes": 2201405,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part055.csv.gz",
+          "rows": 35266,
+          "bytes": 2194294,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part056.csv.gz",
+          "rows": 35266,
+          "bytes": 2194736,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part057.csv.gz",
+          "rows": 35266,
+          "bytes": 2180133,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part058.csv.gz",
+          "rows": 35266,
+          "bytes": 2206592,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part059.csv.gz",
+          "rows": 35266,
+          "bytes": 2200360,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part060.csv.gz",
+          "rows": 35266,
+          "bytes": 2185307,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part061.csv.gz",
+          "rows": 35266,
+          "bytes": 2184057,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part062.csv.gz",
+          "rows": 35266,
+          "bytes": 2188070,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part063.csv.gz",
+          "rows": 35266,
+          "bytes": 2209048,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part064.csv.gz",
+          "rows": 35266,
+          "bytes": 2206556,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part065.csv.gz",
+          "rows": 35266,
+          "bytes": 2175893,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part066.csv.gz",
+          "rows": 416,
+          "bytes": 29130,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part000.csv.gz",
+          "rows": 35323,
+          "bytes": 2205675,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part001.csv.gz",
+          "rows": 35323,
+          "bytes": 2211982,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part002.csv.gz",
+          "rows": 35323,
+          "bytes": 2210813,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part003.csv.gz",
+          "rows": 35323,
+          "bytes": 2208660,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part004.csv.gz",
+          "rows": 35323,
+          "bytes": 2222610,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part005.csv.gz",
+          "rows": 35323,
+          "bytes": 2203683,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part006.csv.gz",
+          "rows": 35323,
+          "bytes": 2219867,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part007.csv.gz",
+          "rows": 35323,
+          "bytes": 2236968,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part008.csv.gz",
+          "rows": 35323,
+          "bytes": 2197236,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part009.csv.gz",
+          "rows": 35323,
+          "bytes": 2221009,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part010.csv.gz",
+          "rows": 35323,
+          "bytes": 2212333,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part011.csv.gz",
+          "rows": 35323,
+          "bytes": 2212411,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part012.csv.gz",
+          "rows": 35323,
+          "bytes": 2228924,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part013.csv.gz",
+          "rows": 35323,
+          "bytes": 2220308,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part014.csv.gz",
+          "rows": 35323,
+          "bytes": 2209529,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part015.csv.gz",
+          "rows": 35323,
+          "bytes": 2227660,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part016.csv.gz",
+          "rows": 35323,
+          "bytes": 2223656,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part017.csv.gz",
+          "rows": 35323,
+          "bytes": 2207333,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part018.csv.gz",
+          "rows": 35323,
+          "bytes": 2228333,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part019.csv.gz",
+          "rows": 35323,
+          "bytes": 2212382,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part020.csv.gz",
+          "rows": 35323,
+          "bytes": 2220070,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part021.csv.gz",
+          "rows": 35323,
+          "bytes": 2219418,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part022.csv.gz",
+          "rows": 35323,
+          "bytes": 2227373,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part023.csv.gz",
+          "rows": 35323,
+          "bytes": 2193907,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part024.csv.gz",
+          "rows": 35323,
+          "bytes": 2205795,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part025.csv.gz",
+          "rows": 35323,
+          "bytes": 2222376,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part026.csv.gz",
+          "rows": 35323,
+          "bytes": 2198143,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part027.csv.gz",
+          "rows": 35323,
+          "bytes": 2216180,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part028.csv.gz",
+          "rows": 35323,
+          "bytes": 2217296,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part029.csv.gz",
+          "rows": 35323,
+          "bytes": 2210028,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part030.csv.gz",
+          "rows": 35323,
+          "bytes": 2218063,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part031.csv.gz",
+          "rows": 35323,
+          "bytes": 2203286,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part032.csv.gz",
+          "rows": 35323,
+          "bytes": 2217975,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part033.csv.gz",
+          "rows": 35323,
+          "bytes": 2233418,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part034.csv.gz",
+          "rows": 35323,
+          "bytes": 2206417,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part035.csv.gz",
+          "rows": 35323,
+          "bytes": 2219875,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part036.csv.gz",
+          "rows": 35323,
+          "bytes": 2217304,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part037.csv.gz",
+          "rows": 35323,
+          "bytes": 2212733,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part038.csv.gz",
+          "rows": 35323,
+          "bytes": 2228544,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part039.csv.gz",
+          "rows": 35323,
+          "bytes": 2220116,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part040.csv.gz",
+          "rows": 35323,
+          "bytes": 2222045,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part041.csv.gz",
+          "rows": 35323,
+          "bytes": 2221232,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part042.csv.gz",
+          "rows": 35323,
+          "bytes": 2205225,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part043.csv.gz",
+          "rows": 35323,
+          "bytes": 2220246,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part044.csv.gz",
+          "rows": 35323,
+          "bytes": 2206809,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part045.csv.gz",
+          "rows": 35323,
+          "bytes": 2207743,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part046.csv.gz",
+          "rows": 35323,
+          "bytes": 2211169,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part047.csv.gz",
+          "rows": 35323,
+          "bytes": 2227976,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part048.csv.gz",
+          "rows": 35323,
+          "bytes": 2217310,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part049.csv.gz",
+          "rows": 35323,
+          "bytes": 2212246,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part050.csv.gz",
+          "rows": 35323,
+          "bytes": 2212310,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part051.csv.gz",
+          "rows": 35323,
+          "bytes": 2208632,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part052.csv.gz",
+          "rows": 35323,
+          "bytes": 2215309,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part053.csv.gz",
+          "rows": 35323,
+          "bytes": 2208932,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part054.csv.gz",
+          "rows": 35323,
+          "bytes": 2202540,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part055.csv.gz",
+          "rows": 35323,
+          "bytes": 2209864,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part056.csv.gz",
+          "rows": 35323,
+          "bytes": 2212764,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part057.csv.gz",
+          "rows": 35323,
+          "bytes": 2204971,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part058.csv.gz",
+          "rows": 35323,
+          "bytes": 2192773,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part059.csv.gz",
+          "rows": 35323,
+          "bytes": 2221884,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part060.csv.gz",
+          "rows": 35323,
+          "bytes": 2220427,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part061.csv.gz",
+          "rows": 35323,
+          "bytes": 2216304,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part062.csv.gz",
+          "rows": 35323,
+          "bytes": 2215120,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part063.csv.gz",
+          "rows": 35323,
+          "bytes": 2214034,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part064.csv.gz",
+          "rows": 35323,
+          "bytes": 2204082,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part065.csv.gz",
+          "rows": 35323,
+          "bytes": 2221813,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part066.csv.gz",
+          "rows": 16466,
+          "bytes": 1024169,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part000.csv.gz",
+          "rows": 34905,
+          "bytes": 2173895,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part001.csv.gz",
+          "rows": 34905,
+          "bytes": 2200240,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part002.csv.gz",
+          "rows": 34905,
+          "bytes": 2173680,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part003.csv.gz",
+          "rows": 34905,
+          "bytes": 2187455,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part004.csv.gz",
+          "rows": 34905,
+          "bytes": 2176200,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part005.csv.gz",
+          "rows": 34905,
+          "bytes": 2183743,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part006.csv.gz",
+          "rows": 34905,
+          "bytes": 2194434,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part007.csv.gz",
+          "rows": 34905,
+          "bytes": 2178804,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part008.csv.gz",
+          "rows": 34905,
+          "bytes": 2184988,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part009.csv.gz",
+          "rows": 34905,
+          "bytes": 2182568,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part010.csv.gz",
+          "rows": 34905,
+          "bytes": 2190507,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part011.csv.gz",
+          "rows": 34905,
+          "bytes": 2206222,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part012.csv.gz",
+          "rows": 34905,
+          "bytes": 2169039,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part013.csv.gz",
+          "rows": 34905,
+          "bytes": 2190845,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part014.csv.gz",
+          "rows": 34905,
+          "bytes": 2187237,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part015.csv.gz",
+          "rows": 34905,
+          "bytes": 2187596,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part016.csv.gz",
+          "rows": 34905,
+          "bytes": 2196836,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part017.csv.gz",
+          "rows": 34905,
+          "bytes": 2192690,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part018.csv.gz",
+          "rows": 34905,
+          "bytes": 2189956,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part019.csv.gz",
+          "rows": 34905,
+          "bytes": 2173594,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part020.csv.gz",
+          "rows": 34905,
+          "bytes": 2183969,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part021.csv.gz",
+          "rows": 34905,
+          "bytes": 2192032,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part022.csv.gz",
+          "rows": 34905,
+          "bytes": 2169493,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part023.csv.gz",
+          "rows": 34905,
+          "bytes": 2187692,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part024.csv.gz",
+          "rows": 34905,
+          "bytes": 2184001,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part025.csv.gz",
+          "rows": 34905,
+          "bytes": 2192389,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part026.csv.gz",
+          "rows": 34905,
+          "bytes": 2191694,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part027.csv.gz",
+          "rows": 34905,
+          "bytes": 2175396,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part028.csv.gz",
+          "rows": 34905,
+          "bytes": 2193714,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part029.csv.gz",
+          "rows": 34905,
+          "bytes": 2179589,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part030.csv.gz",
+          "rows": 34905,
+          "bytes": 2196669,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part031.csv.gz",
+          "rows": 34905,
+          "bytes": 2194175,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part032.csv.gz",
+          "rows": 34905,
+          "bytes": 2177021,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part033.csv.gz",
+          "rows": 34905,
+          "bytes": 2191125,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part034.csv.gz",
+          "rows": 34905,
+          "bytes": 2181884,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part035.csv.gz",
+          "rows": 34905,
+          "bytes": 2191652,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part036.csv.gz",
+          "rows": 34905,
+          "bytes": 2205294,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part037.csv.gz",
+          "rows": 34905,
+          "bytes": 2187246,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part038.csv.gz",
+          "rows": 34905,
+          "bytes": 2198537,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part039.csv.gz",
+          "rows": 34905,
+          "bytes": 2181529,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part040.csv.gz",
+          "rows": 34905,
+          "bytes": 2182848,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part041.csv.gz",
+          "rows": 34905,
+          "bytes": 2184535,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part042.csv.gz",
+          "rows": 34905,
+          "bytes": 2177815,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part043.csv.gz",
+          "rows": 34905,
+          "bytes": 2199577,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part044.csv.gz",
+          "rows": 34905,
+          "bytes": 2179085,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part045.csv.gz",
+          "rows": 34905,
+          "bytes": 2196257,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part046.csv.gz",
+          "rows": 34905,
+          "bytes": 2197003,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part047.csv.gz",
+          "rows": 34905,
+          "bytes": 2183087,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part048.csv.gz",
+          "rows": 34905,
+          "bytes": 2182185,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part049.csv.gz",
+          "rows": 34905,
+          "bytes": 2164763,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part050.csv.gz",
+          "rows": 34905,
+          "bytes": 2183108,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part051.csv.gz",
+          "rows": 34905,
+          "bytes": 2207608,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part052.csv.gz",
+          "rows": 34905,
+          "bytes": 2187401,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part053.csv.gz",
+          "rows": 34905,
+          "bytes": 2176747,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part054.csv.gz",
+          "rows": 34905,
+          "bytes": 2174237,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part055.csv.gz",
+          "rows": 34905,
+          "bytes": 2182070,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part056.csv.gz",
+          "rows": 34905,
+          "bytes": 2194363,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part057.csv.gz",
+          "rows": 34905,
+          "bytes": 2186685,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part058.csv.gz",
+          "rows": 34905,
+          "bytes": 2195581,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part059.csv.gz",
+          "rows": 34905,
+          "bytes": 2184255,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part060.csv.gz",
+          "rows": 34905,
+          "bytes": 2196296,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part061.csv.gz",
+          "rows": 34905,
+          "bytes": 2188212,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part062.csv.gz",
+          "rows": 34905,
+          "bytes": 2175549,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part063.csv.gz",
+          "rows": 22280,
+          "bytes": 1395920,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        }
+      ],
+      "partitioned_by": "pickup_hex_id_7",
+      "partitions": [
+        {
+          "pickup_hex_id_7": "8765b574affffff",
+          "folder": "hexes/8765b574affffff",
+          "rows": 2327972,
+          "parts": [
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part000.csv.gz",
+              "rows": 35266,
+              "bytes": 2172861,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part001.csv.gz",
+              "rows": 35266,
+              "bytes": 2204442,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part002.csv.gz",
+              "rows": 35266,
+              "bytes": 2181786,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part003.csv.gz",
+              "rows": 35266,
+              "bytes": 2192049,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part004.csv.gz",
+              "rows": 35266,
+              "bytes": 2195710,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part005.csv.gz",
+              "rows": 35266,
+              "bytes": 2186645,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part006.csv.gz",
+              "rows": 35266,
+              "bytes": 2203826,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part007.csv.gz",
+              "rows": 35266,
+              "bytes": 2223375,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part008.csv.gz",
+              "rows": 35266,
+              "bytes": 2170089,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part009.csv.gz",
+              "rows": 35266,
+              "bytes": 2179628,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part010.csv.gz",
+              "rows": 35266,
+              "bytes": 2175159,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part011.csv.gz",
+              "rows": 35266,
+              "bytes": 2196421,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part012.csv.gz",
+              "rows": 35266,
+              "bytes": 2196010,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part013.csv.gz",
+              "rows": 35266,
+              "bytes": 2176687,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part014.csv.gz",
+              "rows": 35266,
+              "bytes": 2193306,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part015.csv.gz",
+              "rows": 35266,
+              "bytes": 2201732,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part016.csv.gz",
+              "rows": 35266,
+              "bytes": 2198193,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part017.csv.gz",
+              "rows": 35266,
+              "bytes": 2212464,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part018.csv.gz",
+              "rows": 35266,
+              "bytes": 2183909,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part019.csv.gz",
+              "rows": 35266,
+              "bytes": 2190629,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part020.csv.gz",
+              "rows": 35266,
+              "bytes": 2190969,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part021.csv.gz",
+              "rows": 35266,
+              "bytes": 2187774,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part022.csv.gz",
+              "rows": 35266,
+              "bytes": 2177596,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part023.csv.gz",
+              "rows": 35266,
+              "bytes": 2184600,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part024.csv.gz",
+              "rows": 35266,
+              "bytes": 2197104,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part025.csv.gz",
+              "rows": 35266,
+              "bytes": 2165004,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part026.csv.gz",
+              "rows": 35266,
+              "bytes": 2195579,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part027.csv.gz",
+              "rows": 35266,
+              "bytes": 2204574,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part028.csv.gz",
+              "rows": 35266,
+              "bytes": 2197200,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part029.csv.gz",
+              "rows": 35266,
+              "bytes": 2194261,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part030.csv.gz",
+              "rows": 35266,
+              "bytes": 2187479,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part031.csv.gz",
+              "rows": 35266,
+              "bytes": 2171505,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part032.csv.gz",
+              "rows": 35266,
+              "bytes": 2202690,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part033.csv.gz",
+              "rows": 35266,
+              "bytes": 2190352,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part034.csv.gz",
+              "rows": 35266,
+              "bytes": 2175145,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part035.csv.gz",
+              "rows": 35266,
+              "bytes": 2200065,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part036.csv.gz",
+              "rows": 35266,
+              "bytes": 2188418,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part037.csv.gz",
+              "rows": 35266,
+              "bytes": 2212250,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part038.csv.gz",
+              "rows": 35266,
+              "bytes": 2214546,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part039.csv.gz",
+              "rows": 35266,
+              "bytes": 2179366,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part040.csv.gz",
+              "rows": 35266,
+              "bytes": 2210954,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part041.csv.gz",
+              "rows": 35266,
+              "bytes": 2199270,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part042.csv.gz",
+              "rows": 35266,
+              "bytes": 2184404,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part043.csv.gz",
+              "rows": 35266,
+              "bytes": 2180799,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part044.csv.gz",
+              "rows": 35266,
+              "bytes": 2194703,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part045.csv.gz",
+              "rows": 35266,
+              "bytes": 2174884,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part046.csv.gz",
+              "rows": 35266,
+              "bytes": 2196415,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part047.csv.gz",
+              "rows": 35266,
+              "bytes": 2202659,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part048.csv.gz",
+              "rows": 35266,
+              "bytes": 2202169,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part049.csv.gz",
+              "rows": 35266,
+              "bytes": 2195950,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part050.csv.gz",
+              "rows": 35266,
+              "bytes": 2194807,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part051.csv.gz",
+              "rows": 35266,
+              "bytes": 2207403,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part052.csv.gz",
+              "rows": 35266,
+              "bytes": 2193888,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part053.csv.gz",
+              "rows": 35266,
+              "bytes": 2214317,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part054.csv.gz",
+              "rows": 35266,
+              "bytes": 2201405,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part055.csv.gz",
+              "rows": 35266,
+              "bytes": 2194294,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part056.csv.gz",
+              "rows": 35266,
+              "bytes": 2194736,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part057.csv.gz",
+              "rows": 35266,
+              "bytes": 2180133,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part058.csv.gz",
+              "rows": 35266,
+              "bytes": 2206592,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part059.csv.gz",
+              "rows": 35266,
+              "bytes": 2200360,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part060.csv.gz",
+              "rows": 35266,
+              "bytes": 2185307,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part061.csv.gz",
+              "rows": 35266,
+              "bytes": 2184057,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part062.csv.gz",
+              "rows": 35266,
+              "bytes": 2188070,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part063.csv.gz",
+              "rows": 35266,
+              "bytes": 2209048,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part064.csv.gz",
+              "rows": 35266,
+              "bytes": 2206556,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part065.csv.gz",
+              "rows": 35266,
+              "bytes": 2175893,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_intern_forecasting_v1_part066.csv.gz",
+              "rows": 416,
+              "bytes": 29130,
+              "pickup_hex_id_7": "8765b574affffff"
+            }
+          ]
+        },
+        {
+          "pickup_hex_id_7": "8765b574bffffff",
+          "folder": "hexes/8765b574bffffff",
+          "rows": 2347784,
+          "parts": [
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part000.csv.gz",
+              "rows": 35323,
+              "bytes": 2205675,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part001.csv.gz",
+              "rows": 35323,
+              "bytes": 2211982,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part002.csv.gz",
+              "rows": 35323,
+              "bytes": 2210813,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part003.csv.gz",
+              "rows": 35323,
+              "bytes": 2208660,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part004.csv.gz",
+              "rows": 35323,
+              "bytes": 2222610,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part005.csv.gz",
+              "rows": 35323,
+              "bytes": 2203683,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part006.csv.gz",
+              "rows": 35323,
+              "bytes": 2219867,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part007.csv.gz",
+              "rows": 35323,
+              "bytes": 2236968,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part008.csv.gz",
+              "rows": 35323,
+              "bytes": 2197236,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part009.csv.gz",
+              "rows": 35323,
+              "bytes": 2221009,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part010.csv.gz",
+              "rows": 35323,
+              "bytes": 2212333,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part011.csv.gz",
+              "rows": 35323,
+              "bytes": 2212411,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part012.csv.gz",
+              "rows": 35323,
+              "bytes": 2228924,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part013.csv.gz",
+              "rows": 35323,
+              "bytes": 2220308,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part014.csv.gz",
+              "rows": 35323,
+              "bytes": 2209529,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part015.csv.gz",
+              "rows": 35323,
+              "bytes": 2227660,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part016.csv.gz",
+              "rows": 35323,
+              "bytes": 2223656,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part017.csv.gz",
+              "rows": 35323,
+              "bytes": 2207333,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part018.csv.gz",
+              "rows": 35323,
+              "bytes": 2228333,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part019.csv.gz",
+              "rows": 35323,
+              "bytes": 2212382,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part020.csv.gz",
+              "rows": 35323,
+              "bytes": 2220070,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part021.csv.gz",
+              "rows": 35323,
+              "bytes": 2219418,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part022.csv.gz",
+              "rows": 35323,
+              "bytes": 2227373,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part023.csv.gz",
+              "rows": 35323,
+              "bytes": 2193907,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part024.csv.gz",
+              "rows": 35323,
+              "bytes": 2205795,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part025.csv.gz",
+              "rows": 35323,
+              "bytes": 2222376,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part026.csv.gz",
+              "rows": 35323,
+              "bytes": 2198143,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part027.csv.gz",
+              "rows": 35323,
+              "bytes": 2216180,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part028.csv.gz",
+              "rows": 35323,
+              "bytes": 2217296,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part029.csv.gz",
+              "rows": 35323,
+              "bytes": 2210028,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part030.csv.gz",
+              "rows": 35323,
+              "bytes": 2218063,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part031.csv.gz",
+              "rows": 35323,
+              "bytes": 2203286,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part032.csv.gz",
+              "rows": 35323,
+              "bytes": 2217975,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part033.csv.gz",
+              "rows": 35323,
+              "bytes": 2233418,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part034.csv.gz",
+              "rows": 35323,
+              "bytes": 2206417,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part035.csv.gz",
+              "rows": 35323,
+              "bytes": 2219875,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part036.csv.gz",
+              "rows": 35323,
+              "bytes": 2217304,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part037.csv.gz",
+              "rows": 35323,
+              "bytes": 2212733,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part038.csv.gz",
+              "rows": 35323,
+              "bytes": 2228544,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part039.csv.gz",
+              "rows": 35323,
+              "bytes": 2220116,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part040.csv.gz",
+              "rows": 35323,
+              "bytes": 2222045,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part041.csv.gz",
+              "rows": 35323,
+              "bytes": 2221232,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part042.csv.gz",
+              "rows": 35323,
+              "bytes": 2205225,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part043.csv.gz",
+              "rows": 35323,
+              "bytes": 2220246,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part044.csv.gz",
+              "rows": 35323,
+              "bytes": 2206809,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part045.csv.gz",
+              "rows": 35323,
+              "bytes": 2207743,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part046.csv.gz",
+              "rows": 35323,
+              "bytes": 2211169,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part047.csv.gz",
+              "rows": 35323,
+              "bytes": 2227976,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part048.csv.gz",
+              "rows": 35323,
+              "bytes": 2217310,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part049.csv.gz",
+              "rows": 35323,
+              "bytes": 2212246,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part050.csv.gz",
+              "rows": 35323,
+              "bytes": 2212310,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part051.csv.gz",
+              "rows": 35323,
+              "bytes": 2208632,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part052.csv.gz",
+              "rows": 35323,
+              "bytes": 2215309,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part053.csv.gz",
+              "rows": 35323,
+              "bytes": 2208932,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part054.csv.gz",
+              "rows": 35323,
+              "bytes": 2202540,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part055.csv.gz",
+              "rows": 35323,
+              "bytes": 2209864,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part056.csv.gz",
+              "rows": 35323,
+              "bytes": 2212764,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part057.csv.gz",
+              "rows": 35323,
+              "bytes": 2204971,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part058.csv.gz",
+              "rows": 35323,
+              "bytes": 2192773,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part059.csv.gz",
+              "rows": 35323,
+              "bytes": 2221884,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part060.csv.gz",
+              "rows": 35323,
+              "bytes": 2220427,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part061.csv.gz",
+              "rows": 35323,
+              "bytes": 2216304,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part062.csv.gz",
+              "rows": 35323,
+              "bytes": 2215120,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part063.csv.gz",
+              "rows": 35323,
+              "bytes": 2214034,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part064.csv.gz",
+              "rows": 35323,
+              "bytes": 2204082,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part065.csv.gz",
+              "rows": 35323,
+              "bytes": 2221813,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_intern_forecasting_v1_part066.csv.gz",
+              "rows": 16466,
+              "bytes": 1024169,
+              "pickup_hex_id_7": "8765b574bffffff"
+            }
+          ]
+        },
+        {
+          "pickup_hex_id_7": "8765b5759ffffff",
+          "folder": "hexes/8765b5759ffffff",
+          "rows": 2221295,
+          "parts": [
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part000.csv.gz",
+              "rows": 34905,
+              "bytes": 2173895,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part001.csv.gz",
+              "rows": 34905,
+              "bytes": 2200240,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part002.csv.gz",
+              "rows": 34905,
+              "bytes": 2173680,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part003.csv.gz",
+              "rows": 34905,
+              "bytes": 2187455,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part004.csv.gz",
+              "rows": 34905,
+              "bytes": 2176200,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part005.csv.gz",
+              "rows": 34905,
+              "bytes": 2183743,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part006.csv.gz",
+              "rows": 34905,
+              "bytes": 2194434,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part007.csv.gz",
+              "rows": 34905,
+              "bytes": 2178804,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part008.csv.gz",
+              "rows": 34905,
+              "bytes": 2184988,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part009.csv.gz",
+              "rows": 34905,
+              "bytes": 2182568,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part010.csv.gz",
+              "rows": 34905,
+              "bytes": 2190507,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part011.csv.gz",
+              "rows": 34905,
+              "bytes": 2206222,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part012.csv.gz",
+              "rows": 34905,
+              "bytes": 2169039,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part013.csv.gz",
+              "rows": 34905,
+              "bytes": 2190845,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part014.csv.gz",
+              "rows": 34905,
+              "bytes": 2187237,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part015.csv.gz",
+              "rows": 34905,
+              "bytes": 2187596,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part016.csv.gz",
+              "rows": 34905,
+              "bytes": 2196836,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part017.csv.gz",
+              "rows": 34905,
+              "bytes": 2192690,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part018.csv.gz",
+              "rows": 34905,
+              "bytes": 2189956,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part019.csv.gz",
+              "rows": 34905,
+              "bytes": 2173594,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part020.csv.gz",
+              "rows": 34905,
+              "bytes": 2183969,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part021.csv.gz",
+              "rows": 34905,
+              "bytes": 2192032,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part022.csv.gz",
+              "rows": 34905,
+              "bytes": 2169493,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part023.csv.gz",
+              "rows": 34905,
+              "bytes": 2187692,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part024.csv.gz",
+              "rows": 34905,
+              "bytes": 2184001,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part025.csv.gz",
+              "rows": 34905,
+              "bytes": 2192389,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part026.csv.gz",
+              "rows": 34905,
+              "bytes": 2191694,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part027.csv.gz",
+              "rows": 34905,
+              "bytes": 2175396,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part028.csv.gz",
+              "rows": 34905,
+              "bytes": 2193714,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part029.csv.gz",
+              "rows": 34905,
+              "bytes": 2179589,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part030.csv.gz",
+              "rows": 34905,
+              "bytes": 2196669,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part031.csv.gz",
+              "rows": 34905,
+              "bytes": 2194175,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part032.csv.gz",
+              "rows": 34905,
+              "bytes": 2177021,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part033.csv.gz",
+              "rows": 34905,
+              "bytes": 2191125,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part034.csv.gz",
+              "rows": 34905,
+              "bytes": 2181884,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part035.csv.gz",
+              "rows": 34905,
+              "bytes": 2191652,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part036.csv.gz",
+              "rows": 34905,
+              "bytes": 2205294,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part037.csv.gz",
+              "rows": 34905,
+              "bytes": 2187246,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part038.csv.gz",
+              "rows": 34905,
+              "bytes": 2198537,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part039.csv.gz",
+              "rows": 34905,
+              "bytes": 2181529,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part040.csv.gz",
+              "rows": 34905,
+              "bytes": 2182848,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part041.csv.gz",
+              "rows": 34905,
+              "bytes": 2184535,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part042.csv.gz",
+              "rows": 34905,
+              "bytes": 2177815,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part043.csv.gz",
+              "rows": 34905,
+              "bytes": 2199577,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part044.csv.gz",
+              "rows": 34905,
+              "bytes": 2179085,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part045.csv.gz",
+              "rows": 34905,
+              "bytes": 2196257,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part046.csv.gz",
+              "rows": 34905,
+              "bytes": 2197003,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part047.csv.gz",
+              "rows": 34905,
+              "bytes": 2183087,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part048.csv.gz",
+              "rows": 34905,
+              "bytes": 2182185,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part049.csv.gz",
+              "rows": 34905,
+              "bytes": 2164763,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part050.csv.gz",
+              "rows": 34905,
+              "bytes": 2183108,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part051.csv.gz",
+              "rows": 34905,
+              "bytes": 2207608,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part052.csv.gz",
+              "rows": 34905,
+              "bytes": 2187401,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part053.csv.gz",
+              "rows": 34905,
+              "bytes": 2176747,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part054.csv.gz",
+              "rows": 34905,
+              "bytes": 2174237,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part055.csv.gz",
+              "rows": 34905,
+              "bytes": 2182070,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part056.csv.gz",
+              "rows": 34905,
+              "bytes": 2194363,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part057.csv.gz",
+              "rows": 34905,
+              "bytes": 2186685,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part058.csv.gz",
+              "rows": 34905,
+              "bytes": 2195581,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part059.csv.gz",
+              "rows": 34905,
+              "bytes": 2184255,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part060.csv.gz",
+              "rows": 34905,
+              "bytes": 2196296,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part061.csv.gz",
+              "rows": 34905,
+              "bytes": 2188212,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part062.csv.gz",
+              "rows": 34905,
+              "bytes": 2175549,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_intern_forecasting_v1_part063.csv.gz",
+              "rows": 22280,
+              "bytes": 1395920,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "synthetic_split_manifest_v1",
+      "rows": 1724971,
+      "columns": [
+        "quote_id",
+        "created_at",
+        "current_timestamp_utc",
+        "evaluation_month",
+        "service_id",
+        "pickup_zone_id",
+        "pickup_hex_id_7",
+        "scenario_id",
+        "split"
+      ],
+      "parts": [
+        {
+          "path": "hexes/8765b574affffff/synthetic_split_manifest_v1_part000.csv.gz",
+          "rows": 112688,
+          "bytes": 764643,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_split_manifest_v1_part001.csv.gz",
+          "rows": 112688,
+          "bytes": 764968,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_split_manifest_v1_part002.csv.gz",
+          "rows": 112688,
+          "bytes": 765056,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_split_manifest_v1_part003.csv.gz",
+          "rows": 112688,
+          "bytes": 766659,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_split_manifest_v1_part004.csv.gz",
+          "rows": 112688,
+          "bytes": 765221,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574affffff/synthetic_split_manifest_v1_part005.csv.gz",
+          "rows": 18787,
+          "bytes": 128007,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_split_manifest_v1_part000.csv.gz",
+          "rows": 112689,
+          "bytes": 765180,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_split_manifest_v1_part001.csv.gz",
+          "rows": 112689,
+          "bytes": 764644,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_split_manifest_v1_part002.csv.gz",
+          "rows": 112689,
+          "bytes": 765895,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_split_manifest_v1_part003.csv.gz",
+          "rows": 112689,
+          "bytes": 765776,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_split_manifest_v1_part004.csv.gz",
+          "rows": 112689,
+          "bytes": 764607,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_split_manifest_v1_part005.csv.gz",
+          "rows": 23736,
+          "bytes": 161772,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_split_manifest_v1_part000.csv.gz",
+          "rows": 112689,
+          "bytes": 769128,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_split_manifest_v1_part001.csv.gz",
+          "rows": 112689,
+          "bytes": 769114,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_split_manifest_v1_part002.csv.gz",
+          "rows": 112689,
+          "bytes": 768161,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_split_manifest_v1_part003.csv.gz",
+          "rows": 112689,
+          "bytes": 767731,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_split_manifest_v1_part004.csv.gz",
+          "rows": 104807,
+          "bytes": 715146,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        }
+      ],
+      "partitioned_by": "pickup_hex_id_7",
+      "partitions": [
+        {
+          "pickup_hex_id_7": "8765b574affffff",
+          "folder": "hexes/8765b574affffff",
+          "rows": 582227,
+          "parts": [
+            {
+              "path": "hexes/8765b574affffff/synthetic_split_manifest_v1_part000.csv.gz",
+              "rows": 112688,
+              "bytes": 764643,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_split_manifest_v1_part001.csv.gz",
+              "rows": 112688,
+              "bytes": 764968,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_split_manifest_v1_part002.csv.gz",
+              "rows": 112688,
+              "bytes": 765056,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_split_manifest_v1_part003.csv.gz",
+              "rows": 112688,
+              "bytes": 766659,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_split_manifest_v1_part004.csv.gz",
+              "rows": 112688,
+              "bytes": 765221,
+              "pickup_hex_id_7": "8765b574affffff"
+            },
+            {
+              "path": "hexes/8765b574affffff/synthetic_split_manifest_v1_part005.csv.gz",
+              "rows": 18787,
+              "bytes": 128007,
+              "pickup_hex_id_7": "8765b574affffff"
+            }
+          ]
+        },
+        {
+          "pickup_hex_id_7": "8765b574bffffff",
+          "folder": "hexes/8765b574bffffff",
+          "rows": 587181,
+          "parts": [
+            {
+              "path": "hexes/8765b574bffffff/synthetic_split_manifest_v1_part000.csv.gz",
+              "rows": 112689,
+              "bytes": 765180,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_split_manifest_v1_part001.csv.gz",
+              "rows": 112689,
+              "bytes": 764644,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_split_manifest_v1_part002.csv.gz",
+              "rows": 112689,
+              "bytes": 765895,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_split_manifest_v1_part003.csv.gz",
+              "rows": 112689,
+              "bytes": 765776,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_split_manifest_v1_part004.csv.gz",
+              "rows": 112689,
+              "bytes": 764607,
+              "pickup_hex_id_7": "8765b574bffffff"
+            },
+            {
+              "path": "hexes/8765b574bffffff/synthetic_split_manifest_v1_part005.csv.gz",
+              "rows": 23736,
+              "bytes": 161772,
+              "pickup_hex_id_7": "8765b574bffffff"
+            }
+          ]
+        },
+        {
+          "pickup_hex_id_7": "8765b5759ffffff",
+          "folder": "hexes/8765b5759ffffff",
+          "rows": 555563,
+          "parts": [
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_split_manifest_v1_part000.csv.gz",
+              "rows": 112689,
+              "bytes": 769128,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_split_manifest_v1_part001.csv.gz",
+              "rows": 112689,
+              "bytes": 769114,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_split_manifest_v1_part002.csv.gz",
+              "rows": 112689,
+              "bytes": 768161,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_split_manifest_v1_part003.csv.gz",
+              "rows": 112689,
+              "bytes": 767731,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            },
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_split_manifest_v1_part004.csv.gz",
+              "rows": 104807,
+              "bytes": 715146,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "synthetic_scenario_catalog_v1",
+      "rows": 1,
+      "columns": [
+        "scenario_id",
+        "description",
+        "stress_type"
+      ],
+      "parts": [
+        {
+          "path": "shared/synthetic_scenario_catalog_v1_part000.csv.gz",
+          "rows": 1,
+          "bytes": 139
+        }
+      ],
+      "shared": true
+    },
+    {
+      "name": "synthetic_stress_competitor_quote_feed_v1",
+      "rows": 21469,
+      "columns": [
+        "quote_observation_id",
+        "observed_at",
+        "current_timestamp_utc",
+        "evaluation_month",
+        "competitor_platform",
+        "service_id",
+        "service_name",
+        "pickup_zone_id",
+        "dropoff_zone_id",
+        "pickup_location_name",
+        "dropoff_location_name",
+        "pickup_hex_id_7",
+        "pickup_latitude",
+        "pickup_longitude",
+        "dropoff_latitude",
+        "dropoff_longitude",
+        "quote_distance",
+        "quote_duration",
+        "observed_price",
+        "observed_multiplier",
+        "weather_observed_ts",
+        "weather_main",
+        "weather_description",
+        "weather_temp",
+        "weather_feels_like",
+        "weather_pressure",
+        "weather_humidity",
+        "weather_wind_speed",
+        "weather_wind_deg",
+        "weather_wind_deg_sin",
+        "weather_wind_deg_cos",
+        "weather_clouds_all",
+        "weather_age_minutes",
+        "weather_missing",
+        "weather_is_clear",
+        "weather_is_clouds",
+        "weather_is_rain",
+        "weather_is_mist",
+        "weather_is_thunderstorm",
+        "weather_is_drizzle",
+        "scenario_id",
+        "split",
+        "is_synthetic"
+      ],
+      "parts": [
+        {
+          "path": "hexes/8765b574affffff/synthetic_stress_competitor_quote_feed_v1_part000.csv.gz",
+          "rows": 7289,
+          "bytes": 143912,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_stress_competitor_quote_feed_v1_part000.csv.gz",
+          "rows": 7352,
+          "bytes": 146427,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_stress_competitor_quote_feed_v1_part000.csv.gz",
+          "rows": 6828,
+          "bytes": 136910,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        }
+      ],
+      "partitioned_by": "pickup_hex_id_7",
+      "partitions": [
+        {
+          "pickup_hex_id_7": "8765b574affffff",
+          "folder": "hexes/8765b574affffff",
+          "rows": 7289,
+          "parts": [
+            {
+              "path": "hexes/8765b574affffff/synthetic_stress_competitor_quote_feed_v1_part000.csv.gz",
+              "rows": 7289,
+              "bytes": 143912,
+              "pickup_hex_id_7": "8765b574affffff"
+            }
+          ]
+        },
+        {
+          "pickup_hex_id_7": "8765b574bffffff",
+          "folder": "hexes/8765b574bffffff",
+          "rows": 7352,
+          "parts": [
+            {
+              "path": "hexes/8765b574bffffff/synthetic_stress_competitor_quote_feed_v1_part000.csv.gz",
+              "rows": 7352,
+              "bytes": 146427,
+              "pickup_hex_id_7": "8765b574bffffff"
+            }
+          ]
+        },
+        {
+          "pickup_hex_id_7": "8765b5759ffffff",
+          "folder": "hexes/8765b5759ffffff",
+          "rows": 6828,
+          "parts": [
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_stress_competitor_quote_feed_v1_part000.csv.gz",
+              "rows": 6828,
+              "bytes": 136910,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "synthetic_stress_forecasting_v1",
+      "rows": 67576,
+      "columns": [
+        "forecast_example_id",
+        "target_request_id",
+        "target_timestamp",
+        "current_timestamp_utc",
+        "evaluation_month",
+        "competitor_platform",
+        "service_id",
+        "service_name",
+        "pickup_zone_id",
+        "dropoff_zone_id",
+        "pickup_location_name",
+        "dropoff_location_name",
+        "pickup_hex_id_7",
+        "pickup_latitude",
+        "pickup_longitude",
+        "dropoff_latitude",
+        "dropoff_longitude",
+        "quote_distance",
+        "quote_duration",
+        "pricing_quote_count_5m_lag",
+        "pricing_avg_shown_multiplier_5m_lag",
+        "pricing_demand_index_5m_lag",
+        "pricing_supply_index_5m_lag",
+        "pricing_market_imbalance_5m_lag",
+        "weather_observed_ts",
+        "weather_main",
+        "weather_description",
+        "weather_temp",
+        "weather_feels_like",
+        "weather_pressure",
+        "weather_humidity",
+        "weather_wind_speed",
+        "weather_wind_deg",
+        "weather_wind_deg_sin",
+        "weather_wind_deg_cos",
+        "weather_clouds_all",
+        "weather_age_minutes",
+        "weather_missing",
+        "weather_is_clear",
+        "weather_is_clouds",
+        "weather_is_rain",
+        "weather_is_mist",
+        "weather_is_thunderstorm",
+        "weather_is_drizzle",
+        "scenario_id",
+        "split",
+        "is_synthetic",
+        "competitor_feed_id",
+        "requested_lag_minutes",
+        "observation_cutoff_timestamp",
+        "latest_observed_quote_timestamp",
+        "actual_observation_age_minutes",
+        "latest_observed_price",
+        "latest_observed_multiplier",
+        "latest_observed_quote_distance",
+        "latest_observed_quote_duration",
+        "persistence_prediction",
+        "history_60m_observation_count",
+        "history_60m_price_mean",
+        "history_60m_price_std",
+        "history_60m_price_min",
+        "history_60m_price_max",
+        "history_60m_multiplier_mean",
+        "history_60m_price_slope_per_minute",
+        "target_hour",
+        "target_day_of_week",
+        "target_is_weekend",
+        "target_shown_price",
+        "target_shown_multiplier",
+        "target_price_per_km"
+      ],
+      "parts": [
+        {
+          "path": "hexes/8765b574affffff/synthetic_stress_forecasting_v1_part000.csv.gz",
+          "rows": 22956,
+          "bytes": 1440607,
+          "pickup_hex_id_7": "8765b574affffff"
+        },
+        {
+          "path": "hexes/8765b574bffffff/synthetic_stress_forecasting_v1_part000.csv.gz",
+          "rows": 22824,
+          "bytes": 1443642,
+          "pickup_hex_id_7": "8765b574bffffff"
+        },
+        {
+          "path": "hexes/8765b5759ffffff/synthetic_stress_forecasting_v1_part000.csv.gz",
+          "rows": 21796,
+          "bytes": 1365479,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        }
+      ],
+      "partitioned_by": "pickup_hex_id_7",
+      "partitions": [
+        {
+          "pickup_hex_id_7": "8765b574affffff",
+          "folder": "hexes/8765b574affffff",
+          "rows": 22956,
+          "parts": [
+            {
+              "path": "hexes/8765b574affffff/synthetic_stress_forecasting_v1_part000.csv.gz",
+              "rows": 22956,
+              "bytes": 1440607,
+              "pickup_hex_id_7": "8765b574affffff"
+            }
+          ]
+        },
+        {
+          "pickup_hex_id_7": "8765b574bffffff",
+          "folder": "hexes/8765b574bffffff",
+          "rows": 22824,
+          "parts": [
+            {
+              "path": "hexes/8765b574bffffff/synthetic_stress_forecasting_v1_part000.csv.gz",
+              "rows": 22824,
+              "bytes": 1443642,
+              "pickup_hex_id_7": "8765b574bffffff"
+            }
+          ]
+        },
+        {
+          "pickup_hex_id_7": "8765b5759ffffff",
+          "folder": "hexes/8765b5759ffffff",
+          "rows": 21796,
+          "parts": [
+            {
+              "path": "hexes/8765b5759ffffff/synthetic_stress_forecasting_v1_part000.csv.gz",
+              "rows": 21796,
+              "bytes": 1365479,
+              "pickup_hex_id_7": "8765b5759ffffff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "synthetic_stress_scenario_catalog_v1",
+      "rows": 4,
+      "columns": [
+        "scenario_id",
+        "description",
+        "stress_type",
+        "start_utc",
+        "end_utc_inclusive"
+      ],
+      "parts": [
+        {
+          "path": "shared/synthetic_stress_scenario_catalog_v1_part000.csv.gz",
+          "rows": 4,
+          "bytes": 302
+        }
+      ],
+      "shared": true
+    },
+    {
+      "name": "synthetic_data_dictionary_v1",
+      "rows": 251,
+      "columns": [
+        "table",
+        "column",
+        "dtype",
+        "description",
+        "forecasting_availability",
+        "availability_rule"
+      ],
+      "parts": [
+        {
+          "path": "shared/synthetic_data_dictionary_v1_part000.csv.gz",
+          "rows": 251,
+          "bytes": 2709
+        }
+      ],
+      "shared": true
+    },
+    {
+      "name": "synthetic_information_availability_v1",
+      "rows": 9,
+      "columns": [
+        "information_group",
+        "target_time_rule",
+        "examples",
+        "notes"
+      ],
+      "parts": [
+        {
+          "path": "shared/synthetic_information_availability_v1_part000.csv.gz",
+          "rows": 9,
+          "bytes": 774
+        }
+      ],
+      "shared": true
+    }
+  ],
+  "texts": [
+    {
+      "name": "generation_config",
+      "path": "generation_config.json",
+      "bytes": 5245
+    },
+    {
+      "name": "generation_quality_report",
+      "path": "generation_quality_report.json",
+      "bytes": 4878
+    },
+    {
+      "name": "readme",
+      "path": "README.md",
+      "bytes": 10761
+    },
+    {
+      "name": "hex_index",
+      "path": "hex_index.json",
+      "bytes": 881
+    }
+  ],
+  "hex_index": "hex_index.json",
+  "internal_files_present": false,
+  "artifact_summary": "artifact_summary.csv"
+}

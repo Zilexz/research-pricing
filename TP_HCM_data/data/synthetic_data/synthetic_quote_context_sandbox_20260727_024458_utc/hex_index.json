@@ -1,0 +1,29 @@
+[
+  {
+    "pickup_hex_id_7": "8765b574affffff",
+    "folder": "hexes/8765b574affffff",
+    "quote_context_rows": 0,
+    "competitor_quote_feed_rows": 582227,
+    "intern_forecasting_rows": 2327972,
+    "stress_forecasting_rows": 22956,
+    "manifest": "hexes/8765b574affffff/manifest.json"
+  },
+  {
+    "pickup_hex_id_7": "8765b574bffffff",
+    "folder": "hexes/8765b574bffffff",
+    "quote_context_rows": 0,
+    "competitor_quote_feed_rows": 587181,
+    "intern_forecasting_rows": 2347784,
+    "stress_forecasting_rows": 22824,
+    "manifest": "hexes/8765b574bffffff/manifest.json"
+  },
+  {
+    "pickup_hex_id_7": "8765b5759ffffff",
+    "folder": "hexes/8765b5759ffffff",
+    "quote_context_rows": 0,
+    "competitor_quote_feed_rows": 555563,
+    "intern_forecasting_rows": 2221295,
+    "stress_forecasting_rows": 21796,
+    "manifest": "hexes/8765b5759ffffff/manifest.json"
+  }
+]

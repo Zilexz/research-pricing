@@ -1,0 +1,15 @@
+name,type,rows,columns,parts,bytes
+synthetic_competitor_quote_feed_v1,dataframe,1724971.0,43.0,39,34095832
+synthetic_data_dictionary_v1,dataframe,251.0,6.0,1,2709
+synthetic_information_availability_v1,dataframe,9.0,4.0,1,774
+synthetic_intern_forecasting_v1,dataframe,6897051.0,70.0,198,431098036
+synthetic_scenario_catalog_v1,dataframe,1.0,3.0,1,139
+synthetic_split_manifest_v1,dataframe,1724971.0,9.0,17,11731708
+synthetic_stress_competitor_quote_feed_v1,dataframe,21469.0,43.0,3,427249
+synthetic_stress_forecasting_v1,dataframe,67576.0,70.0,3,4249728
+synthetic_stress_scenario_catalog_v1,dataframe,4.0,5.0,1,302
+synthetic_zones_v1,dataframe,3.0,8.0,3,722
+generation_config,text,,,1,5245
+generation_quality_report,text,,,1,4878
+hex_index,text,,,1,881
+readme,text,,,1,10761

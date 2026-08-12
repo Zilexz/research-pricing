@@ -1,0 +1,173 @@
+{
+  "artifact_version": "2.1",
+  "artifact_profile": "intern",
+  "seed": 42,
+  "synthetic_start_utc": "2026-01-01T00:00:00+00:00",
+  "synthetic_end_utc_inclusive": "2026-03-30T23:55:00+00:00",
+  "frequency": "5min",
+  "duration_days": 89.0,
+  "inclusive_start_date": "2026-01-01",
+  "inclusive_end_date": "2026-03-30",
+  "n_zones": 3,
+  "hex_ids": [
+    "8765b574affffff",
+    "8765b574bffffff",
+    "8765b5759ffffff"
+  ],
+  "hex_display_names": {
+    "8765b574affffff": "Crescent Mall",
+    "8765b574bffffff": "SC Vivo City",
+    "8765b5759ffffff": "EcoGreen S\u00e0i G\u00f2n"
+  },
+  "hex_ids_supplied_by_operator": true,
+  "hex_partitioned_storage": true,
+  "n_customers": 20000,
+  "services": [
+    {
+      "service_id": "SYN_STANDARD",
+      "service_name": "Synthetic Standard Car"
+    },
+    {
+      "service_id": "SYN_PREMIUM",
+      "service_name": "Synthetic Premium Car"
+    }
+  ],
+  "currency_code": "VND",
+  "competitor_name": "Synthetic Competitor",
+  "personalized_wrapper_enabled": false,
+  "calibration_source": "aggregate_bigquery_internal",
+  "calibration_is_per_hex_service_hour": true,
+  "privacy_threshold_min_group_rows": 50,
+  "aggregate_group_count_used_in_memory": 504,
+  "weather_aggregate_group_count_used_in_memory": 357,
+  "aggregate_calibration_parameters_exported": false,
+  "intern_forecasting_table": "synthetic_intern_forecasting_v1",
+  "primary_benchmark_scenario_policy": "normal_only",
+  "stress_test_generated_separately": true,
+  "stress_forecasting_table": "synthetic_stress_forecasting_v1",
+  "requested_lags_minutes": [
+    5,
+    10,
+    15,
+    30
+  ],
+  "history_window_minutes": 60,
+  "weather_observation_minutes": 60,
+  "weather_observation_failure_rate": 0.05,
+  "split_mode": "monthly_calendar_days",
+  "monthly_train_days": 20,
+  "split_day_counts": {
+    "2026-01": {
+      "train": 20,
+      "validation": 4,
+      "calibration": 3,
+      "test": 4
+    },
+    "2026-02": {
+      "train": 20,
+      "validation": 3,
+      "calibration": 2,
+      "test": 3
+    },
+    "2026-03": {
+      "train": 20,
+      "validation": 3,
+      "calibration": 3,
+      "test": 4
+    }
+  },
+  "split_boundaries": {
+    "2026-01": {
+      "train": {
+        "days": 20,
+        "start_date_utc": "2026-01-01",
+        "end_date_utc_inclusive": "2026-01-20",
+        "start_utc": "2026-01-01T00:00:00+00:00",
+        "end_utc_inclusive": "2026-01-20T23:55:00+00:00"
+      },
+      "validation": {
+        "days": 4,
+        "start_date_utc": "2026-01-21",
+        "end_date_utc_inclusive": "2026-01-24",
+        "start_utc": "2026-01-21T00:00:00+00:00",
+        "end_utc_inclusive": "2026-01-24T23:55:00+00:00"
+      },
+      "calibration": {
+        "days": 3,
+        "start_date_utc": "2026-01-25",
+        "end_date_utc_inclusive": "2026-01-27",
+        "start_utc": "2026-01-25T00:00:00+00:00",
+        "end_utc_inclusive": "2026-01-27T23:55:00+00:00"
+      },
+      "test": {
+        "days": 4,
+        "start_date_utc": "2026-01-28",
+        "end_date_utc_inclusive": "2026-01-31",
+        "start_utc": "2026-01-28T00:00:00+00:00",
+        "end_utc_inclusive": "2026-01-31T23:55:00+00:00"
+      }
+    },
+    "2026-02": {
+      "train": {
+        "days": 20,
+        "start_date_utc": "2026-02-01",
+        "end_date_utc_inclusive": "2026-02-20",
+        "start_utc": "2026-02-01T00:00:00+00:00",
+        "end_utc_inclusive": "2026-02-20T23:55:00+00:00"
+      },
+      "validation": {
+        "days": 3,
+        "start_date_utc": "2026-02-21",
+        "end_date_utc_inclusive": "2026-02-23",
+        "start_utc": "2026-02-21T00:00:00+00:00",
+        "end_utc_inclusive": "2026-02-23T23:55:00+00:00"
+      },
+      "calibration": {
+        "days": 2,
+        "start_date_utc": "2026-02-24",
+        "end_date_utc_inclusive": "2026-02-25",
+        "start_utc": "2026-02-24T00:00:00+00:00",
+        "end_utc_inclusive": "2026-02-25T23:55:00+00:00"
+      },
+      "test": {
+        "days": 3,
+        "start_date_utc": "2026-02-26",
+        "end_date_utc_inclusive": "2026-02-28",
+        "start_utc": "2026-02-26T00:00:00+00:00",
+        "end_utc_inclusive": "2026-02-28T23:55:00+00:00"
+      }
+    },
+    "2026-03": {
+      "train": {
+        "days": 20,
+        "start_date_utc": "2026-03-01",
+        "end_date_utc_inclusive": "2026-03-20",
+        "start_utc": "2026-03-01T00:00:00+00:00",
+        "end_utc_inclusive": "2026-03-20T23:55:00+00:00"
+      },
+      "validation": {
+        "days": 3,
+        "start_date_utc": "2026-03-21",
+        "end_date_utc_inclusive": "2026-03-23",
+        "start_utc": "2026-03-21T00:00:00+00:00",
+        "end_utc_inclusive": "2026-03-23T23:55:00+00:00"
+      },
+      "calibration": {
+        "days": 3,
+        "start_date_utc": "2026-03-24",
+        "end_date_utc_inclusive": "2026-03-26",
+        "start_utc": "2026-03-24T00:00:00+00:00",
+        "end_utc_inclusive": "2026-03-26T23:55:00+00:00"
+      },
+      "test": {
+        "days": 4,
+        "start_date_utc": "2026-03-27",
+        "end_date_utc_inclusive": "2026-03-30",
+        "start_utc": "2026-03-27T00:00:00+00:00",
+        "end_utc_inclusive": "2026-03-30T23:55:00+00:00"
+      }
+    }
+  },
+  "booking_or_completion_outcomes_generated": false,
+  "event_level_production_rows_used_in_release": false
+}

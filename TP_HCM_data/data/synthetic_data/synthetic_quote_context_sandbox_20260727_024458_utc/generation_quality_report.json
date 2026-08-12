@@ -1,0 +1,202 @@
+{
+  "status": "passed",
+  "errors": [],
+  "market_rows": 153792,
+  "customer_rows": 20000,
+  "quote_rows": 1724971,
+  "quote_context_rows": 1724971,
+  "competitor_quote_feed_rows": 1724971,
+  "split_ranges": {
+    "train": {
+      "rows": 1161158,
+      "months": 3
+    },
+    "validation": {
+      "rows": 193746,
+      "months": 3
+    },
+    "calibration": {
+      "rows": 153977,
+      "months": 3
+    },
+    "test": {
+      "rows": 216090,
+      "months": 3
+    }
+  },
+  "monthly_split_ranges": {
+    "2026-01": {
+      "train": {
+        "rows": 386301,
+        "days": 20,
+        "start_utc": "2026-01-01T00:00:04+00:00",
+        "end_utc": "2026-01-20T23:59:48+00:00"
+      },
+      "validation": {
+        "rows": 77986,
+        "days": 4,
+        "start_utc": "2026-01-21T00:00:00+00:00",
+        "end_utc": "2026-01-24T23:59:59+00:00"
+      },
+      "calibration": {
+        "rows": 57376,
+        "days": 3,
+        "start_utc": "2026-01-25T00:00:08+00:00",
+        "end_utc": "2026-01-27T23:59:59+00:00"
+      },
+      "test": {
+        "rows": 78840,
+        "days": 4,
+        "start_utc": "2026-01-28T00:00:01+00:00",
+        "end_utc": "2026-01-31T23:59:51+00:00"
+      }
+    },
+    "2026-02": {
+      "train": {
+        "rows": 387246,
+        "days": 20,
+        "start_utc": "2026-02-01T00:00:04+00:00",
+        "end_utc": "2026-02-20T23:59:55+00:00"
+      },
+      "validation": {
+        "rows": 58062,
+        "days": 3,
+        "start_utc": "2026-02-21T00:00:00+00:00",
+        "end_utc": "2026-02-23T23:59:58+00:00"
+      },
+      "calibration": {
+        "rows": 38570,
+        "days": 2,
+        "start_utc": "2026-02-24T00:00:00+00:00",
+        "end_utc": "2026-02-25T23:59:58+00:00"
+      },
+      "test": {
+        "rows": 58658,
+        "days": 3,
+        "start_utc": "2026-02-26T00:00:01+00:00",
+        "end_utc": "2026-02-28T23:59:54+00:00"
+      }
+    },
+    "2026-03": {
+      "train": {
+        "rows": 387611,
+        "days": 20,
+        "start_utc": "2026-03-01T00:00:11+00:00",
+        "end_utc": "2026-03-20T23:59:57+00:00"
+      },
+      "validation": {
+        "rows": 57698,
+        "days": 3,
+        "start_utc": "2026-03-21T00:00:00+00:00",
+        "end_utc": "2026-03-23T23:59:51+00:00"
+      },
+      "calibration": {
+        "rows": 58031,
+        "days": 3,
+        "start_utc": "2026-03-24T00:00:01+00:00",
+        "end_utc": "2026-03-26T23:59:57+00:00"
+      },
+      "test": {
+        "rows": 78592,
+        "days": 4,
+        "start_utc": "2026-03-27T00:00:01+00:00",
+        "end_utc": "2026-03-30T23:59:55+00:00"
+      }
+    }
+  },
+  "price_summary": {
+    "min": 32000.0,
+    "median": 114000.0,
+    "p95": 206000.0,
+    "max": 959000.0
+  },
+  "multiplier_summary": {
+    "min": 0.85,
+    "median": 1.17,
+    "p95": 1.44,
+    "max": 1.8
+  },
+  "scenario_counts": {
+    "normal": 1724971
+  },
+  "scenario_counts_by_split": [
+    {
+      "split": "calibration",
+      "scenario_id": "normal",
+      "rows": 153977
+    },
+    {
+      "split": "test",
+      "scenario_id": "normal",
+      "rows": 216090
+    },
+    {
+      "split": "train",
+      "scenario_id": "normal",
+      "rows": 1161158
+    },
+    {
+      "split": "validation",
+      "scenario_id": "normal",
+      "rows": 193746
+    }
+  ],
+  "primary_benchmark_is_normal_only": true,
+  "stress_test": {
+    "competitor_quote_feed_rows": 21469,
+    "forecasting_rows": 67576,
+    "scenario_counts": {
+      "supply_shortage": 27436,
+      "rain_shock": 21072,
+      "demand_spike": 19068
+    },
+    "split_counts": {
+      "stress_test": 67576
+    }
+  },
+  "synthetic_flag_rate": 1.0,
+  "target_current_multiplier_correlation": 0.47613588293788744,
+  "intern_forecasting": {
+    "rows": 6897051,
+    "unique_target_quotes": 1724714,
+    "requested_lags_minutes": [
+      5,
+      10,
+      15,
+      30
+    ],
+    "minimum_actual_observation_age_minutes": 5.0,
+    "maximum_actual_observation_age_minutes": 137.75,
+    "latest_observation_before_cutoff_rate": 1.0,
+    "target_timestamp_range": {
+      "start_utc": "2026-01-01T00:05:24+00:00",
+      "end_utc": "2026-03-30T23:59:55+00:00"
+    }
+  },
+  "hex_partitions": {
+    "8765b574affffff": {
+      "market_rows": 51264,
+      "quote_rows": 582227,
+      "quote_context_rows": 582227,
+      "intern_forecasting_rows": 2327972,
+      "stress_forecasting_rows": 22956,
+      "folder": "hexes/8765b574affffff"
+    },
+    "8765b574bffffff": {
+      "market_rows": 51264,
+      "quote_rows": 587181,
+      "quote_context_rows": 587181,
+      "intern_forecasting_rows": 2347784,
+      "stress_forecasting_rows": 22824,
+      "folder": "hexes/8765b574bffffff"
+    },
+    "8765b5759ffffff": {
+      "market_rows": 51264,
+      "quote_rows": 555563,
+      "quote_context_rows": 555563,
+      "intern_forecasting_rows": 2221295,
+      "stress_forecasting_rows": 21796,
+      "folder": "hexes/8765b5759ffffff"
+    }
+  }
+}

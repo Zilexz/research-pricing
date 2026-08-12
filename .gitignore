@@ -4,6 +4,12 @@
 *.joblib
 *.csv.gz
 
+# Ngoai le: data goc TP.HCM (~461MB) van day len git de clone ve may khac chay duoc ngay.
+# Cac file dan xuat (hcm_train_ready.parquet...) khong day, chay 00_chuan_bi_du_lieu.ipynb de sinh lai.
+!TP_HCM_data/data/
+!TP_HCM_data/data/synthetic_data/
+!TP_HCM_data/data/synthetic_data/**
+
 # File tam cua Word
 ~$*.docx
 ~$*.doc

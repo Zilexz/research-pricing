@@ -72,16 +72,18 @@ Vai trò từng gói:
 
 ---
 
-## 5. Lấy dữ liệu (BẮT BUỘC — repo không chứa data)
+## 5. Dữ liệu
 
-`.gitignore` loại toàn bộ `data/`, `*.parquet`, `*.joblib` (~1.8 GB). Copy thủ công từ máy cũ qua OneDrive/USB:
+**Dữ liệu gốc TP.HCM đã nằm sẵn trong repo** (`TP_HCM_data/data/synthetic_data/`, ~461 MB) — clone về là có luôn, không cần copy tay. Vì vậy bước clone ở mục 2 sẽ hơi lâu.
 
-```
-TP_HCM_data/data/synthetic_data/     (~461 MB — dữ liệu gốc TP.HCM)
-boston_data/data/                    (~659 MB — dữ liệu gốc Boston)
-```
+Những thứ **không** có trong repo (quá nặng cho Git), cần copy USB nếu dùng tới:
 
-Đặt đúng đường dẫn như trên trong repo vừa clone.
+| Thiếu | Cỡ | Cách có lại |
+|---|---|---|
+| `TP_HCM_data/data/hcm_train_ready.parquet` | 360 MB | chạy notebook ở bước 6 để sinh lại |
+| `TP_HCM_data/model/{GAM,LightGBM,XGBoost,...}/*.joblib` | — | train lại ở bước 6, hoặc copy USB cho nhanh |
+| `TP_HCM_data/model/evaluation/*.parquet` | — | chạy notebook `evaluation/` |
+| `boston_data/data/` (tuần 1) | ~659 MB | copy USB, hoặc tải lại `rideshare_kaggle.csv` từ Kaggle |
 
 ---
 

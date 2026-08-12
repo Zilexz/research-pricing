@@ -5,22 +5,13 @@ Nghiên cứu dự đoán giá đối thủ cho ride-hailing, gồm 2 bộ dữ 
 - **`boston_data/`** — Uber & Lyft Boston (Kaggle, dữ liệu thật)
 - **`TP_HCM_data/`** — synthetic quote-context sandbox TP.HCM (do công ty cung cấp)
 
-## ⚠️ Repo này KHÔNG chứa file dữ liệu
+## ⚠️ Dữ liệu trong repo
 
-`.gitignore` loại bỏ toàn bộ `data/`, `*.parquet`, `*.joblib` (quá nặng cho Git, tổng ~1,8GB).
-Cần setup lại ở máy mới theo 1 trong 2 cách:
+**Có sẵn:** dữ liệu gốc TP.HCM (`TP_HCM_data/data/synthetic_data/`, ~461 MB) — clone về là chạy được ngay.
 
-### Cách 1 — Copy dữ liệu thủ công (nhanh nhất)
-Copy các thư mục sau từ máy cũ (qua OneDrive/USB/ổ mạng):
-```
-TP_HCM_data/data/synthetic_data/     (~461 MB — dữ liệu gốc)
-boston_data/data/                    (~659 MB — dữ liệu gốc)
-```
-Sau đó chạy `TP_HCM_data/model/00_chuan_bi_du_lieu.ipynb` để tự sinh `hcm_train_ready.parquet`
-và các file `.joblib`/`.parquet` khác (chạy các notebook trong `model/train/` → `model/evaluation/`).
+**Không có** (quá nặng cho Git): `hcm_train_ready.parquet`, các `*.joblib`/`*.parquet` dẫn xuất, và `boston_data/data/` (~659 MB — copy USB hoặc tải lại từ Kaggle).
 
-### Cách 2 — Chỉ có dữ liệu gốc, tự sinh lại mọi thứ
-Nếu chỉ copy được `TP_HCM_data/data/synthetic_data/` (dữ liệu gốc), chạy tuần tự:
+Sau khi clone, chạy tuần tự để sinh lại phần thiếu của TP.HCM:
 ```
 model/00_chuan_bi_du_lieu.ipynb
 model/train/01_train_gia_co_ban.ipynb

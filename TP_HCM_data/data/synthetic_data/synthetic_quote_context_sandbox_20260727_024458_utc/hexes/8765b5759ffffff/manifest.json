@@ -1,0 +1,809 @@
+{
+  "artifact_version": "2.1",
+  "is_synthetic": true,
+  "pickup_hex_id_7": "8765b5759ffffff",
+  "folder": "hexes/8765b5759ffffff",
+  "dataframes": [
+    {
+      "name": "synthetic_zones_v1",
+      "rows": 1,
+      "columns": [
+        "zone_index",
+        "zone_id",
+        "zone_display_name",
+        "synthetic_hex_id_7",
+        "synthetic_latitude",
+        "synthetic_longitude",
+        "coordinate_source",
+        "is_synthetic"
+      ],
+      "parts": [
+        {
+          "path": "synthetic_zones_v1_part000.csv.gz",
+          "rows": 1,
+          "bytes": 250,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        }
+      ]
+    },
+    {
+      "name": "synthetic_competitor_quote_feed_v1",
+      "rows": 555563,
+      "columns": [
+        "quote_observation_id",
+        "observed_at",
+        "current_timestamp_utc",
+        "evaluation_month",
+        "competitor_platform",
+        "service_id",
+        "service_name",
+        "pickup_zone_id",
+        "dropoff_zone_id",
+        "pickup_location_name",
+        "dropoff_location_name",
+        "pickup_hex_id_7",
+        "pickup_latitude",
+        "pickup_longitude",
+        "dropoff_latitude",
+        "dropoff_longitude",
+        "quote_distance",
+        "quote_duration",
+        "observed_price",
+        "observed_multiplier",
+        "weather_observed_ts",
+        "weather_main",
+        "weather_description",
+        "weather_temp",
+        "weather_feels_like",
+        "weather_pressure",
+        "weather_humidity",
+        "weather_wind_speed",
+        "weather_wind_deg",
+        "weather_wind_deg_sin",
+        "weather_wind_deg_cos",
+        "weather_clouds_all",
+        "weather_age_minutes",
+        "weather_missing",
+        "weather_is_clear",
+        "weather_is_clouds",
+        "weather_is_rain",
+        "weather_is_mist",
+        "weather_is_thunderstorm",
+        "weather_is_drizzle",
+        "scenario_id",
+        "split",
+        "is_synthetic"
+      ],
+      "parts": [
+        {
+          "path": "synthetic_competitor_quote_feed_v1_part000.csv.gz",
+          "rows": 46083,
+          "bytes": 916032,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_competitor_quote_feed_v1_part001.csv.gz",
+          "rows": 46083,
+          "bytes": 917041,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_competitor_quote_feed_v1_part002.csv.gz",
+          "rows": 46083,
+          "bytes": 917592,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_competitor_quote_feed_v1_part003.csv.gz",
+          "rows": 46083,
+          "bytes": 915819,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_competitor_quote_feed_v1_part004.csv.gz",
+          "rows": 46083,
+          "bytes": 917877,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_competitor_quote_feed_v1_part005.csv.gz",
+          "rows": 46083,
+          "bytes": 916013,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_competitor_quote_feed_v1_part006.csv.gz",
+          "rows": 46083,
+          "bytes": 916507,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_competitor_quote_feed_v1_part007.csv.gz",
+          "rows": 46083,
+          "bytes": 916306,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_competitor_quote_feed_v1_part008.csv.gz",
+          "rows": 46083,
+          "bytes": 916593,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_competitor_quote_feed_v1_part009.csv.gz",
+          "rows": 46083,
+          "bytes": 916067,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_competitor_quote_feed_v1_part010.csv.gz",
+          "rows": 46083,
+          "bytes": 916868,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_competitor_quote_feed_v1_part011.csv.gz",
+          "rows": 46083,
+          "bytes": 915571,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_competitor_quote_feed_v1_part012.csv.gz",
+          "rows": 2567,
+          "bytes": 52622,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        }
+      ]
+    },
+    {
+      "name": "synthetic_intern_forecasting_v1",
+      "rows": 2221295,
+      "columns": [
+        "forecast_example_id",
+        "target_request_id",
+        "target_timestamp",
+        "current_timestamp_utc",
+        "evaluation_month",
+        "competitor_platform",
+        "service_id",
+        "service_name",
+        "pickup_zone_id",
+        "dropoff_zone_id",
+        "pickup_location_name",
+        "dropoff_location_name",
+        "pickup_hex_id_7",
+        "pickup_latitude",
+        "pickup_longitude",
+        "dropoff_latitude",
+        "dropoff_longitude",
+        "quote_distance",
+        "quote_duration",
+        "pricing_quote_count_5m_lag",
+        "pricing_avg_shown_multiplier_5m_lag",
+        "pricing_demand_index_5m_lag",
+        "pricing_supply_index_5m_lag",
+        "pricing_market_imbalance_5m_lag",
+        "weather_observed_ts",
+        "weather_main",
+        "weather_description",
+        "weather_temp",
+        "weather_feels_like",
+        "weather_pressure",
+        "weather_humidity",
+        "weather_wind_speed",
+        "weather_wind_deg",
+        "weather_wind_deg_sin",
+        "weather_wind_deg_cos",
+        "weather_clouds_all",
+        "weather_age_minutes",
+        "weather_missing",
+        "weather_is_clear",
+        "weather_is_clouds",
+        "weather_is_rain",
+        "weather_is_mist",
+        "weather_is_thunderstorm",
+        "weather_is_drizzle",
+        "scenario_id",
+        "split",
+        "is_synthetic",
+        "competitor_feed_id",
+        "requested_lag_minutes",
+        "observation_cutoff_timestamp",
+        "latest_observed_quote_timestamp",
+        "actual_observation_age_minutes",
+        "latest_observed_price",
+        "latest_observed_multiplier",
+        "latest_observed_quote_distance",
+        "latest_observed_quote_duration",
+        "persistence_prediction",
+        "history_60m_observation_count",
+        "history_60m_price_mean",
+        "history_60m_price_std",
+        "history_60m_price_min",
+        "history_60m_price_max",
+        "history_60m_multiplier_mean",
+        "history_60m_price_slope_per_minute",
+        "target_hour",
+        "target_day_of_week",
+        "target_is_weekend",
+        "target_shown_price",
+        "target_shown_multiplier",
+        "target_price_per_km"
+      ],
+      "parts": [
+        {
+          "path": "synthetic_intern_forecasting_v1_part000.csv.gz",
+          "rows": 34905,
+          "bytes": 2173895,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part001.csv.gz",
+          "rows": 34905,
+          "bytes": 2200240,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part002.csv.gz",
+          "rows": 34905,
+          "bytes": 2173680,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part003.csv.gz",
+          "rows": 34905,
+          "bytes": 2187455,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part004.csv.gz",
+          "rows": 34905,
+          "bytes": 2176200,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part005.csv.gz",
+          "rows": 34905,
+          "bytes": 2183743,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part006.csv.gz",
+          "rows": 34905,
+          "bytes": 2194434,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part007.csv.gz",
+          "rows": 34905,
+          "bytes": 2178804,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part008.csv.gz",
+          "rows": 34905,
+          "bytes": 2184988,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part009.csv.gz",
+          "rows": 34905,
+          "bytes": 2182568,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part010.csv.gz",
+          "rows": 34905,
+          "bytes": 2190507,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part011.csv.gz",
+          "rows": 34905,
+          "bytes": 2206222,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part012.csv.gz",
+          "rows": 34905,
+          "bytes": 2169039,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part013.csv.gz",
+          "rows": 34905,
+          "bytes": 2190845,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part014.csv.gz",
+          "rows": 34905,
+          "bytes": 2187237,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part015.csv.gz",
+          "rows": 34905,
+          "bytes": 2187596,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part016.csv.gz",
+          "rows": 34905,
+          "bytes": 2196836,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part017.csv.gz",
+          "rows": 34905,
+          "bytes": 2192690,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part018.csv.gz",
+          "rows": 34905,
+          "bytes": 2189956,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part019.csv.gz",
+          "rows": 34905,
+          "bytes": 2173594,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part020.csv.gz",
+          "rows": 34905,
+          "bytes": 2183969,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part021.csv.gz",
+          "rows": 34905,
+          "bytes": 2192032,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part022.csv.gz",
+          "rows": 34905,
+          "bytes": 2169493,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part023.csv.gz",
+          "rows": 34905,
+          "bytes": 2187692,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part024.csv.gz",
+          "rows": 34905,
+          "bytes": 2184001,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part025.csv.gz",
+          "rows": 34905,
+          "bytes": 2192389,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part026.csv.gz",
+          "rows": 34905,
+          "bytes": 2191694,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part027.csv.gz",
+          "rows": 34905,
+          "bytes": 2175396,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part028.csv.gz",
+          "rows": 34905,
+          "bytes": 2193714,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part029.csv.gz",
+          "rows": 34905,
+          "bytes": 2179589,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part030.csv.gz",
+          "rows": 34905,
+          "bytes": 2196669,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part031.csv.gz",
+          "rows": 34905,
+          "bytes": 2194175,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part032.csv.gz",
+          "rows": 34905,
+          "bytes": 2177021,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part033.csv.gz",
+          "rows": 34905,
+          "bytes": 2191125,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part034.csv.gz",
+          "rows": 34905,
+          "bytes": 2181884,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part035.csv.gz",
+          "rows": 34905,
+          "bytes": 2191652,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part036.csv.gz",
+          "rows": 34905,
+          "bytes": 2205294,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part037.csv.gz",
+          "rows": 34905,
+          "bytes": 2187246,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part038.csv.gz",
+          "rows": 34905,
+          "bytes": 2198537,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part039.csv.gz",
+          "rows": 34905,
+          "bytes": 2181529,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part040.csv.gz",
+          "rows": 34905,
+          "bytes": 2182848,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part041.csv.gz",
+          "rows": 34905,
+          "bytes": 2184535,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part042.csv.gz",
+          "rows": 34905,
+          "bytes": 2177815,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part043.csv.gz",
+          "rows": 34905,
+          "bytes": 2199577,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part044.csv.gz",
+          "rows": 34905,
+          "bytes": 2179085,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part045.csv.gz",
+          "rows": 34905,
+          "bytes": 2196257,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part046.csv.gz",
+          "rows": 34905,
+          "bytes": 2197003,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part047.csv.gz",
+          "rows": 34905,
+          "bytes": 2183087,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part048.csv.gz",
+          "rows": 34905,
+          "bytes": 2182185,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part049.csv.gz",
+          "rows": 34905,
+          "bytes": 2164763,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part050.csv.gz",
+          "rows": 34905,
+          "bytes": 2183108,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part051.csv.gz",
+          "rows": 34905,
+          "bytes": 2207608,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part052.csv.gz",
+          "rows": 34905,
+          "bytes": 2187401,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part053.csv.gz",
+          "rows": 34905,
+          "bytes": 2176747,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part054.csv.gz",
+          "rows": 34905,
+          "bytes": 2174237,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part055.csv.gz",
+          "rows": 34905,
+          "bytes": 2182070,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part056.csv.gz",
+          "rows": 34905,
+          "bytes": 2194363,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part057.csv.gz",
+          "rows": 34905,
+          "bytes": 2186685,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part058.csv.gz",
+          "rows": 34905,
+          "bytes": 2195581,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part059.csv.gz",
+          "rows": 34905,
+          "bytes": 2184255,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part060.csv.gz",
+          "rows": 34905,
+          "bytes": 2196296,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part061.csv.gz",
+          "rows": 34905,
+          "bytes": 2188212,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part062.csv.gz",
+          "rows": 34905,
+          "bytes": 2175549,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_intern_forecasting_v1_part063.csv.gz",
+          "rows": 22280,
+          "bytes": 1395920,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        }
+      ]
+    },
+    {
+      "name": "synthetic_split_manifest_v1",
+      "rows": 555563,
+      "columns": [
+        "quote_id",
+        "created_at",
+        "current_timestamp_utc",
+        "evaluation_month",
+        "service_id",
+        "pickup_zone_id",
+        "pickup_hex_id_7",
+        "scenario_id",
+        "split"
+      ],
+      "parts": [
+        {
+          "path": "synthetic_split_manifest_v1_part000.csv.gz",
+          "rows": 112689,
+          "bytes": 769128,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_split_manifest_v1_part001.csv.gz",
+          "rows": 112689,
+          "bytes": 769114,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_split_manifest_v1_part002.csv.gz",
+          "rows": 112689,
+          "bytes": 768161,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_split_manifest_v1_part003.csv.gz",
+          "rows": 112689,
+          "bytes": 767731,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        },
+        {
+          "path": "synthetic_split_manifest_v1_part004.csv.gz",
+          "rows": 104807,
+          "bytes": 715146,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        }
+      ]
+    },
+    {
+      "name": "synthetic_stress_competitor_quote_feed_v1",
+      "rows": 6828,
+      "columns": [
+        "quote_observation_id",
+        "observed_at",
+        "current_timestamp_utc",
+        "evaluation_month",
+        "competitor_platform",
+        "service_id",
+        "service_name",
+        "pickup_zone_id",
+        "dropoff_zone_id",
+        "pickup_location_name",
+        "dropoff_location_name",
+        "pickup_hex_id_7",
+        "pickup_latitude",
+        "pickup_longitude",
+        "dropoff_latitude",
+        "dropoff_longitude",
+        "quote_distance",
+        "quote_duration",
+        "observed_price",
+        "observed_multiplier",
+        "weather_observed_ts",
+        "weather_main",
+        "weather_description",
+        "weather_temp",
+        "weather_feels_like",
+        "weather_pressure",
+        "weather_humidity",
+        "weather_wind_speed",
+        "weather_wind_deg",
+        "weather_wind_deg_sin",
+        "weather_wind_deg_cos",
+        "weather_clouds_all",
+        "weather_age_minutes",
+        "weather_missing",
+        "weather_is_clear",
+        "weather_is_clouds",
+        "weather_is_rain",
+        "weather_is_mist",
+        "weather_is_thunderstorm",
+        "weather_is_drizzle",
+        "scenario_id",
+        "split",
+        "is_synthetic"
+      ],
+      "parts": [
+        {
+          "path": "synthetic_stress_competitor_quote_feed_v1_part000.csv.gz",
+          "rows": 6828,
+          "bytes": 136910,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        }
+      ]
+    },
+    {
+      "name": "synthetic_stress_forecasting_v1",
+      "rows": 21796,
+      "columns": [
+        "forecast_example_id",
+        "target_request_id",
+        "target_timestamp",
+        "current_timestamp_utc",
+        "evaluation_month",
+        "competitor_platform",
+        "service_id",
+        "service_name",
+        "pickup_zone_id",
+        "dropoff_zone_id",
+        "pickup_location_name",
+        "dropoff_location_name",
+        "pickup_hex_id_7",
+        "pickup_latitude",
+        "pickup_longitude",
+        "dropoff_latitude",
+        "dropoff_longitude",
+        "quote_distance",
+        "quote_duration",
+        "pricing_quote_count_5m_lag",
+        "pricing_avg_shown_multiplier_5m_lag",
+        "pricing_demand_index_5m_lag",
+        "pricing_supply_index_5m_lag",
+        "pricing_market_imbalance_5m_lag",
+        "weather_observed_ts",
+        "weather_main",
+        "weather_description",
+        "weather_temp",
+        "weather_feels_like",
+        "weather_pressure",
+        "weather_humidity",
+        "weather_wind_speed",
+        "weather_wind_deg",
+        "weather_wind_deg_sin",
+        "weather_wind_deg_cos",
+        "weather_clouds_all",
+        "weather_age_minutes",
+        "weather_missing",
+        "weather_is_clear",
+        "weather_is_clouds",
+        "weather_is_rain",
+        "weather_is_mist",
+        "weather_is_thunderstorm",
+        "weather_is_drizzle",
+        "scenario_id",
+        "split",
+        "is_synthetic",
+        "competitor_feed_id",
+        "requested_lag_minutes",
+        "observation_cutoff_timestamp",
+        "latest_observed_quote_timestamp",
+        "actual_observation_age_minutes",
+        "latest_observed_price",
+        "latest_observed_multiplier",
+        "latest_observed_quote_distance",
+        "latest_observed_quote_duration",
+        "persistence_prediction",
+        "history_60m_observation_count",
+        "history_60m_price_mean",
+        "history_60m_price_std",
+        "history_60m_price_min",
+        "history_60m_price_max",
+        "history_60m_multiplier_mean",
+        "history_60m_price_slope_per_minute",
+        "target_hour",
+        "target_day_of_week",
+        "target_is_weekend",
+        "target_shown_price",
+        "target_shown_multiplier",
+        "target_price_per_km"
+      ],
+      "parts": [
+        {
+          "path": "synthetic_stress_forecasting_v1_part000.csv.gz",
+          "rows": 21796,
+          "bytes": 1365479,
+          "pickup_hex_id_7": "8765b5759ffffff"
+        }
+      ]
+    }
+  ]
+}
