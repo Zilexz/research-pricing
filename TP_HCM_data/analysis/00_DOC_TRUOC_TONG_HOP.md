@@ -86,12 +86,12 @@ HỆ SỐ NHÂN tăng                          Thời lượng đi (tắc đư�
 ### Nhóm A — Khảo sát nền tảng (từng yếu tố riêng lẻ)
 | File | Trả lời |
 |---|---|
-| `overview_data.ipynb`, `tong_quan_data_moi.ipynb` | Tổng quan 70 cột, dữ liệu mẫu |
+| `00a_tu_dien_70_truong.ipynb`, `00b_thong_ke_mo_ta_du_lieu.ipynb` | Tổng quan 70 cột, dữ liệu mẫu |
 | `01_location.ipynb` | Vị trí ↔ giá & hệ số nhân |
 | `02_time.ipynb` | Giờ/thứ ↔ giá & hệ số nhân |
 | `03_weather.ipynb` | Thời tiết ↔ giá & hệ số nhân |
 | `04_traffic.ipynb` | Tắc đường ↔ giá & hệ số nhân |
-| `key_feature_analysis_hcm.ipynb` | Bảng xếp hạng tổng hợp tất cả yếu tố (mục 2 ở trên lấy từ đây) |
+| `00c_key_feature_hcm_vs_boston.ipynb` | Bảng xếp hạng tổng hợp tất cả yếu tố (mục 2 ở trên lấy từ đây) |
 
 ### Nhóm B — So sánh Boston vs HCM (trả lời câu hỏi mentor)
 | File | Trả lời |
@@ -118,9 +118,9 @@ HỆ SỐ NHÂN tăng                          Thời lượng đi (tắc đư�
 ### Nhóm E — Feature Selection cho model (đầu ra: bộ feature đang dùng trong `model/`)
 | File | Chốt feature cho |
 |---|---|
-| `FS_model_gia.ipynb` | Model giá trực tiếp (Hướng 1) |
-| `FS_model_gia_coban.ipynb` | Model giá cơ bản (lõi Hybrid) |
-| `FS_model_heso.ipynb` | Model hệ số nhân |
+| `15_chon_feature_gia_cuoi.ipynb` | Model giá trực tiếp (Hướng 1) |
+| `16_chon_feature_gia_co_ban.ipynb` | Model giá cơ bản (lõi Hybrid) |
+| `17_chon_feature_he_so_nhan.ipynb` | Model hệ số nhân |
 
 ---
 

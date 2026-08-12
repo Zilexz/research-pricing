@@ -1086,11 +1086,11 @@ Toàn bộ số liệu/biểu đồ mục 1 và 2 tổng hợp từ 19 notebook 
 | Kiểm chứng feature engineering (tốc độ, giá/km, chuẩn hóa tuyến) | `05`, `05b`, `06` |
 | Biên độ dao động, phân rã phương sai, sàn nhiễu | `07`–`11` |
 | Trực quan hóa tổng hợp theo giờ/thời tiết | `12` |
-| Feature selection cho model | `FS_model_gia.ipynb`, `FS_model_gia_coban.ipynb`, `FS_model_heso.ipynb` |
+| Feature selection cho model | `15_chon_feature_gia_cuoi.ipynb`, `16_chon_feature_gia_co_ban.ipynb`, `17_chon_feature_he_so_nhan.ipynb` |
 | Train Model A / B / baseline / GAM | `model/train/01`–`04` |
 | Đánh giá & ghép Hybrid | `model/evaluation/01`–`05` |
 | 8 hướng cải thiện đã thử | `model/_archive/thu_nghiem/` |
-| Biểu đồ uncertainty mục 5 (U1–U4) | dựng từ `model/_archive/pred_hybrid_pipeline_cu.parquet` + `evaluation/pred_gia.parquet`, gắn mốc thời gian từ `data/hcm_train_ready.parquet` |
+| Biểu đồ uncertainty mục 5 (U1–U4) | `model/evaluation/06_plot_uncertainty.ipynb` |
 
 > ⚠️ **Lưu ý kỹ thuật khi tái lập mục 5:** các file `model/<ThuatToan>/*.joblib` hiện tại **không
 > tái tạo được** các con số trong báo cáo (đã kiểm chứng: nạp lại model và dự đoán trên chính bộ
