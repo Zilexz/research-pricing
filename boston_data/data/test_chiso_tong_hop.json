@@ -1,0 +1,67 @@
+{
+  "price": [
+    {
+      "Hang": "Uber",
+      "n_test": 43767,
+      "MAE (USD)": 1.089,
+      "RMSE (USD)": 1.81,
+      "R2": 0.9552,
+      "MAPE (%)": 7.37,
+      "Bias (USD)": -0.09,
+      "MAE persist": 1.683,
+      "MAE histavg": 1.325,
+      "vs persist": "+35.3%",
+      "vs histavg": "+17.8%"
+    },
+    {
+      "Hang": "Lyft",
+      "n_test": 40914,
+      "MAE (USD)": 1.502,
+      "RMSE (USD)": 2.932,
+      "R2": 0.9142,
+      "MAPE (%)": 9.71,
+      "Bias (USD)": -0.195,
+      "MAE persist": 2.125,
+      "MAE histavg": 1.775,
+      "vs persist": "+29.3%",
+      "vs histavg": "+15.4%"
+    }
+  ],
+  "surge": [
+    {
+      "Chi so": "ROC-AUC",
+      "Model": 0.6524,
+      "Baseline": 0.5181,
+      "Danh gia": "co tin hieu"
+    },
+    {
+      "Chi so": "PR-AUC",
+      "Model": 0.1898,
+      "Baseline": 0.1353,
+      "Danh gia": "nhinh hon nen"
+    },
+    {
+      "Chi so": "Brier",
+      "Model": 0.1133,
+      "Baseline": "—",
+      "Danh gia": "(cho muc iii)"
+    },
+    {
+      "Chi so": "MAE E[mult]",
+      "Model": 0.0644,
+      "Baseline": 0.0396,
+      "Danh gia": "thua hang so (tran that)"
+    },
+    {
+      "Chi so": "RMSE E[mult]",
+      "Model": 0.1312,
+      "Baseline": "—",
+      "Danh gia": "—"
+    }
+  ],
+  "n_test": {
+    "price_uber": 43767,
+    "price_lyft": 40914,
+    "surge": 12354
+  }
+}

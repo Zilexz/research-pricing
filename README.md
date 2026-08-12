@@ -7,9 +7,10 @@ Nghiên cứu dự đoán giá đối thủ cho ride-hailing, gồm 2 bộ dữ 
 
 ## ⚠️ Dữ liệu trong repo
 
-**Có sẵn:** dữ liệu gốc TP.HCM (`TP_HCM_data/data/synthetic_data/`, ~461 MB) — clone về là chạy được ngay.
+**Có sẵn:** dữ liệu gốc TP.HCM (`TP_HCM_data/data/synthetic_data/`, ~461 MB) và dữ liệu Boston (`boston_data/data/`) — clone về là chạy được ngay.
+Riêng 2 file Boston `rideshare_kaggle.csv` và `snapshot_price_15min.csv` lưu ở dạng `.gz`, phải giải nén trước — xem [SETUP.md](SETUP.md) mục 5.
 
-**Không có** (quá nặng cho Git): `hcm_train_ready.parquet`, các `*.joblib`/`*.parquet` dẫn xuất, và `boston_data/data/` (~659 MB — copy USB hoặc tải lại từ Kaggle).
+**Không có** (quá nặng cho Git): `hcm_train_ready.parquet` và các `*.joblib`/`*.parquet` dẫn xuất — chạy notebook để sinh lại.
 
 Sau khi clone, chạy tuần tự để sinh lại phần thiếu của TP.HCM:
 ```

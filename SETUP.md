@@ -76,14 +76,23 @@ Vai trò từng gói:
 
 **Dữ liệu gốc TP.HCM đã nằm sẵn trong repo** (`TP_HCM_data/data/synthetic_data/`, ~461 MB) — clone về là có luôn, không cần copy tay. Vì vậy bước clone ở mục 2 sẽ hơi lâu.
 
-Những thứ **không** có trong repo (quá nặng cho Git), cần copy USB nếu dùng tới:
+**Dữ liệu Boston cũng đã có trong repo** (`boston_data/data/`). Riêng 2 file vượt giới hạn 100 MB của GitHub nên được nén lại — **phải giải nén trước khi chạy phần Boston**:
+
+```powershell
+cd boston_data\data
+python -c "import gzip,shutil; [shutil.copyfileobj(gzip.open(f+'.gz','rb'), open(f,'wb')) for f in ['rideshare_kaggle.csv','snapshot_price_15min.csv']]"
+cd ..\..
+```
+
+> Phần TP.HCM không cần bước này. Nếu có 7-Zip thì chuột phải → Extract vào đúng thư mục cũng được.
+
+Những thứ **không** có trong repo, cần sinh lại hoặc copy USB:
 
 | Thiếu | Cỡ | Cách có lại |
 |---|---|---|
 | `TP_HCM_data/data/hcm_train_ready.parquet` | 360 MB | chạy notebook ở bước 6 để sinh lại |
 | `TP_HCM_data/model/{GAM,LightGBM,XGBoost,...}/*.joblib` | — | train lại ở bước 6, hoặc copy USB cho nhanh |
 | `TP_HCM_data/model/evaluation/*.parquet` | — | chạy notebook `evaluation/` |
-| `boston_data/data/` (tuần 1) | ~659 MB | copy USB, hoặc tải lại `rideshare_kaggle.csv` từ Kaggle |
 
 ---
 

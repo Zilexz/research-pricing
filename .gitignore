@@ -10,6 +10,12 @@
 !TP_HCM_data/data/synthetic_data/
 !TP_HCM_data/data/synthetic_data/**
 
+# Ngoai le: data Boston. Hai file qua 100MB nen day len ban nen .gz, giai nen sau khi clone.
+!boston_data/data/
+!boston_data/data/**
+boston_data/data/rideshare_kaggle.csv
+boston_data/data/snapshot_price_15min.csv
+
 # File tam cua Word
 ~$*.docx
 ~$*.doc
