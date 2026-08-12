@@ -20,11 +20,41 @@ git --version
 
 ---
 
-## 2. Clone repo
+## 2. Lấy source + dữ liệu
+
+### Cách A — clone (thử cách này trước)
 
 ```powershell
-git clone https://github.com/Zilexz/research-pricing.git
+git clone --depth 1 https://github.com/Zilexz/research-pricing.git
 cd research-pricing
+```
+
+`--depth 1` chỉ kéo bản mới nhất, nhẹ hơn nhiều so với kéo cả lịch sử.
+
+### Cách B — tải file rời (khi mạng công ty chặn file lớn)
+
+Repo nén lại là ~627 MB, vượt giới hạn tải 300 MB. Dùng bộ đã cắt sẵn ở
+**[Releases → data-v1](https://github.com/Zilexz/research-pricing/releases/tag/data-v1)** — mỗi file dưới 300 MB:
+
+| File | Cỡ | Nội dung |
+|---|---|---|
+| `1_code.zip` | 47 MB | code, notebook, báo cáo, hình |
+| `2_hcm_hex_a.zip` | 154 MB | data TP.HCM — hex `...574a` |
+| `3_hcm_hex_b.zip` | 156 MB | data TP.HCM — hex `...574b` |
+| `4_hcm_hex_c.zip` | 148 MB | data TP.HCM — hex `...759f` + `shared/` + metadata |
+| `5_boston_data.zip` | 120 MB | `boston_data/data/` |
+
+Cách dùng:
+
+1. Đăng nhập GitHub trên trình duyệt (repo private, không login sẽ không tải được).
+2. Tải lần lượt 5 file. Hỏng file nào chỉ cần tải lại file đó.
+3. Tạo một thư mục, ví dụ `research-pricing`, rồi **giải nén cả 5 file vào CÙNG thư mục đó**. Các zip không đè lên nhau, ghép lại thành đúng cây thư mục gốc.
+4. Chọn *Extract Here* / bỏ tick "tạo thư mục con theo tên file" — nếu không sẽ ra `1_code/TP_HCM_data/...` là sai.
+
+Kiểm tra sau khi giải nén — phải thấy đủ:
+```powershell
+dir TP_HCM_data\data\synthetic_data\*\hexes      # 3 thư mục hex
+dir boston_data\data                             # 12 file
 ```
 
 ---
