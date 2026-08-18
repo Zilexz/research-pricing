@@ -2,6 +2,10 @@
 
 Checklist chạy từ trên xuống. Sau bước 5 là có thể mở notebook chạy được.
 
+> Nếu bro có sẵn `bo_du_lieu_may_moi.zip` (bộ model và dự đoán đã tính sẵn)
+> thì đọc **`HUONG_DAN_GOP.md`** trước — gộp theo cách đó thì khỏi phải train lại,
+> tiết kiệm vài giờ. File này chỉ cần khi phải dựng lại tất cả từ đầu.
+
 ---
 
 ## 1. Phần mềm cần cài
@@ -38,7 +42,7 @@ Repo nén lại là ~627 MB, vượt giới hạn tải 300 MB. Dùng bộ đã 
 
 | File | Cỡ | Nội dung |
 |---|---|---|
-| `1_code.zip` | 47 MB | code, notebook, báo cáo, hình |
+| `1_code.zip` | 47 MB | code, notebook, báo cáo, hình — **bản 12/08, chưa có tuần 5**; ghép xong chạy `git pull` để cập nhật |
 | `2_hcm_hex_a.zip` | 154 MB | data TP.HCM — hex `...574a` |
 | `3_hcm_hex_b.zip` | 156 MB | data TP.HCM — hex `...574b` |
 | `4_hcm_hex_c.zip` | 148 MB | data TP.HCM — hex `...759f` + `shared/` + metadata |
@@ -46,7 +50,7 @@ Repo nén lại là ~627 MB, vượt giới hạn tải 300 MB. Dùng bộ đã 
 
 Cách dùng:
 
-1. Đăng nhập GitHub trên trình duyệt (repo private, không login sẽ không tải được).
+1. Repo đang để **public** nên tải được ngay, không cần đăng nhập.
 2. Tải lần lượt 5 file. Hỏng file nào chỉ cần tải lại file đó.
 3. Tạo một thư mục, ví dụ `research-pricing`, rồi **giải nén cả 5 file vào CÙNG thư mục đó**. Các zip không đè lên nhau, ghép lại thành đúng cây thư mục gốc.
 4. Chọn *Extract Here* / bỏ tick "tạo thư mục con theo tên file" — nếu không sẽ ra `1_code/TP_HCM_data/...` là sai.
