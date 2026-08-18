@@ -44,7 +44,7 @@ hẳn cũng không sửa được.
 > Kết quả này **củng cố** kết luận model đã chạm trần dữ liệu: nút thắt là **dữ liệu**, không phải
 > sức chứa của model.
 
-Chi tiết đầy đủ: `docs/TECH_DOC.md` §14.4.
+Chi tiết đầy đủ: `docs/tai_lieu_bao_cao/TECH_DOC.md` §14.4.
 
 ---
 

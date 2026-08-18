@@ -38,8 +38,8 @@ coverage là lời hứa đưa ra tại thời điểm dự báo (xem `RESEARCH_
 |---|---|---|---|
 | **X1** | Tính lại so sánh GAM–Hybrid trên nhóm cố định | Lợi thế `>300k` giảm **4,02 → 1,65 điểm**; lợi thế `>15 km` **+2,16 điểm** vẫn vững | §6.5 |
 | **X2** | Thử khoảng bất đối xứng đơn giản | **Âm tính** — coverage y hệt 89,81%, độ rộng −0,13%, lệch giữa band tăng 6,21 → 6,51 điểm | §7.5 |
-| **X3** | Tech doc | Xong, 1.387 dòng · `docs/TECH_DOC.docx` | |
-| **X4** | Research paper | Xong, 772 dòng · `docs/RESEARCH_PAPER.docx` | |
+| **X3** | Tech doc | Xong, 1.387 dòng · `docs/tai_lieu_bao_cao/TECH_DOC.docx` | |
+| **X4** | Research paper | Xong, 772 dòng · `docs/tai_lieu_bao_cao/RESEARCH_PAPER.docx` | |
 
 **X2 tiết kiệm được một hướng.** Mentor đề xuất giữ độ rộng tương đương nhưng dành nhiều khoảng hơn
 cho phía giá cao. Đã thử 5 tỷ lệ chia rủi ro khác nhau, phương án tốt nhất (3% dưới / 7% trên) cho:
@@ -171,8 +171,8 @@ Chi phí cao hơn hẳn và lợi ích chưa rõ. **Ưu tiên thấp nhất tron
 
 | # | Tài liệu | Trạng thái |
 |---|---|---|
-| **D1** | Tech doc | ✅ `docs/TECH_DOC.docx` — 1.387 dòng, 70 bảng, 12 hình |
-| **D2** | Research paper | ✅ `docs/RESEARCH_PAPER.docx` — 772 dòng, 29 bảng, 12 hình |
+| **D1** | Tech doc | ✅ `docs/tai_lieu_bao_cao/TECH_DOC.docx` — 1.387 dòng, 70 bảng, 12 hình |
+| **D2** | Research paper | ✅ `docs/tai_lieu_bao_cao/RESEARCH_PAPER.docx` — 772 dòng, 29 bảng, 12 hình |
 | **D3** | Báo cáo tuần 5 | 🔴 Viết cuối tuần, sau khi có kết quả A và B |
 | **D4** | Bảng so sánh phương án mới | 🔴 Xem mẫu dưới — đây là thứ mentor yêu cầu cụ thể nhất |
 

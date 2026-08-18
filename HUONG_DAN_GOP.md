@@ -83,7 +83,7 @@ for p, cho in [
     ('TP_HCM_data/data/hcm_train_ready.parquet', 'zip'),
     ('TP_HCM_data/model/evaluation/uq_pred_test.parquet', 'zip'),
     ('TP_HCM_data/model/XGBoost/gia.joblib', 'zip'),
-    ('TP_HCM_data/docs/slide_trinh_bay.html', 'repo'),
+    ('TP_HCM_data/docs/tai_lieu_bao_cao/slide_trinh_bay.html', 'repo'),
     ('TP_HCM_data/demo/index.html', 'repo'),
 ]:
     print(('OK  ' if os.path.exists(p) else 'THIEU') + f'  [{cho}]  {p}')
@@ -102,9 +102,9 @@ không cần Python, không cần mạng, không cần mảnh B:
 
 | File | Là gì |
 |---|---|
-| `TP_HCM_data/docs/slide_trinh_bay.html` | 26 slide trình bày toàn bộ dự án |
+| `TP_HCM_data/docs/tai_lieu_bao_cao/slide_trinh_bay.html` | 26 slide trình bày toàn bộ dự án |
 | `TP_HCM_data/demo/index.html` | demo mô phỏng trên bản đồ, đủ 216.090 chuyến tập test |
-| `TP_HCM_data/docs/RESEARCH_PAPER.docx` · `TECH_DOC.docx` | báo cáo nghiên cứu và tài liệu kỹ thuật |
+| `TP_HCM_data/docs/tai_lieu_bao_cao/RESEARCH_PAPER.docx` · `TECH_DOC.docx` | báo cáo nghiên cứu và tài liệu kỹ thuật |
 
 ---
 

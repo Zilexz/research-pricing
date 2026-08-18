@@ -46,7 +46,7 @@ chuyến, nhân với một hệ số phản ánh tín hiệu thị trường.
 
 ## 2. Tài liệu kỹ thuật
 
-**File:** `docs/TECH_DOC.docx` (bản đọc) · `docs/TECH_DOC.md` (bản nguồn)
+**File:** `docs/tai_lieu_bao_cao/TECH_DOC.docx` (bản đọc) · `docs/tai_lieu_bao_cao/TECH_DOC.md` (bản nguồn)
 
 Khoảng 1.400 dòng, 5 phần và 3 phụ lục:
 
