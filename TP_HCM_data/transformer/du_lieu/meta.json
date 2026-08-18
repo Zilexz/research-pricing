@@ -1,0 +1,49 @@
+{
+ "mo_ta": "Du lieu cho thu nghiem transformer — du bao gia doi thu, TP.HCM",
+ "nguon": "hcm_train_ready.parquet (6.897.051 dong)",
+ "ma_danh_muc": {
+  "service_name": [
+   "Synthetic Premium Car",
+   "Synthetic Standard Car"
+  ],
+  "pickup_location_name": [
+   "Crescent Mall",
+   "EcoGreen Sài Gòn",
+   "SC Vivo City"
+  ],
+  "dropoff_location_name": [
+   "Crescent Mall",
+   "EcoGreen Sài Gòn",
+   "SC Vivo City"
+  ],
+  "weather_main": [
+   "Clear",
+   "Clouds",
+   "Mist",
+   "Rain"
+  ]
+ },
+ "ma_luong": "luong = xe*9 + don*3 + tra  (18 luong)",
+ "split": {
+  "0": "train",
+  "1": "calibration",
+  "2": "test",
+  "3": "validation"
+ },
+ "n_mau": {
+  "0": 4641799,
+  "2": 864360,
+  "3": 774984,
+  "1": 615908
+ },
+ "bao_gia": {
+  "n": 1724714,
+  "mo_ta": "Dong chao bao gia, da sap theo (luong, ts). Dung searchsorted de lay K bao gia cuoi truoc cutoff."
+ },
+ "muc_tieu": "gia_that (VND). Baseline hien tai: MAE 18.048d · MAPE 14,74%",
+ "so_bao_gia_60p": {
+  "trung_vi": 63.0,
+  "p10": 29.0,
+  "p90": 79.0
+ }
+}

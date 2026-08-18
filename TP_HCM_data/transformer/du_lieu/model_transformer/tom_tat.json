@@ -1,0 +1,44 @@
+{
+ "mo_ta": "Transformer dự báo giá đối thủ TP.HCM — train riêng từng tháng",
+ "cau_hinh": {
+  "K": 32,
+  "d_model": 64,
+  "n_lop": 2,
+  "n_head": 4,
+  "d_ff": 128,
+  "dropout": 0.1,
+  "d_mlp": 128,
+  "epochs": 14,
+  "batch": 2048,
+  "lr": 0.002,
+  "weight_decay": 0.0001,
+  "clip_grad": 1.0,
+  "seed": 42,
+  "kien_nhan": 4,
+  "thang": [
+   3
+  ],
+  "ty_le_valid": 0.05
+ },
+ "ket_qua_gop": {
+  "mae": 18266.67578125,
+  "mape": 0.1474042385816574,
+  "r2": 0.6969691514968872,
+  "n_test": 50000
+ },
+ "tung_thang": [
+  {
+   "thang": 3,
+   "mae": 18266.67578125,
+   "mape": 0.1474042385816574,
+   "r2": 0.6969691468290811
+  }
+ ],
+ "moc_so_sanh": {
+  "persistence": 33683,
+  "truc_tiep": 18834,
+  "hybrid": 18048,
+  "hybrid_mape": 0.1474
+ },
+ "ket_luan": "THUA Hybrid"
+}

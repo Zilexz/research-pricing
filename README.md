@@ -5,6 +5,10 @@ Nghiên cứu dự đoán giá đối thủ cho ride-hailing, gồm 2 bộ dữ 
 - **`boston_data/`** — Uber & Lyft Boston (Kaggle, dữ liệu thật)
 - **`TP_HCM_data/`** — synthetic quote-context sandbox TP.HCM (do công ty cung cấp)
 
+> 📘 **Tài liệu kỹ thuật đầy đủ: [`TP_HCM_data/docs/TECH_DOC.md`](TP_HCM_data/docs/TECH_DOC.md)**
+> — bài toán, dữ liệu, kiến trúc, đánh giá, uncertainty, vận hành và nhật ký đính chính.
+> Đọc file đó trước nếu bạn mới tiếp cận dự án.
+
 ## ⚠️ Dữ liệu trong repo
 
 **Có sẵn:** dữ liệu gốc TP.HCM (`TP_HCM_data/data/synthetic_data/`, ~461 MB) và dữ liệu Boston (`boston_data/data/`) — clone về là chạy được ngay.
@@ -38,5 +42,6 @@ pip install -r requirements.txt
 |---|---|
 | `TP_HCM_data/analysis/` | Phân tích key feature ↔ giá & hệ số nhân (10 notebook) |
 | `TP_HCM_data/model/` | Pipeline train (00 → train/ → evaluation/), xem `model/README.md` |
-| `TP_HCM_data/docs/` | Báo cáo tuần (`report_tuan2.md`/`.docx`) |
+| `TP_HCM_data/docs/` | **`TECH_DOC.md`** (tài liệu kỹ thuật) + báo cáo tuần |
+| `TP_HCM_data/tuan_4/` | Tổng hợp tuần 4 — đọc `00_TONG_HOP.ipynb` trước |
 | `boston_data/` | Tương tự, cho bộ Boston (tuần 1) |

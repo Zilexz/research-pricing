@@ -2,7 +2,7 @@
 
 Đọc dự đoán từ `train/`, không train lại. `00_TRINH_BAY_model_gia.ipynb` là bản tóm tắt để trình bày.
 
-## 9 notebook
+## 11 notebook
 
 | Notebook | Nội dung | Hình |
 |---|---|---|
@@ -15,3 +15,5 @@
 | [`06_plot_uncertainty.ipynb`](06_plot_uncertainty.ipynb) | 06 — Biểu đồ so sánh model & đánh giá UNCERTAINTY | `U*` |
 | [`07_so_sanh_model_theo_thoi_gian.ipynb`](07_so_sanh_model_theo_thoi_gian.ipynb) | 07 — So sánh model theo thời gian | `MT*` |
 | [`08_truc_quan_GAM.ipynb`](08_truc_quan_GAM.ipynb) | Trực quan kết quả GAM | `GA*` |
+| [`09_chan_doan_model.ipynb`](09_chan_doan_model.ipynb) | 09 — Chẩn đoán: model fail ở đâu, xếp hạng 10 chiều bằng η² | `CD*` |
+| [`10_sai_so_chi_tiet.ipynb`](10_sai_so_chi_tiet.ipynb) | 10 — Sai số chi tiết theo khoảng giá · thời tiết · khung giờ | `CT*` |

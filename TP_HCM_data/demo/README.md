@@ -11,27 +11,69 @@ sẵn trong file.
 > ⚠️ **Cần mạng** để tải nền bản đồ (OpenStreetMap qua CARTO) và thư viện Leaflet.
 > Không có mạng thì mọi thứ vẫn chạy, chỉ mất nền bản đồ.
 
+Giao diện chiếm trọn một màn hình, không cuộn. Chiều cao bản đồ, biểu đồ và nhật ký **co theo
+chiều cao cửa sổ**, nên màn hình 768px hay 1080px đều nhìn đủ ba khu. Đã kiểm từ 620px trở lên.
+Nếu cửa sổ hẹp dưới 1200px thì bố cục tự xếp dọc và cả trang chuyển sang cuộn.
+
 ## Có gì trên màn hình
 
 | Khu vực | Nội dung |
 |---|---|
 | **Bản đồ** (trên trái) | 3 vùng nét đứt · nhiều xe chạy song song · vệt đường giữ lại 14 chuyến gần nhất, xanh = trúng khoảng, đỏ = trượt |
-| **Ba biểu đồ** (dưới trái) | Xem mục dưới |
+| **Ba bảng biểu đồ** (dưới trái) | Chuyển bằng tab. Xem mục dưới |
 | **Chuyến đang theo dõi** (phải) | Giá dự đoán · thanh khoảng tin cậy · giá thật hiện khi xe tới nơi |
-| **Dải thống kê** (phải) | Coverage · giá sai TB · độ rộng khoảng · trượt lên/xuống |
+| **Dải thống kê** (phải) | Coverage · giá sai TB · độ rộng khoảng · trượt lên/xuống · đối chiếu baseline |
 | **Nhật ký** (dải ngang dưới cùng) | 80 chuyến gần nhất, 11 cột |
 
-## Ba biểu đồ — mỗi cái trả lời một câu
+## Ba bảng biểu đồ
+
+Khu biểu đồ dưới bản đồ có **ba tab**, mỗi tab trả lời một câu hỏi khác nhau. Mọi biểu đồ cập
+nhật trực tiếp theo từng chuyến chạy xong, và vẽ lại từ đầu khi đổi cấu hình.
+
+Chú giải màu nằm ngay bên phải thanh tab, đổi theo tab đang mở.
+
+### Tab 1 — Dự đoán giá
 
 | Biểu đồ | Câu hỏi | Cách đọc |
 |---|---|---|
 | **Tán xạ dự đoán vs thật** | Dự đoán có sát giá thật không? | Mỗi chấm là một chuyến. Trục ngang = giá dự đoán, trục dọc = giá thật. **Càng bám đường chéo càng đúng.** Chấm đỏ = rơi ngoài khoảng |
 | **Phân bố sai số** | Sai lệch tập trung ở đâu? | Cột chồng: xanh = nằm trong khoảng, đỏ = nằm ngoài. Lệch sang **phải** nghĩa là dự đoán cao hơn giá thật |
-| **Coverage hội tụ** | Lời hứa có giữ được không? | Coverage tích luỹ tiến dần về vạch xanh (mức danh mục). Dải xanh nhạt = ±3 điểm |
+| **Model vs baseline** | Hơn cách làm ngây thơ bao nhiêu? | Hai đường sai số tích luỹ: xanh = model, xám đứt = persistence (lấy luôn giá quan sát gần nhất). Vùng xanh nhạt giữa hai đường là phần model ăn được |
 
 > Bản trước dùng **đường nối 70 chuyến liên tiếp** — cách mã hoá đó sai, vì mỗi chuyến một tuyến
 > một quãng đường khác nhau, nối lại thành đường gấp khúc không mang thông tin gì. Và hai biểu đồ
 > "lệch %" với "lệch đồng" nói **cùng một chuyện** hai lần.
+
+### Tab 2 — Sai lệch theo bối cảnh
+
+Bốn biểu đồ cột, cùng một cách đọc: mỗi cột là sai số trung bình của một nhóm, **vạch đứt ngang
+là sai số chung** của toàn bộ chuyến đã chạy. Cột **xanh** là quanh mức chung, cột **đỏ** là tệ
+hơn mức chung trên 12% — đó là chỗ model đang yếu.
+
+| Chia theo | Nhóm |
+|---|---|
+| Mức giá | 6 band, từ `<50k` đến `>300k` |
+| Khung giờ | 0–5 · 6–9 · 10–12 · 13–16 · 17–19 · 20–23 (giờ Việt Nam) |
+| Quãng đường | `<2` · 2–5 · 5–8 · 8–12 · `>12` km |
+| Thời tiết | Quang · Mây · Mưa · Khác |
+
+Nhóm chưa đủ **5 chuyến** hiện thành vạch xám nhạt, không ghi số — quá ít mẫu thì mọi kết luận
+đều là nhiễu.
+
+Đây là bảng trả lời câu *model đang sai ở đâu, sai nhiều chỗ nào và ít chỗ nào*. Cho chạy ở nhóm
+`đại diện` tới ~200 chuyến rồi đọc: quãng đường tách nhóm rõ hơn hẳn khung giờ.
+
+### Tab 3 — Khoảng tin cậy
+
+| Biểu đồ | Cách đọc |
+|---|---|
+| **Coverage hội tụ** | Coverage tích luỹ tiến dần về vạch xanh (mức đã hứa). Dải xanh nhạt là sai số lấy mẫu, **co dần** khi số chuyến tăng — không phải dải ±3 điểm cố định. Chỉ vẽ từ chuyến thứ 20 trở đi: dưới ngưỡng đó coverage là nhiễu thuần, vẽ vào chỉ làm bẹp phần còn lại của đường |
+| **Coverage theo mức giá** | Cột đo **lệch so với mức đã hứa**, không phải từ 0. Xanh = đúng lời hứa trong phạm vi sai số mẫu · đỏ = hụt · cam = thừa (khoảng rộng quá) |
+| **Khoảng rộng bao nhiêu** | Cột cam = `±q%` của từng band, số xám dưới cột = độ rộng tuyệt đối theo đồng |
+| **Coverage theo bối cảnh** | Bốn ô cao điểm × mưa — đúng hai chiều mentor hỏi. Đọc giống biểu đồ coverage theo mức giá |
+
+Hai biểu đồ coverage cố tình vẽ lệch quanh mức đã hứa thay vì từ 0: nếu vẽ từ 0 thì mọi cột đều
+~90% và nhìn y hệt nhau, đúng cái bẫy "trung bình che mất chi tiết" mà tab này sinh ra để phá.
 
 Thanh khoảng cho thấy đúng thứ đang bán: **cận dưới — dự đoán — cận trên**, rồi vạch đen
 là giá thật khi tới nơi. Xanh nghĩa là nằm trong khoảng, đỏ là ra ngoài.
@@ -82,7 +124,10 @@ Bốn chỉ số quan trọng nằm ngay **thanh trên cùng**, luôn nhìn th�
 | Coverage **x%** | Tỷ lệ giá thật rơi trong khoảng — so với danh mục đang chọn |
 | Giá sai TB **x%** | Trung bình `|dự đoán − thật| / thật` |
 
-Dải thống kê bên phải lặp lại bốn số đó kèm độ rộng khoảng trung bình và tỷ lệ trượt lên/xuống.
+Dải thống kê bên phải lặp lại bốn số đó kèm độ rộng khoảng trung bình, tỷ lệ trượt lên/xuống, và
+một dòng đối chiếu với **baseline persistence** — cách làm ngây thơ nhất là lấy luôn giá quan sát
+gần nhất làm dự báo. Con số "tốt hơn x%" là lý do model tồn tại; nếu nó tụt về 0 thì model không
+đáng chạy.
 
 **Nhật ký** ở dải ngang dưới cùng, 11 cột:
 
@@ -111,7 +156,14 @@ là 90%. Ý: *con số trung bình che mất chuyện nhóm khách đắt tiền
 **4. Vẫn nhóm đó, bấm sang `theo band giá`.** Coverage bật lên **~91%**. Ý: *sửa được mà
 không cần train lại model — chỉ cần hiệu chỉnh riêng cho từng nhóm giá.*
 
-Bước 3 → 4 là phần đáng cho xem nhất.
+Bước 3 → 4 là phần đáng cho xem nhất. Mở tab **Khoảng tin cậy** trong lúc bấm qua lại thì thấy
+luôn cái giá phải trả: cột `>300k` ở biểu đồ độ rộng nhảy từ **±30,1%** lên **±41,0%**. Coverage
+không tự nhiên mà có — nó đổi bằng khoảng rộng hơn.
+
+**5. Về nhóm `đại diện`, chạy ~200 chuyến, mở tab `Sai lệch theo bối cảnh`.** Bốn biểu đồ cột
+cho thấy sai số tách nhóm rất rõ theo **quãng đường** và **mức giá**, gần như không tách theo
+**khung giờ**. Ý: *model không yếu vào giờ cao điểm như trực giác — nó yếu ở chuyến dài và chuyến
+đắt.* Đây là kết quả chính của tuần 4, và demo dựng lại được nó ngay trước mặt người xem.
 
 ## Dữ liệu
 
@@ -121,13 +173,25 @@ Bước 3 → 4 là phần đáng cho xem nhất.
 | `du_lieu/cauhinh.json` | Tham số `q` cho 3 mức × 6 band, hiệu chỉnh trên tập calibration |
 
 Mỗi chuyến gồm: thời điểm · loại xe · thời tiết · điểm đón/trả · quãng đường · thời lượng ·
-giá dự đoán · **giá thật** · giá cơ bản · hệ số nhân.
+giá dự đoán · **giá thật** · giá cơ bản · hệ số nhân · **dự báo persistence** (dùng cho biểu đồ
+đối chiếu baseline).
 
 **Tập test chưa từng được dùng để huấn luyện hay hiệu chỉnh** — nên mọi con số trên màn hình
 là dự đoán thật sự, không phải model đọc lại bài.
 
 Mẫu 900 chuyến lấy phân tầng theo giờ × tuyến (mỗi ô tối đa 5 chuyến) nên trải đủ 24 giờ và
 cả 9 tuyến. Nhóm >300k lấy **toàn bộ**, không lấy mẫu.
+
+## Ảnh chạy thử
+
+`anh_chay_thu/` là ảnh chụp màn hình của một lượt chạy thật (Chromium, 1920×800), dùng để đối
+chiếu khi nghi demo hiển thị sai:
+
+| Ảnh | Cấu hình |
+|---|---|
+| `01_tab_du_doan_gia` · `02_tab_sai_lech` · `03_tab_tin_cay` | đại diện · 90% · theo band · 200 chuyến |
+| `04_dat_q_chung` → `05_dat_theo_band` | `>300k`, bước 3 → 4 của kịch bản |
+| `06_muc_70` | đại diện · 70% |
 
 ## Sinh lại dữ liệu
 
