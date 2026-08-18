@@ -1,0 +1,32 @@
+# Bản khoá phiên bản — đúng những gì đang chạy được trên máy cũ (Python 3.12.10).
+# Dùng file này thay cho requirements.txt nếu muốn máy mới giống hệt máy cũ.
+#   pip install -r requirements_khoa_ban.txt
+
+# Lõi
+pandas==3.0.3
+numpy==1.26.4
+scipy==1.16.3
+scikit-learn==1.9.0
+pyarrow==24.0.0
+joblib==1.5.3
+
+# Model
+lightgbm==4.7.0
+xgboost==3.3.0
+pygam==0.12.0
+optuna==4.9.0
+
+# Vẽ hình
+matplotlib==3.11.0
+
+# Xuất tài liệu Word (docs/cong_cu/md_sang_docx.py)
+python-docx==1.2.0
+
+# Chạy notebook trong VS Code
+ipykernel==7.3.0
+
+# ── Tuỳ chọn, chỉ cần khi đụng tới phần tương ứng ────────────────────
+# torch==2.12.1        # notebook transformer/ — bản này vốn chạy trên Kaggle GPU
+# shap                 # analysis/FS_model_*.ipynb, chọn feature (tuần 1–2)
+# seaborn              # một vài hình cũ ở boston_data/analysis
+# jupyter              # chỉ cần nếu chạy notebook trên trình duyệt thay vì VS Code

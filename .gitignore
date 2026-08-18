@@ -30,3 +30,6 @@ __pycache__/
 Thumbs.db
 .vscode/
 .claude/
+
+# Thu muc dan de day len SharePoint — ban sao cua file da theo doi, khong commit
+/tphcm/
