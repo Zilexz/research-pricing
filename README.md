@@ -5,6 +5,9 @@ Nghiên cứu dự đoán giá đối thủ cho ride-hailing, gồm 2 bộ dữ 
 - **`boston_data/`** — Uber & Lyft Boston (Kaggle, dữ liệu thật)
 - **`TP_HCM_data/`** — synthetic quote-context sandbox TP.HCM (do công ty cung cấp)
 
+> 🧭 **Quay lại dự án hoặc mở trên máy mới? Đọc [`TIEN_DO.md`](TIEN_DO.md) trước**
+> — đang ở đâu, cái gì đã xong, làm gì tiếp, và cần chạy lại gì trước khi mở notebook tuần 5.
+
 > 📘 **Tài liệu kỹ thuật đầy đủ: [`TP_HCM_data/docs/tai_lieu_bao_cao/TECH_DOC.md`](TP_HCM_data/docs/tai_lieu_bao_cao/TECH_DOC.md)**
 > — bài toán, dữ liệu, kiến trúc, đánh giá, uncertainty, vận hành và nhật ký đính chính.
 > Đọc file đó trước nếu bạn mới tiếp cận dự án.
