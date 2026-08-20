@@ -33,10 +33,10 @@ RONG_ANH = Cm(16.5)
 # ── kiểu chữ ─────────────────────────────────────────────────────────────
 CHU = "Times New Roman"        # toàn tài liệu
 CHU_MA = "Consolas"            # RIÊNG khối code: có sơ đồ ASCII, đổi font là vỡ hàng
-CO_THAN = Pt(13)               # cỡ chữ thân bài
-CO_BANG = Pt(11)               # bảng: 13pt thì bảng 6 cột vỡ hết, hạ xuống 11
+CO_THAN = Pt(12.5)               # cỡ chữ thân bài
+CO_BANG = Pt(10.5)               # bảng: 13pt thì bảng 6 cột vỡ hết, hạ xuống 11
 CO_MA = Pt(9)
-CO_TIEU_DE = {1: Pt(18), 2: Pt(15.5), 3: Pt(13.5), 4: Pt(13)}
+CO_TIEU_DE = {1: Pt(17), 2: Pt(14.5), 3: Pt(13), 4: Pt(12.5)}
 
 INK = RGBColor(0x22, 0x22, 0x22)
 MUT = RGBColor(0x66, 0x66, 0x66)
@@ -109,7 +109,7 @@ def viet_cong_thuc(para, latex, co=None, dam=False):
     for chu, kieu in latex_sang_chu.dich(latex):
         r = para.add_run(chu)
         r.italic = True
-        r.bold = dam
+        r.bold = True if dam else None
         dat_font(r)
         if co:
             r.font.size = co
@@ -126,6 +126,16 @@ TOKEN = re.compile(
     r"|\$\$.+?\$\$|\$[^$\n]+\$|\*\*.+?\*\*"
     r"|(?<!\*)\*(?!\*).+?(?<!\*)\*(?!\*)|`[^`]+`)")
 NEO = re.compile(r"^\[([^\]]+)\]\(#([^)]+)\)$")
+
+
+def dat_dam_nghieng(run, dam, nghieng):
+    """Chỉ ép đậm/nghiêng khi cần; None để run kế thừa style.
+
+    Ép r.bold = False sẽ ĐÈ lên style Heading (vốn bold=True) và làm mọi đầu mục
+    mất in đậm — run luôn thắng style trong OOXML.
+    """
+    run.bold = True if dam else None
+    run.italic = True if nghieng else None
 
 
 def viet_inline(para, text, dam=False, nghieng=False):
@@ -148,14 +158,14 @@ def viet_inline(para, text, dam=False, nghieng=False):
             viet_inline(para, phan[2:-2], True, nghieng)
         elif phan.startswith("`") and phan.endswith("`"):
             r = para.add_run(phan[1:-1])
-            r.bold, r.italic = dam, nghieng
+            dat_dam_nghieng(r, dam, nghieng)
             dat_font(r)
             r.font.color.rgb = ACCENT
         elif phan.startswith("*") and phan.endswith("*"):
             viet_inline(para, phan[1:-1], dam, True)
         else:
             r = para.add_run(phan)
-            r.bold, r.italic = dam, nghieng
+            dat_dam_nghieng(r, dam, nghieng)
             dat_font(r)
 
 

@@ -84,6 +84,11 @@ số khai thác được.
 | `12–15 km` | 2.045 | 15,26% |
 | `>300k` (giá thật) | 869 | **23,67%** |
 
+> ✅ **Đã chạy — kết quả âm tính.** Lưới đầy đủ `w ∈ {1,2,3,5,10,20}` × 3 cách gán, 48 lượt train.
+> Không mức trọng số nào cải thiện nhóm `>15 km`; gán theo quãng đường làm chính nhóm nó nhắm tới
+> xấu đi đơn điệu theo `w`. Chỉ gán theo **giá** kéo được `>300k` xuống (w=10: +3,23 điểm) nhưng
+> đổi lại `>15 km` mất 4,17 điểm. Chi tiết ở `HUONG_1_THAY_DOI_WEIGHT.ipynb`.
+
 **Tiêu chí chấp nhận đề xuất:** nhóm hiếm giảm ≥1 điểm MAPE trong khi toàn tập xấu đi ≤0,15 điểm.
 Con số này cần bootstrap CI để biết chênh lệch có thật hay chỉ là nhiễu — nhóm `>15 km` chỉ có 660
 chuyến nên rất dễ ra kết quả giả.
@@ -135,6 +140,10 @@ p̂ = (1 − α(d)) · p̂_GBM  +  α(d) · p̂_GAM
 | **B2b** | Đo trên nhóm cố định, so với cả GBM đơn lẻ lẫn GAM đơn lẻ | |
 | **B2c** | Kiểm tra chuyển tiếp có mượt không | Đừng để giá nhảy bậc tại `d₀` — khách đi 14,9 km và 15,1 km không nên nhận giá lệch hẳn nhau |
 
+> ✅ **Đã chạy.** B1 cho 8/9 lát GAM thắng rõ ở `>15 km`, 0 lát đảo chiều → lợi thế ổn định, cổng
+> quyết định mở. B2 chốt `d₀ = 6 km`, `d₁ = 14 km`, `α_max = 0,8` dò trên `2026-01`, đánh giá trên
+> hai tháng chưa đụng tới. Chi tiết ở `HUONG_2_GAM_GBM.ipynb`.
+
 **Điểm khởi đầu gợi ý:** `d₀ = 10 km`, `d₁ = 18 km`, `α_max = 1`. Lý do: §6.5 cho thấy GBM còn thắng
 ở `8–12 km` (+0,07 điểm) và bắt đầu thua từ `12–15 km`.
 
@@ -155,10 +164,17 @@ Việc rẻ nhất trong cả tuần, và đã đủ bằng chứng để làm n
 
 Chi phí: vài giờ, **không train lại model**, tốn thêm 0,04% độ rộng.
 
+> ✅ **Đã chạy** ở `04_MONDRIAN_QUANG_DUONG.ipynb`: lệch coverage giữa nhóm **12,6 → 2,42 điểm**,
+> độ rộng chỉ +0,34%.
+
 ## C2. Bất đối xứng theo từng chuyến — chỉ làm nếu còn thời gian
 
 X2 đã loại phương án một cặp hằng số. Phương án còn lại là ước lượng **hai phân vị điều kiện riêng
 biệt** cho mỗi chuyến, tức quay lại họ CQR nhưng bất đối xứng.
+
+> ✅ **Đã chạy** ở `HUONG_3_KHOANG_BAT_DOI_XUNG.ipynb`. CQR bất đối xứng là phương án duy nhất kéo
+> được band `>300k` từ 83,79% lên 88,03% và giảm lệch coverage giữa band 8,62 → 1,55 điểm, giá phải
+> trả là độ rộng +3,2%. Cặp hằng số bất đối xứng thì âm tính đúng như X2 đã báo.
 
 Chi phí cao hơn hẳn và lợi ích chưa rõ. **Ưu tiên thấp nhất trong tuần** — chỉ đụng vào khi A và B
 đã xong.
@@ -173,8 +189,9 @@ Chi phí cao hơn hẳn và lợi ích chưa rõ. **Ưu tiên thấp nhất tron
 |---|---|---|
 | **D1** | Tech doc | ✅ `docs/tai_lieu_bao_cao/TECH_DOC.docx` — 1.387 dòng, 70 bảng, 12 hình |
 | **D2** | Research paper | ✅ `docs/tai_lieu_bao_cao/RESEARCH_PAPER.docx` — 772 dòng, 29 bảng, 12 hình |
-| **D3** | Báo cáo tuần 5 | 🔴 Viết cuối tuần, sau khi có kết quả A và B |
-| **D4** | Bảng so sánh phương án mới | 🔴 Xem mẫu dưới — đây là thứ mentor yêu cầu cụ thể nhất |
+| **D3** | Báo cáo tuần 5 | ✅ `docs/bao_cao_tuan/bao_cao_tuan5_TONG_HOP.docx` — bản nộp, gộp 3 phần |
+| **D4** | Bảng so sánh phương án mới | ✅ `tuan_5/ket_qua/D4_bang_nop_mentor.csv` — số chế độ đầy đủ |
+| **D5** | Xu hướng dự đoán *(mentor hỏi thêm)* | ✅ `docs/bao_cao_tuan/bao_cao_tuan5_xu_huong.docx` |
 
 ## Mẫu bảng D4
 
@@ -185,8 +202,13 @@ và kết quả chung bị ảnh hưởng thế nào. Nên bảng phải có đ�
 |---|---:|---:|---:|---|
 | **Hybrid GBM** *(mốc)* | 17,52% | 23,67% | **14,65%** | — |
 | GAM đơn lẻ | 15,37% | 22,03% | 14,89% | −0,24 điểm toàn tập |
-| Trọng số `w = ?` | | | | |
-| Ghép GAM–GBM | | | | |
+| Trọng số theo giá `w=10` | 21,69% | **20,44%** | 14,71% | được `>300k`, mất `>15 km` 4,17 điểm |
+| Trọng số theo quãng đường `w=20` | 18,51% | 23,53% | 14,66% | không được gì |
+| **Ghép GAM–GBM** *(chọn)* | **15,40%** | 22,24% | **14,64%** | không phải đánh đổi |
+
+Kết quả đã điền, số lấy từ chế độ đầy đủ. Chỉ hàng **ghép** cải thiện được cả ba cột cùng lúc —
+CI 95% loại trừ 0 ở cả `>15 km` (+2,12 [+1,47, +2,76]), `>300k` (+1,43 [+1,05, +1,85]) và toàn tập
+(+0,01 [+0,01, +0,01]).
 
 Kèm bootstrap CI cho mọi chênh lệch. Nhóm chia theo **quãng đường** và **giá thật** — cố định cho
 mọi phương án.
@@ -205,3 +227,11 @@ mọi phương án.
 
 3. **Dữ liệu thật có mức nhiễu báo giá tương đương bộ mô phỏng không?** Câu hỏi từ tuần 4 chưa được
    trả lời, và nó quyết định việc mở rộng phạm vi có nghĩa hay không.
+
+4. **Ngưỡng đánh đổi độ rộng khoảng tin cậy.** Team chấp nhận khoảng rộng thêm bao nhiêu phần trăm
+   để đổi lấy coverage đều giữa các band giá? Con số này quyết định chọn Mondrian (+0,21% độ rộng,
+   band `>300k` vẫn hụt) hay CQR (+3,2% độ rộng, band `>300k` lên 88,03%).
+
+5. **Model nên báo đúng trung bình hay báo thận trọng lệch lên ở chuyến dài?** Hiện model không
+   thiên lệch tổng thể (trung vị +0,01%) nhưng báo thấp ở chuyến trên 18 km. Hai mục tiêu này cho
+   hai cách hiệu chỉnh khác nhau.

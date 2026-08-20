@@ -33,3 +33,6 @@ Thumbs.db
 
 # Thu muc dan de day len SharePoint — ban sao cua file da theo doi, khong commit
 /tphcm/
+
+# Log cua nbconvert khi chay notebook nen
+run_*.log
