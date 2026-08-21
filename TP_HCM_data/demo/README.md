@@ -20,19 +20,25 @@ Nếu cửa sổ hẹp dưới 1200px thì bố cục tự xếp dọc và cả 
 | Khu vực | Nội dung |
 |---|---|
 | **Bản đồ** (trên trái) | 3 vùng nét đứt · nhiều xe chạy song song · vệt đường giữ lại 14 chuyến gần nhất, xanh = trúng khoảng, đỏ = trượt |
-| **Ba bảng biểu đồ** (dưới trái) | Chuyển bằng tab. Xem mục dưới |
+| **Sáu bảng biểu đồ** (dưới trái) | Chuyển bằng tab. Xem mục dưới |
 | **Chuyến đang theo dõi** (phải) | Giá dự đoán · thanh khoảng tin cậy · giá thật hiện khi xe tới nơi |
 | **Dải thống kê** (phải) | Coverage · giá sai TB · độ rộng khoảng · trượt lên/xuống · đối chiếu baseline |
 | **Nhật ký** (dải ngang dưới cùng) | 80 chuyến gần nhất, 11 cột |
 
-## Ba bảng biểu đồ
+## Sáu bảng biểu đồ
 
-Khu biểu đồ dưới bản đồ có **ba tab**, mỗi tab trả lời một câu hỏi khác nhau. Mọi biểu đồ cập
+Thứ tự tab, trái sang phải: **Nhịp giá · cả tập** → **Nhịp giá · đã chạy** → **Dự đoán giá** →
+**Sai lệch theo bối cảnh** → **Khoảng tin cậy** → **Bản đã lưu**.
+
+Mở app lên là vào thẳng **Nhịp giá · cả tập**, vì đó là tab duy nhất có số ngay mà không cần chạy gì
+— tránh cảnh mở ra thấy bốn khung trống rồi mới hiểu là phải bấm ▶.
+
+Khu biểu đồ dưới bản đồ có **sáu tab**, mỗi tab trả lời một câu hỏi khác nhau. Mọi biểu đồ cập
 nhật trực tiếp theo từng chuyến chạy xong, và vẽ lại từ đầu khi đổi cấu hình.
 
 Chú giải màu nằm ngay bên phải thanh tab, đổi theo tab đang mở.
 
-### Tab 1 — Dự đoán giá
+### Tab 3 — Dự đoán giá
 
 | Biểu đồ | Câu hỏi | Cách đọc |
 |---|---|---|
@@ -40,11 +46,20 @@ Chú giải màu nằm ngay bên phải thanh tab, đổi theo tab đang mở.
 | **Phân bố sai số** | Sai lệch tập trung ở đâu? | Cột chồng: xanh = nằm trong khoảng, đỏ = nằm ngoài. Lệch sang **phải** nghĩa là dự đoán cao hơn giá thật |
 | **Model vs baseline** | Hơn cách làm ngây thơ bao nhiêu? | Hai đường sai số tích luỹ: xanh = model, xám đứt = persistence (lấy luôn giá quan sát gần nhất). Vùng xanh nhạt giữa hai đường là phần model ăn được |
 
+**Mọi tỷ lệ ở tab này tính trên TOÀN BỘ cuộc chạy**, không phải trên số điểm đang vẽ — nên khớp đúng
+với chip `Coverage` ở thanh trên cùng (`ngoài khoảng %` = 100% − coverage). Biểu đồ chỉ vẽ được một
+phần chuyến gần nhất cho đỡ rối; khi đó phụ đề ghi thêm *"vẽ N gần nhất"* để không ai tưởng tỷ lệ
+tính trên chừng đó.
+
+> Trước đây bốn biểu đồ này dùng **bốn mẫu khác nhau** — tán xạ và hệ số nhân lấy 250 chuyến gần
+> nhất, phân bố và baseline lấy 400 (giới hạn nhật ký), còn chip Coverage lấy tất cả. Cùng một cuộc
+> chạy mà bốn con số không khớp nhau, và không cái nào ra phần trăm.
+
 > Bản trước dùng **đường nối 70 chuyến liên tiếp** — cách mã hoá đó sai, vì mỗi chuyến một tuyến
 > một quãng đường khác nhau, nối lại thành đường gấp khúc không mang thông tin gì. Và hai biểu đồ
 > "lệch %" với "lệch đồng" nói **cùng một chuyện** hai lần.
 
-### Tab 2 — Sai lệch theo bối cảnh
+### Tab 4 — Sai lệch theo bối cảnh
 
 Bốn biểu đồ cột, cùng một cách đọc: mỗi cột là sai số trung bình của một nhóm, **vạch đứt ngang
 là sai số chung** của toàn bộ chuyến đã chạy. Cột **xanh** là quanh mức chung, cột **đỏ** là tệ
@@ -63,7 +78,7 @@ Nhóm chưa đủ **5 chuyến** hiện thành vạch xám nhạt, không ghi s�
 Đây là bảng trả lời câu *model đang sai ở đâu, sai nhiều chỗ nào và ít chỗ nào*. Cho chạy ở nhóm
 `đại diện` tới ~200 chuyến rồi đọc: quãng đường tách nhóm rõ hơn hẳn khung giờ.
 
-### Tab 3 — Khoảng tin cậy
+### Tab 5 — Khoảng tin cậy
 
 | Biểu đồ | Cách đọc |
 |---|---|
@@ -74,6 +89,129 @@ Nhóm chưa đủ **5 chuyến** hiện thành vạch xám nhạt, không ghi s�
 
 Hai biểu đồ coverage cố tình vẽ lệch quanh mức đã hứa thay vì từ 0: nếu vẽ từ 0 thì mọi cột đều
 ~90% và nhìn y hệt nhau, đúng cái bẫy "trung bình che mất chi tiết" mà tab này sinh ra để phá.
+
+### Tab 1 — Nhịp giá · cả tập
+
+Tab dành cho **người dùng**, không phải người làm model: giá trong ngày lên xuống ra sao, và lúc đó
+trời thế nào.
+
+> **Tab này KHÔNG lấy số từ mô phỏng của bạn.** Nó gom thẳng **toàn bộ** chuyến của nhóm đang chọn —
+> 216.090 chuyến với nhóm `đại diện`, 327 với nhóm `>300k` — nên có số ngay khi mở, chưa chạy chuyến
+> nào. Nhịp giá theo giờ là đặc tính của **dữ liệu**, không phải kết quả của model. Cột `N` trong
+> bảng ghi mấy nghìn chuyến mỗi giờ chính là dấu hiệu nhận ra điều đó.
+
+Cái nó ăn theo và không ăn theo:
+
+| Bộ lọc | Có ảnh hưởng? |
+|---|---|
+| **Nhóm chuyến** (`đại diện` ↔ `>300k`) | ✅ có |
+| **Khung giờ** | ❌ không — cố ý, để luôn thấy đủ 24 giờ; khung đang chọn chỉ được **tô nền xanh** |
+| **Thứ** | ❌ không — số vẫn gồm cả 11 ngày |
+
+Muốn xem nhịp giá đúng theo bộ lọc thì dùng **Tab 2** bên cạnh.
+
+| Khu vực | Cách đọc |
+|---|---|
+| **Giá trung bình mỗi chuyến** *(biểu đồ lớn)* | Cột vẽ **từ 0** nên chiều cao đọc đúng tỷ lệ. **Mọi cột đều ghi số trên đầu** khi còn chỗ; cột **cam** = đắt nhất, **xanh lá** = rẻ nhất, in đậm. Vạch đứt ngang = **trung bình cả ngày**. Hai dải vàng nhạt = cao điểm sáng và chiều. **Vạch xanh** ở đỉnh khung = khoảng giờ đang lọc |
+| **Dải màu ngay dưới trục giờ** | Thời tiết **trội nhất** của từng giờ — xanh dương Mưa · xám Mây · cam Quang · xám nhạt Sương. Ô nhạt trơn = giờ đó chưa đủ 3 chuyến |
+| **Hệ số nhân theo giờ** | Phần thị trường nhân vào giá cơ bản. Vạch đứt = trung bình ngày |
+| **Giá mỗi km theo giờ** | Giá cuối chia quãng đường — bỏ ảnh hưởng chuyến dài ngắn |
+| **Số liệu từng ô** | Bảng con số cụ thể: n · hệ số · giá/km · giá TB · km · thời tiết kèm %. Chỉ liệt kê ô **có chuyến** — trước đây in đủ 24 dòng nên lọc còn 1 giờ thì 23 dòng rỗng đẩy dòng có số ra ngoài vùng nhìn |
+
+**Rê chuột lên bất kỳ giờ nào** của cả ba biểu đồ thì hiện một thẻ đủ năm chỉ số của giờ đó — giá TB,
+giá mỗi km, hệ số nhân, quãng đường, thời tiết và số chuyến — kèm vạch dọc đánh dấu. Không phải dò
+sang bảng nữa.
+
+Nút **`+ model dự đoán`** ở góc phải chồng thêm đường đứt xám là giá model dự đoán, để đối chiếu với
+giá thật. Mặc định tắt cho gọn; bật lên khi cần phân tích.
+
+> Giờ nào chưa đủ **3 chuyến** thì bỏ khỏi biểu đồ và làm mờ trong bảng — quá ít mẫu thì mọi kết luận
+> đều là nhiễu.
+
+### Tab 2 — Nhịp giá · đã chạy
+
+Cùng một bộ biểu đồ như Tab 1, khác đúng **nguồn số**: chỉ gồm những chuyến mô phỏng **đã chạy xong**.
+Vì thế nó **ăn theo đúng bộ lọc** đang đặt — chọn `17h–19h` + `T6` thì chỉ còn ba cột 17h/18h/19h của
+thứ Sáu.
+
+| | Tab 1 · cả tập | Tab 2 · đã chạy |
+|---|---|---|
+| Nguồn | toàn bộ nhóm đang chọn | chuyến đã chạy |
+| Có số khi mới mở | ✅ | ❌ — trống tới khi bấm ▶ |
+| Theo khung giờ / thứ | không | **có** |
+| Cỡ mẫu | hàng nghìn mỗi giờ | bằng đúng số chuyến đã chạy |
+| Ngưỡng hiện một giờ | ≥ 3 chuyến | ≥ 2 chuyến |
+
+Dùng Tab 1 để nói *"thị trường TP.HCM trong dữ liệu này lên xuống thế nào"*, dùng Tab 2 để nói
+*"riêng khung giờ tôi vừa chạy thì ra sao"*. Bấm **↺ Đặt lại** thì Tab 2 trắng lại từ đầu.
+
+#### Đọc giá trị trên biểu đồ
+
+Mọi biểu đồ đều có **lưới ngang kèm số ở trục dọc** và **nhãn thời gian ở trục ngang**; số nhãn tự
+giãn theo bề rộng thật của biểu đồ, nên biểu đồ lớn ghi gần hết mốc còn biểu đồ nhỏ thì thưa ra.
+Biểu đồ cột ghi thẳng giá trị lên đầu mỗi cột. Muốn số chính xác của một mốc thì **rê chuột** — thẻ
+hiện đủ giá TB, giá/km, hệ số nhân, quãng đường, thời tiết và số chuyến.
+
+#### Ô thời gian tự co giãn
+
+Cả hai tab **không cố định gom theo giờ**. Lọc còn đúng một giờ mà vẫn gom theo giờ thì cả ba biểu đồ
+chỉ ra **một điểm** — đường thành một chấm, không đọc được gì. Nên bước gom tự hạ xuống để thấy dao
+động *bên trong* giờ đó:
+
+| Dữ liệu trải trên | Bước gom | Ví dụ nhãn trục |
+|---|---|---|
+| ≥ 7 giờ | 60 phút | `0h` `3h` `6h` … |
+| < 7 giờ | 30 / 15 / 10 / 5 phút | `06:00` `06:10` `06:20` … |
+
+Bước được chọn là mức **nhỏ nhất mà mỗi ô vẫn còn ~8 chuyến** — hạ sâu hơn chỉ là đổi nhiễu lấy chi
+tiết giả. Ví dụ 70 chuyến trong khung `06h–06h` cho bước **10 phút** (6 ô, ~12 chuyến mỗi ô); cùng
+khung đó mà mới chạy 20 chuyến thì lên **30 phút**.
+
+Tiêu đề bảng và biểu đồ đổi theo bước đang dùng, nên luôn biết mình đang đọc mức nào. Tab 1 gần như
+luôn ở mức 60 phút vì nó gom cả 24 giờ.
+
+> Số của Tab 2 cộng dồn theo từng chuyến xong, **không** đọc từ nhật ký 400 chuyến gần nhất — nên
+> chạy 1.000 chuyến thì biểu đồ tính đủ 1.000, khớp với chip *Đã xong* trên thanh trên cùng.
+
+### Tab 6 — Bản đã lưu
+
+Dùng để **xem lại các lần mô phỏng cũ và so sánh chúng với nhau**.
+
+Cách dùng, đúng theo thứ tự:
+
+1. Chọn khung giờ và thứ, ví dụ `07h–09h` + `T2`, bấm **Áp dụng**
+2. Chạy cho đủ số chuyến rồi bấm **💾 Lưu bản chạy**
+3. Đổi sang `T4` *(vẫn giữ 07h–09h)*, chạy tiếp, lưu lần nữa
+4. Mở tab **Bản đã lưu**, tích hai bản, bấm **⇄ So sánh**
+
+| Nút | Việc |
+|---|---|
+| **⇄ So sánh** | Bật khi đã tích từ 2 bản trở lên **cùng khung giờ** |
+| **Bỏ chọn** | Xoá hết dấu tích |
+| **Xoá bản đã chọn** | Xoá hẳn các bản đang tích |
+
+Kết quả so sánh gồm hai phần: **biểu đồ cột nhóm** cho 5 chỉ số chính (mỗi bản một màu, mỗi chỉ số
+một thang riêng vì đơn vị khác nhau) và **bảng chênh lệch** lấy bản có số nhỏ nhất làm mốc — xanh là
+tốt hơn mốc, đỏ là tệ hơn. Với đúng 2 bản thì có thêm cột `Chênh`.
+
+> **Chỉ so được các bản cùng khung giờ.** Tích hai bản khác khung, nút So sánh sẽ mờ đi và báo rõ
+> khung nào đang lệch. Lý do: hai con số đo ở hai khung giờ khác nhau không nói về cùng một thời
+> điểm trong ngày, đặt cạnh nhau là so nhầm. Khác **thứ** thì so được — đó chính là thứ cần so.
+
+Nếu các bản khác nhau ở **mức tin cậy**, **hiệu chỉnh** hoặc **nhóm chuyến** thì vẫn so được nhưng
+phần đầu bảng sẽ cảnh báo *"cấu hình khác nhau, đọc cẩn thận"* — coverage đo ở mức 70% và 90% không
+đặt cạnh nhau được.
+
+Chỉ lưu con số đã tính, không lưu lại toàn bộ chuyến, nên lưu bao nhiêu bản cũng không tốn bộ nhớ.
+Đổi lại, bản lưu **mất khi tải lại trang**.
+
+> ⚠️ **Tập test chỉ trải trên 11 ngày rời rạc** (28/01 → 30/03). Nên lọc theo một thứ cụ thể thường
+> chỉ còn **đúng một ngày** — kết quả là đặc tính của *ngày hôm đó*, không phải hiệu ứng của thứ
+> trong tuần. App có in cảnh báo này ngay dưới phần điều khiển. Một số tổ hợp còn rỗng hẳn: khung
+> `07h–09h` **không có chuyến nào vào thứ Ba**, khi đó app báo *"không có chuyến nào — chọn khung
+> khác"*.
+
+---
 
 Thanh khoảng cho thấy đúng thứ đang bán: **cận dưới — dự đoán — cận trên**, rồi vạch đen
 là giá thật khi tới nơi. Xanh nghĩa là nằm trong khoảng, đỏ là ra ngoài.

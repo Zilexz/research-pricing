@@ -36,3 +36,9 @@ Thumbs.db
 
 # Log cua nbconvert khi chay notebook nen
 run_*.log
+
+# Zip dong goi lai duoc tu demo_v2/ bat cu luc nao
+TP_HCM_data/demo_v2.zip
+
+# Ban tai ve trung voi docs/tai_lieu_bao_cao/slide_trinh_bay.html
+/Slide (1).html
