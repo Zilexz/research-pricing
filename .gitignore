@@ -42,3 +42,8 @@ TP_HCM_data/demo_v2.zip
 
 # Ban tai ve trung voi docs/tai_lieu_bao_cao/slide_trinh_bay.html
 /Slide (1).html
+
+# Goi ban giao — toan bo la ban sao cua file da theo doi.
+# Dung lai bang: py -3 dong_goi_ban_giao.py
+/BAN_GIAO/
+/BAN_GIAO.zip
