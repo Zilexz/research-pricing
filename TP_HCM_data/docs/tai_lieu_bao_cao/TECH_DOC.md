@@ -1,9 +1,8 @@
 # Tài liệu kỹ thuật — Competitor Fare Forecasting (TP.HCM)
 
-**Dự án:** Dự báo giá đối thủ và lượng hoá độ bất định · GSM/XanhSM
-**Phạm vi dữ liệu:** 01/01–31/03/2026 · 1.724.714 lần báo giá · synthetic
-**Phiên bản:** 1.1 — 15/08/2026 *(bổ sung §15.4 demo)*
-**Đối tượng đọc:** mentor và team kỹ thuật
+**Dự án:** Dự báo giá đối thủ và lượng hoá độ bất định ·
+
+GSM/XanhSM · **Phạm vi dữ liệu:** 01/01–31/03/2026 · 1.724.714 lần báo giá · synthetic
 
 ---
 
@@ -52,6 +51,8 @@ TẦNG 2  Acceptance    [GIẢ ĐỊNH]  mô hình cấu trúc McFadden, không 
 | Vượt baseline persistence | **47,4%** |
 | Khoảng dự báo 90% | **giá dự đoán × (1 ± 30,1%)** |
 | Coverage thực tế | **89,8%** |
+| MAPE nhóm `>15 km` — sau khi ghép GAM–GBM | 17,52% → **15,40%** |
+| MAPE nhóm `>300k` — sau khi ghép GAM–GBM | 23,67% → **22,24%** |
 
 ### Ba kết luận đáng nói nhất
 
@@ -65,6 +66,11 @@ TẦNG 2  Acceptance    [GIẢ ĐỊNH]  mô hình cấu trúc McFadden, không 
 
 3. Model có học được cơ chế nhân quả, nhưng chỉ dùng khi cần. Ở lag 5′ nó chép giá quan sát trễ;
    rút cái nạng đó ra (lag 30′) nó tự bù 94% hiệu ứng mưa. Xem §11.3.
+
+4. **Sàn đó là sàn của toàn tập, không phải của từng nhóm.** Hai nhóm khó — chuyến `>15 km` và giá
+   thật `>300k` — vẫn còn dư địa, nhưng chỉ khai thác được bằng cách **đổi dạng hàm**, không phải
+   bằng trọng số. Ghép GAM–GBM theo quãng đường cải thiện cả hai mà toàn tập không xấu đi; đặt
+   trọng số cho chuyến hiếm thì hai nhóm kéo ngược nhau. Xem §13.5, §13.6.
 
 ### Giới hạn lớn nhất
 
@@ -882,6 +888,47 @@ với đổi kiến trúc.
 hiệu ứng cao điểm bật từ +2,4% lên +13,4%, khớp thực tế. Đó là đánh đổi độ chính xác lấy khả
 năng trả lời what-if — quyết định thuộc về team, không phải nhóm thực tập.
 
+### 11.4 Khoảng bất đối xứng và CQR
+
+> Theo gợi ý mentor: khoảng hiện tại chia độ rộng khá đều cho hai phía, trong khi model bỏ sót phía
+> giá cao nhiều hơn. Thử giữ độ rộng tương đương nhưng dành nhiều khoảng hơn cho phía giá cao.
+
+**Chẩn đoán đúng.** Khoảng hiện tại `p̂ · (1 ± 30,07%)` đối xứng, còn sai lệch thực tế thì không:
+7,64% giá thật vượt cận trên so với 2,55% thấp hơn cận dưới — tỷ lệ **3,00×**. Lệch nặng nhất ở
+band `>300k`: 11,62% vượt trên vs 4,59% dưới.
+
+**Nhưng cách sửa thì âm tính.** Giữ tổng rủi ro 10%, chia lại thành `α dưới` / `α trên` qua 9 mốc:
+
+| Phương án | Coverage | Độ rộng TB | Lệch coverage giữa band |
+|---|---:|---:|---:|
+| Đối xứng hiện tại | 89,81% | 72.637đ | 8,62 điểm |
+| Bất đối xứng 3%/7% *(hẹp nhất)* | 89,81% | 72.541đ *(−0,13%)* | 9,11 điểm |
+| Bất đối xứng 5%/5% *(cân hai phía)* | 89,92% | 73.598đ *(+1,32%)* | — |
+
+Không mốc chia nào vừa hẹp hơn vừa phủ tốt hơn đáng kể. Band `>300k` nằm trong khoảng 81,0–84,4%
+suốt cả lưới — chia lại rủi ro chỉ dịch khoảng cho **mọi** chuyến như nhau nên nhóm hụt nặng nhất
+vẫn hụt.
+
+**Vì sao âm tính.** Khoảng là **nhân tính** chứ không cộng tính: chuyến 200k được ±60,1k còn chuyến
+400k được ±120,3k. Nó đã hấp thụ sẵn phần lớn độ lệch phải của phân phối giá, nên phần bất đối xứng
+còn lại quá nhỏ để một cặp hằng số khai thác. ⇒ **Không lặp lại thí nghiệm này.**
+
+**Hướng đi được: cho độ rộng đổi theo từng chuyến.** Dựng khoảng từ hai phân vị điều kiện
+`q05`/`q95` của quantile regression rồi hiệu chỉnh riêng từng phía (CQR):
+
+| Phương án | Coverage | Độ rộng TB | Lệch giữa band | Band `>300k` |
+|---|---:|---:|---:|---:|
+| Đối xứng hiện tại | 89,81% | 72.637đ | 8,62 điểm | 83,79% |
+| Mondrian band + 3%/7% | 89,84% | 72.787đ *(+0,21%)* | 6,58 điểm | 83,49% |
+| **CQR bất đối xứng 3%/7%** | 89,04% | 74.954đ *(+3,2%)* | **1,55 điểm** | **88,03%** |
+
+CQR là phương án **duy nhất** kéo được band `>300k` lên sát cam kết. Khác biệt bản chất: phương án
+hiện tại cấp độ rộng tỷ lệ thuận với giá dự đoán, còn CQR cấp theo **mức khó của từng chuyến**.
+
+**Quyết định còn treo:** team chấp nhận khoảng rộng thêm bao nhiêu phần trăm để đổi lấy coverage đều
+giữa các band? Con số đó quyết định chọn Mondrian (+0,21%, rẻ) hay CQR (+3,2%, hiệu quả).
+Nguồn: `tuan_5/HUONG_3_KHOANG_BAT_DOI_XUNG.ipynb`.
+
 ---
 
 # PHẦN IV — MỞ RỘNG
@@ -1109,7 +1156,78 @@ thắt là dữ liệu, không phải sức chứa của model.
 > **Không đưa vào pipeline.** Đổi lấy 0,22% MAE (và mất 0,06 điểm MAPE) bằng một model cần GPU, gấp
 > 4 lần thời gian train, và phải lưu thêm thống kê chuẩn hoá để phục vụ — không đáng.
 
-### 13.5 Bảng tổng hợp các hướng đã thử
+### 13.5 Trọng số cho chuyến hiếm — kết quả âm tính
+
+> Theo gợi ý mentor: giữ model hiện tại làm mốc, đặt trọng số lớn hơn cho chuyến hiếm rồi đo xem
+> hai nhóm khó giảm bao nhiêu và toàn tập phải đánh đổi bao nhiêu.
+
+Lưới `w ∈ {1, 2, 3, 5, 10, 20}` × 3 cách gán "chuyến hiếm" (`>15 km` · `>300k` · cả hai), 48 lượt
+train, chỉ train lại nhánh giá cơ bản. Điểm neo: `w = 1` cho MAPE 14,6496%, trùng model mốc tới
+bốn chữ số thập phân.
+
+| Cách gán | w | `>15 km` | `>300k` | Toàn tập |
+|---|---:|---:|---:|---:|
+| — *(mốc)* | 1 | 17,52% | 23,67% | 14,65% |
+| Theo **giá** | 10 | **21,69%** *(−4,17)* | **20,44%** *(+3,23)* | 14,71% *(−0,06)* |
+| Theo **quãng đường** | 20 | 18,51% *(−0,98)* | 23,53% *(+0,14)* | 14,66% *(−0,01)* |
+
+Dấu trong ngoặc là chênh so với mốc, **dương là tốt lên**. Mọi chênh lệch kèm bootstrap CI 95%.
+
+Hai điều rút ra:
+
+**Gán theo quãng đường không cứu được chính nhóm nó nhắm tới.** Nhóm `>15 km` chỉ có 14.206 dòng
+train và vốn rất nhiễu, nên tăng trọng số chỉ khuếch đại nhiễu — nhóm này xấu đi **đơn điệu** theo
+`w` ở cả ba cách gán.
+
+**Hai nhóm hiếm kéo ngược nhau.** Gán theo giá là cách duy nhất kéo `>300k` xuống, nhưng đổi lại
+`>15 km` mất 4,17 điểm — phần mất lớn hơn phần được. Không có một mức trọng số nào cải thiện đồng
+thời cả hai.
+
+⇒ **Loại.** Nguồn: `tuan_5/HUONG_1_THAY_DOI_WEIGHT.ipynb`.
+
+### 13.6 Ghép GAM–GBM theo quãng đường — phương án chốt
+
+§13.1 cho thấy GAM chỉ thắng ở nhánh giá cơ bản của chuyến dài. Trước khi ghép phải kiểm lợi thế đó
+có ổn định không, vì nhóm `>15 km` chỉ có 660 chuyến test.
+
+**Điều kiện tiên quyết.** Dựng 9 lát chia train/test theo thời gian: **8/9 lát GAM thắng rõ** ở
+`>15 km` (CI loại trừ 0), **0 lát** GBM thắng rõ. Không lát nào đảo chiều ⇒ lợi thế là thật.
+
+**Dạng ghép.** Trộn tuyến tính, trọng số GAM tăng dần theo quãng đường, chỉ áp lên nhánh giá cơ bản:
+
+```
+p̂ = (1 − α(d)) · p̂_GBM + α(d) · p̂_GAM
+
+α(d) = 0                          nếu d ≤ d₀
+     = (d − d₀)/(d₁ − d₀) · α_max  nếu d₀ < d < d₁
+     = α_max                       nếu d ≥ d₁
+```
+
+Tham số chốt `d₀ = 6 km`, `d₁ = 14 km`, `α_max = 0,8`, **dò trên `2026-01`** rồi đánh giá trên hai
+tháng chưa đụng tới (137.250 chuyến). α(d) liên tục nên giá không nhảy bậc — khách đi 13,9 km và
+14,1 km không nhận giá lệch hẳn nhau.
+
+| Nhóm | n | GBM | Ghép | Chênh | CI 95% |
+|---|---:|---:|---:|---:|---|
+| `>15 km` | 428 | 18,12% | **15,61%** | **+2,50** | [+1,73, +3,36] |
+| `>300k` | 548 | 24,04% | **22,49%** | **+1,55** | [+1,04, +2,09] |
+| Toàn tập | 137.250 | 14,630% | 14,616% | +0,014 | [+0,01, +0,02] |
+
+Trên tập test đầy đủ với nhóm cố định (216.090 chuyến): `>15 km` 17,52% → **15,40%**,
+`>300k` 23,67% → **22,24%**, toàn tập 14,65% → **14,64%**. Cả bốn cột đều có CI loại trừ 0.
+
+**Vì sao không dùng thẳng GAM.** GAM đơn lẻ tốt hơn ghép ở cả hai nhóm hiếm (15,37% và 22,03%)
+nhưng toàn tập xấu đi **0,24 điểm** — đổi 216.090 chuyến lấy 1.500 chuyến là lỗ.
+
+**Cơ chế, không phải may rủi.** Cây không ngoại suy được: qua nhát cắt cuối cùng, dự đoán thành
+hằng số. Vùng `>20 km` chỉ chiếm **0,06%** tập train nên gần như không có nhát cắt nào ở đó. Đo
+bằng sai lệch **có dấu**: nhóm `>25 km` có giá thật TB 463.286đ, GBM báo 328.995đ (**−29,0%**),
+GAM báo 462.720đ (−0,1%), ghép 439.039đ (−5,2%). GAM khớp hàm trơn nên vẫn đi lên khi ra ngoài
+vùng dày dữ liệu.
+
+⇒ **Nhận.** Nguồn: `tuan_5/HUONG_2_GAM_GBM.ipynb`, `tuan_5/XU_HUONG_DU_DOAN.ipynb`.
+
+### 13.7 Bảng tổng hợp các hướng đã thử
 
 Ghi rõ để sau này không ai phải thử lại:
 
@@ -1123,8 +1241,12 @@ Ghi rõ để sau này không ai phải thử lại:
 | **Transformer chạy đầy đủ** (90.792 tham số, GPU T4) | **MAE −0,22% · MAPE +0,06 điểm — hoà** |
 | 5 cách hiệu chỉnh khoảng × 7 nhóm | Tốt nhất −0,43% |
 | GBM dự đoán độ khó từng chuyến | Tương quan hạng 0,053 |
+| Trọng số cho chuyến hiếm, 48 lượt train (§13.5) | Âm tính — hai nhóm hiếm kéo ngược nhau |
+| **Ghép GAM–GBM theo quãng đường** (§13.6) | **`>15 km` +2,50 điểm · `>300k` +1,55 · toàn tập không xấu đi** |
 
-Tất cả đều chỉ về cùng một kết luận: đã chạm trần dữ liệu (§7.5).
+Tất cả **trừ hàng cuối** đều chỉ về cùng một kết luận: đã chạm trần dữ liệu (§7.5). Ghép GAM–GBM
+không phá được trần đó — toàn tập gần như đứng yên — nhưng nó cho thấy trần là của **toàn tập**,
+còn từng nhóm thì vẫn còn dư địa nếu đổi dạng hàm thay vì đổi trọng số.
 
 ---
 
@@ -1263,8 +1385,12 @@ không lệch.
 
 | Hướng | Chi phí | Vì sao |
 |---|---|---|
-| **Bật Mondrian theo quãng đường** | vài giờ | Sửa lệch coverage 12,6 → 2,5 điểm. Không cần thêm thông tin, không train lại |
+| **Gộp ghép GAM–GBM vào pipeline chính** | vài giờ | Đã kiểm chứng ở §13.6, hiện còn nằm rời ở `tuan_5/`. Không train lại |
+| ~~Bật Mondrian theo quãng đường~~ | ✅ đã làm | Lệch coverage giữa nhóm 12,6 → 2,5 điểm, tốn thêm 0,04% độ rộng |
+| **CQR bất đối xứng** | vừa | Cách duy nhất kéo band `>300k` lên 88,03% (§11.4). Chỉ làm nếu team chấp nhận +3,2% độ rộng |
 | **Encode causality** | vừa | Không phải để tăng độ chính xác, mà để **trả lời được what-if** (§11.3) |
+| ~~Đặt trọng số cho chuyến hiếm~~ | — | Âm tính, 48 lượt train (§13.5). Hai nhóm hiếm kéo ngược nhau |
+| ~~Khoảng bất đối xứng bằng cặp hằng số~~ | — | Âm tính, 9 mốc chia rủi ro (§11.4). Khoảng nhân tính đã hấp thụ sẵn độ lệch phải |
 | ~~Thêm feature thị trường~~ | — | Đổ vào tầng đã đạt MAPE 1,42%. Giá cuối gần như không đổi |
 | ~~Tinh chỉnh siêu tham số~~ | — | Optuna 40 trial → +2 VND |
 
@@ -1392,6 +1518,17 @@ còn hệ số nhân có tương tác mà GAM không bắt được.
 | **Bổ sung** | Đường improve model **cũng cạn** trên bộ dữ liệu này (§7.5) |
 | **Kết luận đúng** | Ràng buộc thật sự là **dữ liệu**, không phải model |
 | **Bài học** | Loại trừ được một đường không có nghĩa đường còn lại đi được |
+
+### C.6 "Lợi thế của GAM ở nhóm giá cao là +4,02 điểm"
+
+| | |
+|---|---|
+| **Kết luận sai** | GAM hơn Hybrid **+4,02 điểm** ở nhóm `>300k` |
+| **Nguyên nhân** | Mỗi model tự chia nhóm theo giá **chính nó dự đoán**. Nhóm `>300k` khi đó chỉ còn 327 chuyến theo giá Hybrid và 330 theo giá GAM — chỉ 224 chuyến có mặt ở cả hai, tức hai model được chấm trên hai tập khác nhau |
+| **Kết luận đúng** | Chia nhóm theo **giá thật** (869 chuyến, độc lập với mọi model) cho **+1,65 điểm**. Lợi thế bị phồng **2,45 lần** |
+| **Bài học** | Nhóm dùng để so sánh phải độc lập với đầu ra của model. Ngoại lệ có chủ ý: đánh giá coverage vẫn chia theo giá **dự đoán**, vì khoảng tin cậy là lời hứa đưa ra khi chưa biết giá thật |
+
+Nguồn: `tuan_5/06_NHOM_CO_DINH.ipynb`. Mọi bảng so sánh model trong tài liệu này đã dùng nhóm cố định.
 
 ---
 

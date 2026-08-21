@@ -1,8 +1,8 @@
 # Dự báo giá đối thủ và lượng hoá độ bất định cho bài toán định giá gọi xe
 
 **Nhóm R&D — GSM/XanhSM · Bộ dữ liệu TP.HCM**
+
 **Phạm vi:** 01/01–31/03/2026 · 1.724.714 lần báo giá · dữ liệu mô phỏng
-**Phiên bản:** 1.0 — 17/08/2026
 
 ---
 
@@ -17,7 +17,7 @@ nhân lại. Trên tập test tách theo thời gian, hệ thống đạt MAE 18
 persistence 47,4%. Khoảng tin cậy dựng bằng conformal chuẩn hoá đạt coverage 89,81% ở mức danh mục
 90%, với độ rộng trung bình 72.637đ.
 
-Ngoài kết quả dự báo, chúng tôi báo cáo bốn phân tích:
+Ngoài kết quả dự báo, chúng tôi báo cáo năm phân tích:
 
 Thứ nhất, **phân rã sai số theo tầng**: 98,9% phương sai sai số nằm ở tầng giá cơ bản, trong khi
 tầng hệ số nhân đã đạt MAPE 1,42%. Điều này định vị lại toàn bộ nỗ lực cải thiện.
@@ -32,6 +32,11 @@ số và giải thích cơ chế tạo ra chênh lệch.
 
 Thứ tư, **cơ chế phản ứng giá**: đo bằng đối chứng ghép cặp trên 1,72 triệu chuyến, cung–cầu là yếu
 tố mạnh nhất (+35,08%), và 80–96% tác động của các yếu tố thị trường đi qua tầng hệ số nhân.
+
+Thứ năm, **giảm sai số ở nhóm khó**: sàn sai số đo được là sàn của *toàn tập*, không phải của từng
+nhóm. Đặt trọng số cao hơn cho chuyến hiếm cho kết quả âm tính — hai nhóm hiếm kéo ngược nhau. Ngược
+lại, trộn GAM với gradient boosting theo quãng đường cải thiện cả hai nhóm mà toàn tập không xấu đi:
+`>15 km` từ 18,12% xuống 15,61% và `>300k` từ 24,04% xuống 22,49% trên tập holdout hai tháng.
 
 ---
 
@@ -523,7 +528,74 @@ tốt hơn +2,16 điểm ở nhóm `>15 km` và +0,35 điểm ở nhóm `12–15
 Đây là kết quả đáng tin cậy nhất trong bảng.
 
 **Trên toàn tập GAM kém hơn 0,24 điểm.** Nên GAM không phải model thay thế mà là ứng viên cho một
-cách kết hợp có trọng số theo quãng đường — hướng này chưa được triển khai, xem §10.
+cách kết hợp có trọng số theo quãng đường. Hướng này đã được triển khai và trình bày ở §6.6.
+
+## 6.6 Giảm sai số ở nhóm khó
+
+§6.5 chỉ ra hai nhóm còn dư địa: chuyến `>15 km` và chuyến có giá thật `>300k`. Câu hỏi đặt ra là có
+giảm được sai số ở hai nhóm này mà không làm kết quả chung tệ đi hay không. Chúng tôi thử hai hướng,
+giữ nguyên model hiện tại làm mốc.
+
+### 6.6.1 Đặt trọng số cao hơn cho chuyến hiếm
+
+Hướng trực tiếp nhất: tăng `sample_weight` của chuyến hiếm khi huấn luyện, không đổi kiến trúc.
+Lưới `w ∈ {1, 2, 3, 5, 10, 20}` × ba cách định nghĩa "chuyến hiếm" (`>15 km` · `>300k` · cả hai),
+tổng 48 lượt huấn luyện, chỉ huấn luyện lại nhánh giá cơ bản. Điểm neo `w = 1` cho MAPE 14,6496%,
+trùng model mốc tới bốn chữ số thập phân.
+
+| Cách gán trọng số | w | `>15 km` | `>300k` | Toàn tập |
+|---|---:|---:|---:|---:|
+| — *(mốc)* | 1 | 17,52% | 23,67% | 14,65% |
+| Theo giá | 10 | 21,69% *(−4,17)* | **20,44%** *(+3,23)* | 14,71% *(−0,06)* |
+| Theo quãng đường | 20 | 18,51% *(−0,98)* | 23,53% *(+0,14)* | 14,66% *(−0,01)* |
+
+Số trong ngoặc là chênh so với mốc tính bằng điểm phần trăm, dấu dương nghĩa là tốt lên.
+
+Kết quả **âm tính**, vì hai lý do khác nhau. Thứ nhất, gán trọng số theo quãng đường không cải thiện
+được chính nhóm nó nhắm tới: nhóm `>15 km` chỉ có 14.206 dòng huấn luyện và vốn nhiễu, nên tăng
+trọng số chỉ khuếch đại nhiễu — nhóm này xấu đi đơn điệu theo `w` ở cả ba cách gán. Thứ hai, hai
+nhóm hiếm kéo ngược nhau: gán theo giá là cách duy nhất kéo `>300k` xuống, nhưng đổi lại `>15 km`
+mất 4,17 điểm. Không tồn tại mức trọng số nào cải thiện đồng thời cả hai.
+
+### 6.6.2 Trộn GAM với gradient boosting theo quãng đường
+
+Hướng thứ hai xuất phát từ §6.5: GAM chỉ thắng ở nhánh giá cơ bản của chuyến dài. Trước khi trộn,
+chúng tôi kiểm tra lợi thế đó có ổn định không, vì nhóm `>15 km` chỉ có 660 chuyến trong tập test.
+Dựng chín lần chia train/test theo thời gian: **tám trên chín lần** GAM tốt hơn với khoảng tin cậy
+không chứa 0, **không lần nào** gradient boosting tốt hơn có ý nghĩa. Không lần nào đảo chiều.
+
+Dạng trộn đơn giản nhất — tuyến tính, trọng số của GAM tăng dần theo quãng đường, chỉ áp lên nhánh
+giá cơ bản:
+
+$$\hat p = \big(1 - \alpha(d)\big)\,\hat p_{\text{GBM}} + \alpha(d)\,\hat p_{\text{GAM}}$$
+
+với $\alpha(d) = 0$ khi $d \le d_0$, tăng tuyến tính tới $\alpha_{\max}$ trên đoạn $[d_0, d_1]$,
+và giữ nguyên $\alpha_{\max}$ khi $d \ge d_1$. Tham số $d_0 = 6$ km, $d_1 = 14$ km,
+$\alpha_{\max} = 0,8$ được chọn trên tháng `2026-01` rồi đánh giá trên hai tháng còn lại. Hàm
+$\alpha(d)$ liên tục nên giá không nhảy bậc tại ngưỡng.
+
+| Nhóm | n | GBM | Trộn | Chênh (điểm) | CI 95% |
+|---|---:|---:|---:|---:|---|
+| `>15 km` | 428 | 18,12% | **15,61%** | **+2,50** | [+1,73, +3,36] |
+| `>300k` | 548 | 24,04% | **22,49%** | **+1,55** | [+1,04, +2,09] |
+| *Toàn tập* | 137.250 | 14,630% | 14,616% | +0,014 | [+0,01, +0,02] |
+
+Đo lại trên toàn bộ tập test với nhóm cố định (216.090 chuyến): `>15 km` 17,52% → 15,40%,
+`>300k` 23,67% → 22,24%, toàn tập 14,65% → 14,64%. Cả bốn cột đều có khoảng tin cậy không chứa 0.
+
+**Vì sao không dùng thẳng GAM.** GAM đơn lẻ tốt hơn bản trộn ở cả hai nhóm hiếm (15,37% và 22,03%)
+nhưng toàn tập xấu đi 0,24 điểm — đánh đổi 216.090 chuyến lấy khoảng 1.500 chuyến là không có lợi.
+
+**Cơ chế, không phải trùng hợp thống kê.** Cây quyết định không ngoại suy được: qua nhát cắt cuối
+cùng, dự đoán trở thành hằng số. Vùng `>20 km` chỉ chiếm 0,06% tập huấn luyện nên gần như không có
+nhát cắt nào ở đó. Đo bằng sai lệch có dấu thay vì sai số tuyệt đối: ở nhóm `>25 km`, giá thật trung
+bình là 463.286đ trong khi gradient boosting dự báo 328.995đ (−29,0%), GAM dự báo 462.720đ (−0,1%)
+và bản trộn 439.039đ (−5,2%). GAM khớp một hàm trơn theo quãng đường nên vẫn đi lên khi ra ngoài
+vùng dày dữ liệu.
+
+**Ý nghĩa chung.** Sàn sai số ở §7.5 là sàn của *toàn tập*. Từng nhóm vẫn còn dư địa, nhưng chỉ khai
+thác được bằng cách đổi **dạng hàm** ở đúng vùng cần, không phải bằng cách đổi **trọng số** của cùng
+một dạng hàm.
 
 ---
 
@@ -667,6 +739,24 @@ nó đã hấp thụ sẵn phần lớn độ lệch phải của phân phối g
 phép dịch phân vị đơn giản khai thác được. Muốn xử lý triệt để thì phải cho độ bất đối xứng **thay
 đổi theo từng chuyến**, chứ không phải một cặp hằng số dùng chung.
 
+Chúng tôi đã kiểm chứng nhận định cuối bằng cách dựng khoảng từ hai phân vị điều kiện `q05`/`q95`
+của quantile regression rồi hiệu chỉnh riêng từng phía — tức CQR bất đối xứng, trong đó độ rộng
+thay đổi theo từng chuyến thay vì dùng chung một cặp hằng số:
+
+| Phương án | Coverage | Độ rộng TB | Lệch coverage giữa band | Band `>300k` |
+|---|---:|---:|---:|---:|
+| Đối xứng hiện tại | 89,81% | 72.637đ | 8,62 điểm | 83,79% |
+| Mondrian theo band giá + 3%/7% | 89,84% | 72.787đ *(+0,21%)* | 6,58 điểm | 83,49% |
+| **CQR bất đối xứng 3%/7%** | 89,04% | 74.954đ *(+3,2%)* | **1,55 điểm** | **88,03%** |
+
+CQR là phương án duy nhất trong các phương án đã thử kéo được band `>300k` từ 83,79% lên 88,03%,
+tức gần sát mức danh nghĩa 90%, đồng thời giảm lệch coverage giữa các band từ 8,62 xuống 1,55 điểm.
+Cái giá là độ rộng trung bình tăng 3,2%.
+
+Khác biệt bản chất nằm ở cách phân bổ độ rộng: phương án hiện tại cấp độ rộng tỷ lệ thuận với giá
+dự đoán, nên mọi chuyến đều nhận cùng một tỷ lệ ±30,07%; CQR cấp độ rộng theo mức khó ước lượng
+được của từng chuyến. Đây là lý do nó xử lý được nhóm giá cao mà phép dịch phân vị không làm được.
+
 ## 7.6 Vì sao khoảng không hẹp lại được
 
 Nếu biết trước độ khó của từng chuyến thì chỉ cần ±14,68% thay vì ±30,07% — dư địa lý thuyết −51%.
@@ -767,23 +857,30 @@ là một giới hạn tuyệt đối.
 
 # 11. Hướng tiếp theo
 
-Bốn hướng, xếp theo tỷ lệ lợi ích trên chi phí.
+Bốn hướng nêu ở bản trước của bài báo này đều đã được thực hiện. Kết quả tóm tắt:
 
-**Bật Mondrian theo quãng đường.** Chi phí vài giờ, không train lại. Đưa lệch coverage giữa các nhóm
-từ 12,61 xuống 2,53 điểm với chi phí 0,04% độ rộng. Đây là việc nên làm trước tiên.
+| Hướng | Kết quả | Xem |
+|---|---|---|
+| Bật Mondrian theo quãng đường | ✅ Lệch coverage giữa nhóm 12,61 → 2,53 điểm, tốn thêm 0,04% độ rộng | §7.3 |
+| Đặt trọng số cao hơn cho chuyến hiếm | ❌ Âm tính — hai nhóm hiếm kéo ngược nhau | §6.6.1 |
+| Kiểm định lại lợi thế GAM qua nhiều lần chia | ✅ Ổn định 8/9 lần chia ⇒ mở đường cho phương án trộn | §6.6.2 |
+| Khoảng bất đối xứng phụ thuộc chuyến | ✅ CQR kéo band `>300k` lên 88,03%, đổi lại +3,2% độ rộng | §7.5 |
 
-**Đặt trọng số cao hơn cho chuyến hiếm.** Giữ model hiện tại làm mốc, tăng trọng số cho chuyến
-`>300k` hoặc `>15 km` khi huấn luyện, rồi đo hai con số: sai số ở hai nhóm này giảm bao nhiêu, và
-kết quả toàn tập phải đánh đổi bao nhiêu. Cần dùng nhóm cố định theo §6.5 để kết quả so sánh được.
+Ba hướng còn lại, xếp theo tỷ lệ lợi ích trên chi phí.
 
-**Kiểm định lại lợi thế của GAM qua nhiều lần chia dữ liệu theo thời gian.** §6.5 cho thấy lợi thế ở
-chuyến dài là có thật trên một lần chia. Nếu nó ổn định qua nhiều lần chia, một cách kết hợp đơn
-giản là cho trọng số của GAM tăng dần theo quãng đường, ưu tiên gradient boosting cho chuyến bình
-thường. Không cần kiến trúc mới.
+**Đưa phương án trộn GAM–GBM vào pipeline chính.** Kết quả ở §6.6.2 đã kiểm chứng trên tập holdout
+nhưng phần cài đặt còn nằm rời. Chi phí vài giờ, không huấn luyện lại.
 
-**Khoảng bất đối xứng phụ thuộc chuyến.** §7.5 cho thấy một cặp hằng số bất đối xứng không giúp gì.
-Nếu theo đuổi hướng này thì phải để độ bất đối xứng thay đổi theo từng chuyến, chẳng hạn ước lượng
-riêng hai phân vị điều kiện — chi phí cao hơn hẳn và cần cân nhắc với lợi ích còn chưa rõ.
+**Chốt giữa Mondrian và CQR cho khoảng dự báo.** Hai phương án đánh đổi khác nhau: Mondrian rẻ hơn
+gần mười lần về độ rộng nhưng không kéo được band `>300k` lên, CQR làm được nhưng tốn 3,2% độ rộng.
+Lựa chọn phụ thuộc một tham số kinh doanh mà nhóm chưa có: mức độ rộng tăng thêm mà đội định giá
+chấp nhận để đổi lấy coverage đều giữa các nhóm.
+
+**Đo sai lệch có dấu khi vận hành.** MAPE lấy trị tuyệt đối nên mất dấu. Đo bằng sai lệch có dấu cho
+thấy tổng thể model không thiên lệch (trung vị +0,01%, tỷ lệ dự báo cao 50,02%), nhưng có hai tình
+huống lệch rõ và cả hai đều nhận biết được trước khi dự báo: chuyến càng dài model càng dự báo thấp,
+và khi giá thị trường vừa tăng mạnh model dự báo thấp khoảng 10,6% do chỉ quan sát được giá trễ.
+Cả hai đều nên gắn cảnh báo ở đầu ra.
 
 Ngoài ra, hai câu hỏi cần trả lời trước khi mở rộng phạm vi: dữ liệu thật có mức nhiễu báo giá tương
 đương bộ mô phỏng không, và có hiệu ứng ngày lễ không. Cả hai đều quyết định hướng đi và không thể
